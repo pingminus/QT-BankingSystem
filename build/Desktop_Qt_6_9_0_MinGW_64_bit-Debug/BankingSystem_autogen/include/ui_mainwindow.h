@@ -26,12 +26,12 @@ public:
     QWidget *centralwidget;
     QWidget *gridLayoutWidget_3;
     QGridLayout *gridLayout_3;
+    QGridLayout *gridLayout;
+    QLineEdit *usernameText;
+    QLineEdit *passwordText;
     QGridLayout *gridLayout_2;
     QPushButton *RegisterButton;
     QPushButton *LoginButton;
-    QGridLayout *gridLayout;
-    QLineEdit *passwordText;
-    QLineEdit *usernameText;
     QLabel *label;
 
     void setupUi(QMainWindow *MainWindow)
@@ -40,7 +40,7 @@ public:
             MainWindow->setObjectName("MainWindow");
         MainWindow->setWindowModality(Qt::WindowModality::NonModal);
         MainWindow->setEnabled(true);
-        MainWindow->resize(392, 812);
+        MainWindow->resize(392, 786);
         MainWindow->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         MainWindow->setDocumentMode(false);
         centralwidget = new QWidget(MainWindow);
@@ -51,6 +51,69 @@ public:
         gridLayout_3 = new QGridLayout(gridLayoutWidget_3);
         gridLayout_3->setObjectName("gridLayout_3");
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName("gridLayout");
+        usernameText = new QLineEdit(gridLayoutWidget_3);
+        usernameText->setObjectName("usernameText");
+        usernameText->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: #f5f5f5;                  /* Light background */\n"
+"    color: #333;                                /* Dark text color */\n"
+"    border: 1px solid #dcdcdc;                  /* Light border */\n"
+"    border-radius: 12px;                        /* Rounded corners */\n"
+"    padding: 10px 15px;                         /* Inner padding */\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 24px;                            /* Text size */\n"
+"    min-height: 36px;                           /* Min height for consistency */\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 1px solid #007aff;                  /* Blue border on focus */\n"
+"    background-color: #ffffff;                  /* White background when focused */\n"
+"    color: #1c1c1e;                             /* Darker text color */\n"
+"    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);  /* Subtle blue glow around input */\n"
+"}\n"
+"\n"
+"QLineEdit::placeh"
+                        "older {\n"
+"    color: #a6a6a6;                             /* Light gray placeholder text */\n"
+"    font-style: italic;                         /* Italic placeholder */\n"
+"}\n"
+""));
+
+        gridLayout->addWidget(usernameText, 0, 1, 1, 1);
+
+        passwordText = new QLineEdit(gridLayoutWidget_3);
+        passwordText->setObjectName("passwordText");
+        passwordText->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: #f5f5f5;                  /* Light background */\n"
+"    color: #333;                                /* Dark text color */\n"
+"    border: 1px solid #dcdcdc;                  /* Light border */\n"
+"    border-radius: 12px;                        /* Rounded corners */\n"
+"    padding: 10px 15px;                         /* Inner padding */\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 24px;                            /* Text size */\n"
+"    min-height: 36px;                           /* Min height for consistency */\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 1px solid #007aff;                  /* Blue border on focus */\n"
+"    background-color: #ffffff;                  /* White background when focused */\n"
+"    color: #1c1c1e;                             /* Darker text color */\n"
+"    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);  /* Subtle blue glow around input */\n"
+"}\n"
+"\n"
+"QLineEdit::placeh"
+                        "older {\n"
+"    color: #a6a6a6;                             /* Light gray placeholder text */\n"
+"    font-style: italic;                         /* Italic placeholder */\n"
+"}\n"
+""));
+
+        gridLayout->addWidget(passwordText, 1, 1, 1, 1);
+
+
+        gridLayout_3->addLayout(gridLayout, 0, 0, 1, 1);
+
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName("gridLayout_2");
         RegisterButton = new QPushButton(gridLayoutWidget_3);
@@ -91,7 +154,7 @@ public:
 "}\n"
 ""));
 
-        gridLayout_2->addWidget(RegisterButton, 1, 0, 1, 1);
+        gridLayout_2->addWidget(RegisterButton, 3, 0, 1, 1);
 
         LoginButton = new QPushButton(gridLayoutWidget_3);
         LoginButton->setObjectName("LoginButton");
@@ -131,73 +194,10 @@ public:
 "}\n"
 ""));
 
-        gridLayout_2->addWidget(LoginButton, 0, 0, 1, 1);
+        gridLayout_2->addWidget(LoginButton, 1, 0, 1, 1);
 
 
-        gridLayout_3->addLayout(gridLayout_2, 1, 0, 1, 1);
-
-        gridLayout = new QGridLayout();
-        gridLayout->setObjectName("gridLayout");
-        passwordText = new QLineEdit(gridLayoutWidget_3);
-        passwordText->setObjectName("passwordText");
-        passwordText->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
-"    background-color: #f5f5f5;                  /* Light background */\n"
-"    color: #333;                                /* Dark text color */\n"
-"    border: 1px solid #dcdcdc;                  /* Light border */\n"
-"    border-radius: 12px;                        /* Rounded corners */\n"
-"    padding: 10px 15px;                         /* Inner padding */\n"
-"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
-"    font-size: 24px;                            /* Text size */\n"
-"    min-height: 36px;                           /* Min height for consistency */\n"
-"}\n"
-"\n"
-"QLineEdit:focus {\n"
-"    border: 1px solid #007aff;                  /* Blue border on focus */\n"
-"    background-color: #ffffff;                  /* White background when focused */\n"
-"    color: #1c1c1e;                             /* Darker text color */\n"
-"    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);  /* Subtle blue glow around input */\n"
-"}\n"
-"\n"
-"QLineEdit::placeh"
-                        "older {\n"
-"    color: #a6a6a6;                             /* Light gray placeholder text */\n"
-"    font-style: italic;                         /* Italic placeholder */\n"
-"}\n"
-""));
-
-        gridLayout->addWidget(passwordText, 1, 1, 1, 1);
-
-        usernameText = new QLineEdit(gridLayoutWidget_3);
-        usernameText->setObjectName("usernameText");
-        usernameText->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
-"    background-color: #f5f5f5;                  /* Light background */\n"
-"    color: #333;                                /* Dark text color */\n"
-"    border: 1px solid #dcdcdc;                  /* Light border */\n"
-"    border-radius: 12px;                        /* Rounded corners */\n"
-"    padding: 10px 15px;                         /* Inner padding */\n"
-"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
-"    font-size: 24px;                            /* Text size */\n"
-"    min-height: 36px;                           /* Min height for consistency */\n"
-"}\n"
-"\n"
-"QLineEdit:focus {\n"
-"    border: 1px solid #007aff;                  /* Blue border on focus */\n"
-"    background-color: #ffffff;                  /* White background when focused */\n"
-"    color: #1c1c1e;                             /* Darker text color */\n"
-"    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);  /* Subtle blue glow around input */\n"
-"}\n"
-"\n"
-"QLineEdit::placeh"
-                        "older {\n"
-"    color: #a6a6a6;                             /* Light gray placeholder text */\n"
-"    font-style: italic;                         /* Italic placeholder */\n"
-"}\n"
-""));
-
-        gridLayout->addWidget(usernameText, 0, 1, 1, 1);
-
-
-        gridLayout_3->addLayout(gridLayout, 0, 0, 1, 1);
+        gridLayout_3->addLayout(gridLayout_2, 2, 0, 1, 1);
 
         label = new QLabel(centralwidget);
         label->setObjectName("label");
@@ -226,7 +226,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        RegisterButton->setText(QCoreApplication::translate("MainWindow", "Register", nullptr));
+        RegisterButton->setText(QCoreApplication::translate("MainWindow", "Sign up", nullptr));
         LoginButton->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
         label->setText(QString());
     } // retranslateUi

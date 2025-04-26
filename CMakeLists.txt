@@ -24,6 +24,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         resources.qrc
+        dashboardwindow.h dashboardwindow.cpp dashboardwindow.ui
 
 
     )

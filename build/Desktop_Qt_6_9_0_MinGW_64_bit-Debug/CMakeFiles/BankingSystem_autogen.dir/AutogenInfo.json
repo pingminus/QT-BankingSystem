@@ -333,6 +333,12 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/dashboardwindow.h",
+			"MU",
+			"EWIEGA46WW/moc_dashboardwindow.cpp",
+			null
+		],
+		[
 			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -410,6 +416,11 @@
 	"SETTINGS_FILE" : "C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/BankingSystem_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/dashboardwindow.cpp",
+			"MU",
+			null
+		],
 		[
 			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/main.cpp",
 			"MU",

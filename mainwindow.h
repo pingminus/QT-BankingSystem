@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QLabel>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -16,11 +16,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void ErrorFunction(std::string ErrorName);
 private slots:
     void LoginButtonpressed();
     void RegisterButtonpressed();
 
 private:
     Ui::MainWindow *ui;
+    QLabel* errorLabel = nullptr;
+
 };
 #endif // MAINWINDOW_H

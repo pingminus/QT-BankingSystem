@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    HashMap["Admin"] = "Admin";
+
     //Setup MainWindow
     ui->setupUi(this);
     ui->label->setAlignment(Qt::AlignCenter);
@@ -32,20 +34,15 @@ MainWindow::MainWindow(QWidget *parent)
     //Connect Login and SignUp Button
     connect(ui->LoginButton,SIGNAL(released()),this,SLOT(LoginButtonpressed()));
     connect(ui->RegisterButton,SIGNAL(released()),this,SLOT(RegisterButtonpressed()));
-
-
-
-
-
-
 }
-std::unordered_map<std::string,std::string> HashMap;
 
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
 
 //Login function
 void MainWindow::LoginButtonpressed(){
@@ -59,7 +56,7 @@ void MainWindow::LoginButtonpressed(){
         if(HashMap[username] == password){
             qDebug() << "Login Sucess";
             this->close();
-            DashboardWindow *dashboard = new DashboardWindow();
+            DashboardWindow *dashboard = new DashboardWindow(this);
             dashboard->show();
         }
         //Display Errors/User feedback
@@ -78,7 +75,7 @@ void MainWindow::ErrorFunction(std::string ErrorMessage) {
     QString errorMessage = QString::fromStdString(ErrorMessage);
 
     //Give user feedback when registration was successull
-    if(ErrorMessage == "Sucess!"){
+    if(ErrorMessage == "Success!"){
         errorLabel->setStyleSheet("color: green; font-size: 15px");
         errorLabel->setText(errorMessage);
         errorLabel->show();
@@ -106,7 +103,7 @@ void MainWindow::RegisterButtonpressed(){
                 qDebug() << "Succesfully registered as " << username ;
                 ui->usernameText->setText("");
                 ui->passwordText->setText("");
-                ErrorFunction("Sucess!");
+                ErrorFunction("Success!");
             }else{
                 ErrorFunction("Password is too short");
             }
@@ -116,7 +113,7 @@ void MainWindow::RegisterButtonpressed(){
         }
     }
     else{
-        ErrorFunction("Username already exist");
+        ErrorFunction("Username already exists");
     }
 
 

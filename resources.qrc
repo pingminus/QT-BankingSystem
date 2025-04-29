@@ -1,5 +1,20 @@
 <RCC>
+    <!-- Resources under /images -->
     <qresource prefix="/images">
         <file>Bank.png</file>
     </qresource>
+
+    <!-- Resources under /profile (if any) -->
+    <!-- No need for an empty <qresource>, remove it if there's nothing inside -->
+
+    <!-- Resources under /Profile -->
+    <qresource prefix="/Profile">
+        <file>Profilepic.png</file> <!-- Make sure this is an image file -->
+    </qresource>
+
+    <!-- Resources under /new -->
+    <qresource prefix="/new">
+        <!-- Add files here if you need to -->
+    </qresource>
 </RCC>
+

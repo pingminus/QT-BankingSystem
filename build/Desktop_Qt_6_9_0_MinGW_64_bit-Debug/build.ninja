@@ -201,7 +201,7 @@ build BankingSystem_autogen/timestamp BankingSystem_autogen/mocs_compilation.cpp
 #############################################
 # Custom command for BankingSystem_autogen\EWIEGA46WW\qrc_resources.cpp
 
-build BankingSystem_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}BankingSystem_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND C$:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/resources.qrc CMakeFiles/BankingSystem_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json C$:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/Bank.png C$:/Qt/6.9.0/mingw_64/bin/rcc.exe C$:/Qt/6.9.0/mingw_64/bin/rcc.exe || BankingSystem_autogen BankingSystem_autogen_timestamp_deps
+build BankingSystem_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}BankingSystem_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND C$:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/resources.qrc CMakeFiles/BankingSystem_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json C$:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/profilepic.png C$:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/Bank.png C$:/Qt/6.9.0/mingw_64/bin/rcc.exe C$:/Qt/6.9.0/mingw_64/bin/rcc.exe || BankingSystem_autogen BankingSystem_autogen_timestamp_deps
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\nikla\OneDrive\Dokumente\QtStuff\BankingSystem\build\Desktop_Qt_6_9_0_MinGW_64_bit-Debug && C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autorcc C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/BankingSystem_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json Debug"
   DESC = Automatic RCC for resources.qrc
   restat = 1

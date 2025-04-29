@@ -22,6 +22,7 @@ private slots:
     void RegisterButtonpressed();
 
 private:
+    std::unordered_map<std::string, std::string> HashMap;
     Ui::MainWindow *ui;
     QLabel* errorLabel = nullptr;
 

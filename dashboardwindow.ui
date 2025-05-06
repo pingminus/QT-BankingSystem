@@ -6,106 +6,76 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1140</width>
-    <height>978</height>
+    <width>1302</width>
+    <height>847</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QWidget" name="WidgetVert_3" native="true">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>160</y>
-      <width>371</width>
-      <height>301</height>
+      <x>0</x>
+      <y>0</y>
+      <width>381</width>
+      <height>851</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+    background-color: #96ceff;        /* Deep blue background */
+    color: #ffffff;                   /* Change text to white for better contrast */
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, sans-serif;
+    font-size: 16px;
+    border: none;                     /* Ensure no default borders */
+    border-top-left-radius: 0px;      /* No rounding for top-left corner */
+    border-top-right-radius: 16px;    /* Rounded top-right corner */
+    border-bottom-right-radius: 16px; /* Rounded bottom-right corner */
+    border-bottom-left-radius: 0px;  /* Rounded bottom-left corner */
+    padding: 12px;                    /* Optional inner spacing */
+}</string>
     </property>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>430</y>
-      <width>321</width>
-      <height>411</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #fcfcfc, stop: 1 #e9e9eb
-    );
-    color: #1d1d1f;
-    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    padding: 10px 22px;
-    border: none;  /* No border */
-    border-radius: 14px;
-    min-height: 40px;
-    min-width: 120px;
-    letter-spacing: 0.4px;
-}
-
-QPushButton:hover {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #ffffff, stop: 1 #f0f0f2
-    );
-    border: none;  /* No border on hover */
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #dcdcdc, stop: 1 #c9c9cb
-    );
-    border: none;  /* No border on pressed state */
-    padding-top: 11px;
-    padding-bottom: 9px;
-}
-</string>
-       </property>
+      <widget class="QLabel" name="Icon">
        <property name="text">
-        <string>Transaction</string>
+        <string>TextLabel</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Orientation::Vertical</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Policy::Maximum</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>50</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QWidget" name="WidgetVert_2" native="true">
        <property name="styleSheet">
-        <string notr="true">QPushButton {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #fcfcfc, stop: 1 #e9e9eb
-    );
-    color: #1d1d1f;
+        <string notr="true">QWidget {
+    background-color: #4caafc;        /* Deep blue background */
+    color: #ffffff;                   /* Change text to white for better contrast */
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, sans-serif;
+    font-size: 16px;
+    border: none;                     /* Ensure no default borders */
+    border-top-left-radius: 16px;      /* No rounding for top-left corner */
+    border-top-right-radius: 16px;    /* Rounded top-right corner */
+    border-bottom-right-radius: 16px; /* Rounded bottom-right corner */
+    border-bottom-left-radius: 0px;  /* Rounded bottom-left corner */
+    padding: 12px;                    /* Optional inner spacing */
+}</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="LabelName">
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+    color: white;
     font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
     font-size: 18px;
     font-weight: 600;
@@ -116,29 +86,178 @@ QPushButton:pressed {
     min-width: 120px;
     letter-spacing: 0.4px;
 }
+</string>
+            </property>
+            <property name="text">
+             <string>Account : Admin</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QWidget" name="WidgetVert" native="true">
+          <property name="styleSheet">
+           <string notr="true">QWidget {
+    background-color: #0586f7;        /* Deep blue background */
+    color: #ffffff;                   /* Change text to white for better contrast */
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, sans-serif;
+    font-size: 16px;
+    border-top-left-radius: 16px;      /* No rounding for top-left corner */
+    border-top-right-radius: 16px;    /* Rounded top-right corner */
+    border-bottom-right-radius: 16px; /* Rounded bottom-right corner */
+    border-bottom-left-radius: 0px;  /* Rounded bottom-left corner */
+    padding: 12px;                    /* Optional inner spacing */
+}
+</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-color: #0586f7;  /* Royal blue with a hint of purple */
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
 
 QPushButton:hover {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #ffffff, stop: 1 #f0f0f2
-    );
-    border: none;  /* No border on hover */
+    background-color: #0267bf;  /* Slightly darker blue on hover */
+    border: none;
 }
 
 QPushButton:pressed {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #dcdcdc, stop: 1 #c9c9cb
-    );
-    border: none;  /* No border on pressed state */
+    background-color: #262f87;  /* Even deeper blue when pressed */
+    border: none;
+    padding-top: 11px;
+    padding-bottom: 9px;
+}
+
+</string>
+             </property>
+             <property name="text">
+              <string>Transaction</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_3">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-color: #0586f7;  /* Royal blue with a hint of purple */
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+
+QPushButton:hover {
+    background-color: #0267bf;  /* Slightly darker blue on hover */
+    border: none;
+}
+
+QPushButton:pressed {
+    background-color: #262f87;  /* Even deeper blue when pressed */
+    border: none;
+    padding-top: 11px;
+    padding-bottom: 9px;
+}
+
+</string>
+             </property>
+             <property name="text">
+              <string>Investments</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-color: #0586f7;  /* Royal blue with a hint of purple */
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+
+QPushButton:hover {
+    background-color: #0267bf;  /* Slightly darker blue on hover */
+    border: none;
+}
+
+QPushButton:pressed {
+    background-color: #262f87;  /* Even deeper blue when pressed */
+    border: none;
     padding-top: 11px;
     padding-bottom: 9px;
 }
 </string>
-       </property>
-       <property name="text">
-        <string>PushButton</string>
-       </property>
+             </property>
+             <property name="text">
+              <string>Deposit</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_4">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-color: #0586f7;  /* Royal blue with a hint of purple */
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+
+QPushButton:hover {
+    background-color: #0267bf;  /* Slightly darker blue on hover */
+    border: none;
+}
+
+QPushButton:pressed {
+    background-color: #262f87;  /* Even deeper blue when pressed */
+    border: none;
+    padding-top: 11px;
+    padding-bottom: 9px;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Sign Out</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
     </layout>

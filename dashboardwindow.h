@@ -1,6 +1,6 @@
 #ifndef DASHBOARDWINDOW_H
 #define DASHBOARDWINDOW_H
-
+#include <string>
 #include <QMainWindow>
 
 namespace Ui {
@@ -12,7 +12,7 @@ class DashboardWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit DashboardWindow(QWidget *parent = nullptr);
+    explicit DashboardWindow(const std::string username, QWidget *parent = nullptr);
     ~DashboardWindow();
 
 

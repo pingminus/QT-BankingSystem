@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Setup MainWindow
     ui->setupUi(this);
     ui->label->setAlignment(Qt::AlignCenter);
-    this->setStyleSheet("background-color: #f5f5f7;");
+    this->setStyleSheet("background-color: #96ceff;");
     //Placeholders
     ui->usernameText->setPlaceholderText("Enter username");
     ui->passwordText->setPlaceholderText("Enter password");
@@ -56,7 +56,7 @@ void MainWindow::LoginButtonpressed(){
         if(HashMap[username] == password){
             qDebug() << "Login Sucess";
             this->close();
-            DashboardWindow *dashboard = new DashboardWindow(this);
+            DashboardWindow *dashboard = new DashboardWindow(username,this);
             dashboard->show();
         }
         //Display Errors/User feedback

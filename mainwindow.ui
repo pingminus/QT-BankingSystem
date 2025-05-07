@@ -42,28 +42,29 @@
         <widget class="QLineEdit" name="usernameText">
          <property name="styleSheet">
           <string notr="true">QLineEdit {
-    background-color: #f5f5f5;                  /* Light background */
+    background-color: #eaf4ff;                  /* Subtle blue-tinted background */
     color: #333;                                /* Dark text color */
-    border: 1px solid #dcdcdc;                  /* Light border */
-    border-radius: 12px;                        /* Rounded corners */
-    padding: 10px 15px;                         /* Inner padding */
-    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 24px;                            /* Text size */
-    min-height: 36px;                           /* Min height for consistency */
+    border: 1px solid #0078D4;                  /* Blue border */
+    border-radius: 8px;                         /* Rounded corners for consistency */
+    padding: 10px 20px;                         /* Inner padding for a comfortable size */
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;                            /* Modern text size */
+    min-height: 40px;                           /* Min height for consistency with buttons */
+    box-shadow: 0px 2px 4px rgba(0, 120, 212, 0.2); /* Subtle shadow for depth */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
 QLineEdit:focus {
-    border: 1px solid #007aff;                  /* Blue border on focus */
-    background-color: #ffffff;                  /* White background when focused */
+    border: 1px solid #005A9E;                  /* Slightly darker blue on focus */
+    background-color: #ffffff;                  /* White background for better focus visibility */
     color: #1c1c1e;                             /* Darker text color */
-    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);  /* Subtle blue glow around input */
+    box-shadow: 0 0 6px rgba(0, 90, 158, 0.4);  /* Subtle blue glow around input */
 }
 
 QLineEdit::placeholder {
     color: #a6a6a6;                             /* Light gray placeholder text */
     font-style: italic;                         /* Italic placeholder */
-}
-</string>
+}</string>
          </property>
         </widget>
        </item>
@@ -71,28 +72,29 @@ QLineEdit::placeholder {
         <widget class="QLineEdit" name="passwordText">
          <property name="styleSheet">
           <string notr="true">QLineEdit {
-    background-color: #f5f5f5;                  /* Light background */
+    background-color: #eaf4ff;                  /* Subtle blue-tinted background */
     color: #333;                                /* Dark text color */
-    border: 1px solid #dcdcdc;                  /* Light border */
-    border-radius: 12px;                        /* Rounded corners */
-    padding: 10px 15px;                         /* Inner padding */
-    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 24px;                            /* Text size */
-    min-height: 36px;                           /* Min height for consistency */
+    border: 1px solid #0078D4;                  /* Blue border */
+    border-radius: 8px;                         /* Rounded corners for consistency */
+    padding: 10px 20px;                         /* Inner padding for a comfortable size */
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;                            /* Modern text size */
+    min-height: 40px;                           /* Min height for consistency with buttons */
+    box-shadow: 0px 2px 4px rgba(0, 120, 212, 0.2); /* Subtle shadow for depth */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
 QLineEdit:focus {
-    border: 1px solid #007aff;                  /* Blue border on focus */
-    background-color: #ffffff;                  /* White background when focused */
+    border: 1px solid #005A9E;                  /* Slightly darker blue on focus */
+    background-color: #ffffff;                  /* White background for better focus visibility */
     color: #1c1c1e;                             /* Darker text color */
-    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);  /* Subtle blue glow around input */
+    box-shadow: 0 0 6px rgba(0, 90, 158, 0.4);  /* Subtle blue glow around input */
 }
 
 QLineEdit::placeholder {
     color: #a6a6a6;                             /* Light gray placeholder text */
     font-style: italic;                         /* Italic placeholder */
-}
-</string>
+}</string>
          </property>
         </widget>
        </item>
@@ -104,40 +106,36 @@ QLineEdit::placeholder {
         <widget class="QPushButton" name="RegisterButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #fcfcfc, stop: 1 #e9e9eb
-    );
-    color: #1d1d1f;
-    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 18px;
+    background-color: #0078D4; /* Modern Fluent Blue */
+    color: white;
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px; /* Slightly larger text size */
     font-weight: 600;
-    padding: 10px 22px;
-    border: 1px solid #cfcfd0;
-    border-radius: 14px;
+    padding: 10px 22px; /* Increased padding for a larger button size */
+    border: none;
+    border-radius: 8px; /* Rounded corners for a modern look */
     min-height: 40px;
     min-width: 120px;
-    letter-spacing: 0.4px;
+    box-shadow: 0px 4px 6px rgba(0, 120, 212, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
 QPushButton:hover {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #ffffff, stop: 1 #f0f0f2
-    );
-    border: 1px solid #bfbfc0;
+    background-color: #005A9E; /* Slightly darker blue on hover */
+    box-shadow: 0px 6px 8px rgba(0, 90, 158, 0.3); /* Enhanced shadow on hover */
 }
 
 QPushButton:pressed {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #dcdcdc, stop: 1 #c9c9cb
-    );
-    border: 1px solid #a9a9ab;
-    padding-top: 11px;
-    padding-bottom: 9px;
+    background-color: #003A6D; /* Even darker blue when pressed */
+    box-shadow: 0px 2px 4px rgba(0, 58, 109, 0.2); /* Reduced shadow when pressed */
 }
-</string>
+
+QPushButton:disabled {
+    background-color: #A6A6A6; /* Gray for disabled state */
+    color: #FFFFFF; /* Keep white text for contrast */
+    box-shadow: none;
+    cursor: not-allowed;
+}</string>
          </property>
          <property name="text">
           <string>Sign up</string>
@@ -148,40 +146,36 @@ QPushButton:pressed {
         <widget class="QPushButton" name="LoginButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #fcfcfc, stop: 1 #e9e9eb
-    );
-    color: #1d1d1f;
-    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 18px;
+    background-color: #0078D4; /* Modern Fluent Blue */
+    color: white;
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px; /* Slightly larger text size */
     font-weight: 600;
-    padding: 10px 22px;
-    border: 1px solid #cfcfd0;
-    border-radius: 14px;
+    padding: 10px 22px; /* Increased padding for a larger button size */
+    border: none;
+    border-radius: 8px; /* Rounded corners for a modern look */
     min-height: 40px;
     min-width: 120px;
-    letter-spacing: 0.4px;
+    box-shadow: 0px 4px 6px rgba(0, 120, 212, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
 QPushButton:hover {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #ffffff, stop: 1 #f0f0f2
-    );
-    border: 1px solid #bfbfc0;
+    background-color: #005A9E; /* Slightly darker blue on hover */
+    box-shadow: 0px 6px 8px rgba(0, 90, 158, 0.3); /* Enhanced shadow on hover */
 }
 
 QPushButton:pressed {
-    background-color: qlineargradient(
-        x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #dcdcdc, stop: 1 #c9c9cb
-    );
-    border: 1px solid #a9a9ab;
-    padding-top: 11px;
-    padding-bottom: 9px;
+    background-color: #003A6D; /* Even darker blue when pressed */
+    box-shadow: 0px 2px 4px rgba(0, 58, 109, 0.2); /* Reduced shadow when pressed */
 }
-</string>
+
+QPushButton:disabled {
+    background-color: #A6A6A6; /* Gray for disabled state */
+    color: #FFFFFF; /* Keep white text for contrast */
+    box-shadow: none;
+    cursor: not-allowed;
+}</string>
          </property>
          <property name="text">
           <string>Login</string>

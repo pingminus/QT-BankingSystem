@@ -14,9 +14,14 @@ class DashboardWindow : public QMainWindow
 public:
     explicit DashboardWindow(const std::string username, QWidget *parent = nullptr);
     ~DashboardWindow();
-
+private slots:
+    void InformationButtonPressed();
+    void HomeButtonPressed();
+    void SignoutButtonPressed();
 
 private:
+    std::vector<std::string> Transactions;
+    std::unordered_map<std::string, std::vector<std::string>> MapBalance;
     Ui::DashboardWindow *ui;
 };
 

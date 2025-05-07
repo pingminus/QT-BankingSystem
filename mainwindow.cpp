@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Dynamic informal Label
     errorLabel = new QLabel(this);
     errorLabel->setStyleSheet("color: red; font-size: 15px");
-    errorLabel->setGeometry(20, 520, 600, 40);
+    errorLabel->setGeometry(20, 525, 600, 40);
     errorLabel->hide();
 
     //Connect Login and SignUp Button
@@ -37,10 +37,6 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
 
 
 
@@ -56,7 +52,8 @@ void MainWindow::LoginButtonpressed(){
         if(HashMap[username] == password){
             qDebug() << "Login Sucess";
             this->close();
-            DashboardWindow *dashboard = new DashboardWindow(username,this);
+            DashboardWindow *dashboard = new DashboardWindow(username, this);  // Pass `this` as parent
+
             dashboard->show();
         }
         //Display Errors/User feedback
@@ -120,5 +117,10 @@ void MainWindow::RegisterButtonpressed(){
     qDebug() << "Sign up Button was clicked";
 
 }
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
 
 

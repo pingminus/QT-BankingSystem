@@ -113,7 +113,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="InfoButton">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     background-color: #0586f7;  /* Royal blue with a hint of purple */
@@ -143,7 +143,42 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>Transaction</string>
+              <string>Information</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="HomeButton">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-color: #0586f7;  /* Royal blue with a hint of purple */
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+
+QPushButton:hover {
+    background-color: #0267bf;  /* Slightly darker blue on hover */
+    border: none;
+}
+QPushButton:pressed {
+    background-color: #262f87;  /* Even deeper blue when pressed */
+    border: none;
+    padding-top: 11px;
+    padding-bottom: 9px;
+}
+
+</string>
+             </property>
+             <property name="text">
+              <string>Home</string>
              </property>
             </widget>
            </item>
@@ -178,7 +213,7 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>Investments</string>
+              <string>Transactions</string>
              </property>
             </widget>
            </item>
@@ -213,12 +248,12 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>Deposit</string>
+              <string>Investments</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="SignoutButton">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     background-color: #0586f7;  /* Royal blue with a hint of purple */
@@ -259,6 +294,650 @@ QPushButton:pressed {
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>-1</y>
+      <width>911</width>
+      <height>851</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="page">
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>750</y>
+        <width>164</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #0586f7;  /* Royal blue with a hint of purple */
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+
+QPushButton:hover {
+    background-color: #0267bf;  /* Slightly darker blue on hover */
+    border: none;
+}
+QPushButton:pressed {
+    background-color: #262f87;  /* Even deeper blue when pressed */
+    border: none;
+    padding-top: 11px;
+    padding-bottom: 9px;
+}
+
+</string>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>-20</x>
+        <y>0</y>
+        <width>251</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    color: black;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 35px;
+    font-weight: bold; /* Makes the font bold */
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Information</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>60</y>
+        <width>901</width>
+        <height>501</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* General styling for the body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Styling for headers */
+h1, h2, h3 {
+    color: #444;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Links */
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Form elements */
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Text alignment */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+/* Containers */
+.container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}</string>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#020202;&quot;&gt;About:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; color:#020202;&quot;&gt;This project was entirely build and programmed by Niklas using QT Creator, CSS and C++. This is my first big project in QT hope you like it :). Here you will find all different stuff this application offers.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; color:#020202;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; color:#020202;&quot;&gt;If you want to mess around with unlimited Money try log in with the Admin account:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; color:#020202;&quot;&gt;username: Admin &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; color:#020202;&quot;&gt;password: Admin&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; color:#020202;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#020202;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; color:#020202;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#020202;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_3">
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>-20</x>
+        <y>0</y>
+        <width>251</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    color: black;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 35px;
+    font-weight: bold; /* Makes the font bold */
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Investments</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_2">
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>-20</x>
+        <y>0</y>
+        <width>191</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    color: black;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 35px;
+    font-weight: bold; /* Makes the font bold */
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Home</string>
+      </property>
+     </widget>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>881</width>
+        <height>781</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget {
+    background-color: none;
+    border: none;
+    font-family: Segoe UI, sans-serif;
+    font-size: 14px;
+    color: none;
+}
+
+QTabWidget::pane {
+    border: 1px solid #87CEEB; /* Light blue border */
+    border-radius: 8px;
+    padding: 10px;
+    background: #f0f8ff; /* AliceBlue background */
+}
+
+QTabBar::tab {
+    background: #add8e6; /* LightBlue background for tabs */
+    border: 1px solid #87CEEB; /* Light blue border */
+    padding: 8px 16px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-right: 2px;
+    color: #333; /* Darker text for contrast */
+}
+
+QTabWidget::pane {
+    background: transparent; /* Makes the tab content area transparent */
+    border: none; /* Removes the border around the content area */
+}
+
+QTabBar::tab:selected {
+    background: #ffffff; /* White background for selected tab */
+    border-color: #4682B4; /* SteelBlue border for selected tab */
+    color: #000; /* Black text for selected tab */
+}
+
+QTabBar::tab:hover {
+    background: #87CEFA; /* LightSkyBlue background when hovered */
+    color: #111; /* Slightly darker text color when hovered */
+}
+
+QTabBar::tab:!selected {
+    margin-top: 2px;
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Credit Card</string>
+       </attribute>
+       <widget class="QWidget" name="widget" native="true">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>10</y>
+          <width>451</width>
+          <height>261</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#widget{
+    background: qlineargradient(
+        x1: 0, y1: 0, x2: 1, y2: 1,  /* Gradient direction from top-left to bottom-right */
+        stop: 0 #4a90e2,             /* Light blue at the start (top-left) */
+        stop: 0.5 #1c75bc,           /* Slightly darker blue in the middle */
+        stop: 1 #003f7f             /* Lighter blue at the end (bottom-right) */
+    ); /*96ceff 96ceff
+    color: #ffffff;                   /* White text for better contrast */
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, sans-serif;
+    font-size: 16px;
+    border: none;                     /* Ensure no default borders */
+    border-top-left-radius: 16px;      /* No rounding for top-left corner */
+    border-top-right-radius: 16px;    /* Rounded top-right corner */
+    border-bottom-right-radius: 16px; /* Rounded bottom-right corner */
+    border-bottom-left-radius: 16px;  /* No rounding for bottom-left corner */
+    padding: 12px;                    /* Optional inner spacing */
+}</string>
+        </property>
+        <widget class="QLabel" name="label_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>101</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#label_4{
+	background: none;
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="Icon_2">
+         <property name="geometry">
+          <rect>
+           <x>250</x>
+           <y>10</y>
+           <width>391</width>
+           <height>221</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#Icon_2{
+	background: none;
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_5">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>190</y>
+           <width>291</width>
+           <height>60</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+	background: none;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>DE76740201004939876676</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="usernameCard">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>170</y>
+           <width>164</width>
+           <height>60</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+	background: none;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="BalanceCard1">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>90</y>
+          <width>411</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    color: black;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 50px;
+    font-weight: bold; /* Makes the font bold */
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+background: none;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>125613631$</string>
+        </property>
+       </widget>
+       <widget class="QProgressBar" name="progressBar">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>290</y>
+          <width>861</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="value">
+         <number>100</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>300</y>
+          <width>251</width>
+          <height>60</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    color: black;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 25px;
+    font-weight: bold; /* Makes the font bold */
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Card history</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="listWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>360</y>
+          <width>841</width>
+          <height>351</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">/* Styling for the listWidget */
+#listWidget {
+    background-color: #e9f3fe; /* Light blue background for a softer tone matching the button */
+    border: 1px solid #0586f7; /* Same blue as the button border */
+    border-radius: 14px; /* Rounded corners to match the button */
+    padding: 10px; /* Inner padding */
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif; /* Matching font */
+    font-size: 16px; /* Slightly smaller font size */
+    font-weight: 500; /* Semi-bold font for a modern look */
+    color: #000; /* Black font for readability */
+}
+
+/* Add padding inside the listWidget to create spacing between scrollbars and content */
+#listWidget::viewport {
+    margin-right: 10px; /* Add space between scrollbar and the list items */
+}
+
+/* List Item Styling */
+#listWidget::item {
+    padding: 10px 14px; /* Padding for individual items */
+    margin: 6px 0; /* Spacing between items */
+    border-radius: 10px; /* Rounded corners for items */
+    background-color: #ffffff; /* White background for items */
+    color: #000; /* Black font color */
+    font-size: 16px; /* Slightly smaller than the list widget font */
+    font-weight: 500; /* Semi-bold for item text */
+}
+
+#listWidget::item:hover {
+    background-color: #d4e9fc; /* Slightly darker blue on hover */
+    color: #000; /* Keep font black on hover */
+    border: 1px solid #0267bf; /* Slightly darker blue border on hover */
+}
+
+#listWidget::item:selected {
+    background-color: #0586f7; /* Match the button's primary blue for selected items */
+    color: #ffffff; /* White font for contrast */
+    border: 1px solid #0267bf; /* Darker blue border for selected items */
+}
+
+/* Horizontal Scroll Bar */
+QScrollBar:horizontal {
+    border: none;
+    background: #f5f5f5; /* Light gray background for the track */
+    height: 10px; /* Height of the scroll bar */
+    margin: 0px 20px 0px 20px; /* Add spacing at the ends */
+    border-radius: 5px; /* Rounded corners */
+}
+
+QScrollBar::handle:horizontal {
+    background: #0586f7; /* Blue handle matching the button theme */
+    min-width: 20px; /* Minimum width of the handle */
+    border-radius: 5px; /* Rounded corners for the handle */
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    border: none;
+    background: none;
+    width: 0px; /* Remove the arrows */
+}
+
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    background: none; /* Remove the track fill */
+}
+
+/* Vertical Scroll Bar */
+QScrollBar:vertical {
+    border: none;
+    background: #f5f5f5; /* Light gray background for the track */
+    width: 10px; /* Width of the scroll bar */
+    margin: 20px 0px 20px 0px; /* Add spacing at the ends */
+    border-radius: 5px; /* Rounded corners */
+}
+
+QScrollBar::handle:vertical {
+    background: #0586f7; /* Blue handle matching the button theme */
+    min-height: 20px; /* Minimum height of the handle */
+    border-radius: 5px; /* Rounded corners for the handle */
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+    height: 0px; /* Remove the arrows */
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none; /* Remove the track fill */
+}</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Giro Card</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>My Depo</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>

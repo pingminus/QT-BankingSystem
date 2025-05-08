@@ -1,126 +1,112 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QDebug>
-#include <unordered_map>
-#include <string>
+#include <QLabel>
 #include "dashboardwindow.h"
-
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    HashMap["Admin"] = "Admin";
 
-    //Setup MainWindow
+
+    // Setup MainWindow
     ui->setupUi(this);
     ui->label->setAlignment(Qt::AlignCenter);
     this->setStyleSheet("background-color: #96ceff;");
-    //Placeholders
+
+    // Placeholders
     ui->usernameText->setPlaceholderText("Enter username");
     ui->passwordText->setPlaceholderText("Enter password");
-    //Bank Logo
+
+    // Bank Logo
     QPixmap pixmap(":/images/Bank.png");
     ui->label->setPixmap(pixmap);
     this->setWindowIcon(QIcon(":/images/Bank.png"));
 
-    //Dynamic informal Label
+    // Dynamic informal Label
     errorLabel = new QLabel(this);
     errorLabel->setStyleSheet("color: red; font-size: 15px");
     errorLabel->setGeometry(20, 525, 600, 40);
     errorLabel->hide();
 
-    //Connect Login and SignUp Button
-    connect(ui->LoginButton,SIGNAL(released()),this,SLOT(LoginButtonpressed()));
-    connect(ui->RegisterButton,SIGNAL(released()),this,SLOT(RegisterButtonpressed()));
+    // Connect Login and SignUp Buttons
+    connect(ui->LoginButton, SIGNAL(released()), this, SLOT(LoginButtonpressed()));
+    connect(ui->RegisterButton, SIGNAL(released()), this, SLOT(RegisterButtonpressed()));
 }
 
-
-
-
-
-//Login function
-void MainWindow::LoginButtonpressed(){
-    //get username and password
+// Login function
+void MainWindow::LoginButtonpressed()
+{
+    // Get username and password
     std::string username = ui->usernameText->text().toStdString();
     std::string password = ui->passwordText->text().toStdString();
 
-    //Check if user exists
-    if(HashMap.find(username) != HashMap.end()){
-        //Check if the password matches
-        if(HashMap[username] == password){
-            qDebug() << "Login Sucess";
+    // Check if user exists
+    if (HashMap.find(username) != HashMap.end()) {
+        // Check if the password matches
+        if (HashMap[username] == password) {
+            qDebug() << "Login Success";
             this->close();
-            DashboardWindow *dashboard = new DashboardWindow(username, this);  // Pass `this` as parent
-
+            DashboardWindow *dashboard = new DashboardWindow(username, SharedMapBalance, SharedTransactions, this);
             dashboard->show();
-        }
-        //Display Errors/User feedback
-        else{
+        } else {
             ErrorFunction("Wrong password");
         }
-    }
-    else{
+    } else {
         ErrorFunction("User does not exist");
     }
 }
 
-//Error function
-//Display why user couldnt login
-void MainWindow::ErrorFunction(std::string ErrorMessage) {
+// Error function to display errors
+void MainWindow::ErrorFunction(std::string ErrorMessage)
+{
     QString errorMessage = QString::fromStdString(ErrorMessage);
 
-    //Give user feedback when registration was successull
-    if(ErrorMessage == "Success!"){
+    // Display success message
+    if (ErrorMessage == "Success!") {
         errorLabel->setStyleSheet("color: green; font-size: 15px");
         errorLabel->setText(errorMessage);
         errorLabel->show();
-    }
-    //Display error message
-    else{
+    } else {
+        // Display error message
         errorLabel->setStyleSheet("color: red; font-size: 15px");
         errorLabel->setText(errorMessage);
         errorLabel->show();
         qDebug() << "Error label updated and shown.";
     }
-
 }
 
-//SignUp user function
-void MainWindow::RegisterButtonpressed(){
-
+// SignUp user function
+void MainWindow::RegisterButtonpressed()
+{
     std::string username = ui->usernameText->text().toStdString();
 
-    if(HashMap.find(username) == HashMap.end()){
-        if(username.size() >= 3){
+    if (HashMap.find(username) == HashMap.end()) {
+        if (username.size() >= 3) {
             std::string password = ui->passwordText->text().toStdString();
-            if(password.size() >= 3){
+            if (password.size() >= 3) {
                 HashMap[username] = password;
-                qDebug() << "Succesfully registered as " << username ;
+                SharedMapBalance[username] = {"12525", "2514", "913"}; // Initialize balance for new user
+                qDebug() << "Successfully registered as " << username;
                 ui->usernameText->setText("");
                 ui->passwordText->setText("");
                 ErrorFunction("Success!");
-            }else{
+            } else {
                 ErrorFunction("Password is too short");
             }
-        }
-        else{
+        } else {
             ErrorFunction("Username is too short");
         }
-    }
-    else{
+    } else {
         ErrorFunction("Username already exists");
     }
 
-
     qDebug() << "Sign up Button was clicked";
-
 }
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
 

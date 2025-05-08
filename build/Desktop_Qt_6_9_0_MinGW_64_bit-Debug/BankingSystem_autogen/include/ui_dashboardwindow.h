@@ -11,12 +11,16 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextBrowser>
@@ -41,7 +45,7 @@ public:
     QVBoxLayout *verticalLayout;
     QPushButton *InfoButton;
     QPushButton *HomeButton;
-    QPushButton *pushButton_3;
+    QPushButton *TransferButton;
     QPushButton *pushButton_2;
     QPushButton *SignoutButton;
     QStackedWidget *stackedWidget;
@@ -51,6 +55,22 @@ public:
     QTextBrowser *textBrowser;
     QWidget *page_3;
     QLabel *label_8;
+    QLabel *label_9;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout_2;
+    QComboBox *combobox;
+    QSpacerItem *horizontalSpacer;
+    QLineEdit *WhoLineEdit;
+    QLabel *label_10;
+    QLabel *label_11;
+    QCheckBox *checkBox;
+    QLabel *label_12;
+    QPushButton *SendButton;
+    QWidget *horizontalWidget_2;
+    QHBoxLayout *horizontalLayout_3;
+    QLineEdit *amount;
+    QSpacerItem *horizontalSpacer_2;
+    QLineEdit *message;
     QWidget *page_2;
     QLabel *label_3;
     QTabWidget *tabWidget;
@@ -61,9 +81,10 @@ public:
     QLabel *label_5;
     QLabel *usernameCard;
     QLabel *BalanceCard1;
-    QProgressBar *progressBar;
     QLabel *label_7;
     QListWidget *listWidget;
+    QProgressBar *progressBar;
+    QProgressBar *progressBar_2;
     QWidget *tab_2;
     QWidget *tab_3;
 
@@ -218,9 +239,9 @@ public:
 
         verticalLayout->addWidget(HomeButton);
 
-        pushButton_3 = new QPushButton(WidgetVert);
-        pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        TransferButton = new QPushButton(WidgetVert);
+        TransferButton->setObjectName("TransferButton");
+        TransferButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    background-color: #0586f7;  /* Royal blue with a hint of purple */\n"
 "    color: white;\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
@@ -247,7 +268,7 @@ public:
 "\n"
 ""));
 
-        verticalLayout->addWidget(pushButton_3);
+        verticalLayout->addWidget(TransferButton);
 
         pushButton_2 = new QPushButton(WidgetVert);
         pushButton_2->setObjectName("pushButton_2");
@@ -485,6 +506,305 @@ public:
 "    letter-spacing: 0.4px;\n"
 "}\n"
 ""));
+        label_9 = new QLabel(page_3);
+        label_9->setObjectName("label_9");
+        label_9->setGeometry(QRect(60, 160, 251, 60));
+        label_9->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: black;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 25px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"}\n"
+""));
+        horizontalLayoutWidget = new QWidget(page_3);
+        horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
+        horizontalLayoutWidget->setGeometry(QRect(90, 210, 771, 71));
+        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        combobox = new QComboBox(horizontalLayoutWidget);
+        combobox->addItem(QString());
+        combobox->addItem(QString());
+        combobox->addItem(QString());
+        combobox->setObjectName("combobox");
+        combobox->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        combobox->setStyleSheet(QString::fromUtf8("/* Base style for the QComboBox */\n"
+"QComboBox {\n"
+"  border: 1px solid #d0e8ff;\n"
+"  border-radius: 8px;\n"
+"  background-color: #f0f8ff;\n"
+"  padding: 5px 10px;\n"
+"  font-size: 16px;\n"
+"  color: #333;\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"  border-color: #9ec8ff;\n"
+"}\n"
+"\n"
+"QComboBox:focus {\n"
+"  border-color: #0078d7;\n"
+"  outline: none;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"  subcontrol-origin: padding;\n"
+"  subcontrol-position: top right;\n"
+"  width: 30px;\n"
+"  border-left: 1px solid #d0e8ff;\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"  image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLjAwMiAxOC44MzNMMy4xNjUgMTBsMS40MTQtMS40MTQgNy40MTMgNy40MTMgNy40MTMtNy40MTMgMS40MTQgMS40MTQtOC44MzQgOC44MzQtLjcwOC0uNzA5eiIgZmlsbD0iIzAwNzhkNyIvPjwvc3ZnPg==); /* Down arrow in blue */\n"
+"  width: 12px;\n"
+"  height: 12px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"  border: 1px solid #d0e8ff;\n"
+"  border-radius: 8px"
+                        ";\n"
+"  background-color: #ffffff;\n"
+"  selection-background-color: #e6f4ff;\n"
+"  selection-color: #333;\n"
+"  padding: 5px;\n"
+"  color: #333;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item:hover {\n"
+"  background-color: #f0f8ff;\n"
+"  color: #0078d7;\n"
+"}"));
+
+        horizontalLayout_2->addWidget(combobox);
+
+        horizontalSpacer = new QSpacerItem(70, 2, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
+
+        WhoLineEdit = new QLineEdit(horizontalLayoutWidget);
+        WhoLineEdit->setObjectName("WhoLineEdit");
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(WhoLineEdit->sizePolicy().hasHeightForWidth());
+        WhoLineEdit->setSizePolicy(sizePolicy);
+        WhoLineEdit->setStyleSheet(QString::fromUtf8("/* Base style for QLineEdit */\n"
+"QLineEdit {\n"
+"  border: 1px solid #d0e8ff;\n"
+"  border-radius: 8px;\n"
+"  background-color: #f0f8ff;\n"
+"  padding: 5px 10px;\n"
+"  font-size: 16px;\n"
+"  color: #333;\n"
+"}\n"
+"\n"
+"QLineEdit:hover {\n"
+"  border-color: #9ec8ff;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"  border-color: #0078d7;\n"
+"  box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);\n"
+"  outline: none;\n"
+"}"));
+
+        horizontalLayout_2->addWidget(WhoLineEdit);
+
+        label_10 = new QLabel(page_3);
+        label_10->setObjectName("label_10");
+        label_10->setGeometry(QRect(490, 160, 251, 60));
+        label_10->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: black;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 25px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"}\n"
+""));
+        label_11 = new QLabel(page_3);
+        label_11->setObjectName("label_11");
+        label_11->setGeometry(QRect(70, 310, 251, 60));
+        label_11->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: black;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 25px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"}\n"
+""));
+        checkBox = new QCheckBox(page_3);
+        checkBox->setObjectName("checkBox");
+        checkBox->setGeometry(QRect(90, 420, 181, 31));
+        checkBox->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        checkBox->setStyleSheet(QString::fromUtf8("/* Base style for QCheckBox */\n"
+"QCheckBox {\n"
+"  spacing: 8px; /* Space between the checkbox and the label */\n"
+"  font-size: 16px;\n"
+"  color: #333;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator {\n"
+"  width: 20px;\n"
+"  height: 20px;\n"
+"  border: 2px solid #d0e8ff;\n"
+"  border-radius: 4px;\n"
+"  background-color: #ffffff;\n"
+"  transition: background-color 0.3s, border-color 0.3s;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:hover {\n"
+"  border-color: #9ec8ff;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:checked {\n"
+"  border-color: #0078d7;\n"
+"  background-color: #0078d7; /* Blue box when checked */\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:checked:hover {\n"
+"  border-color: #005bb5;\n"
+"  background-color: #005bb5; /* Darker blue on hover */\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:disabled {\n"
+"  border-color: #c5c5c5;\n"
+"  background-color: #f5f5f5;\n"
+"}"));
+        label_12 = new QLabel(page_3);
+        label_12->setObjectName("label_12");
+        label_12->setGeometry(QRect(360, 310, 361, 60));
+        label_12->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: black;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 25px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"background: none;\n"
+"}\n"
+""));
+        SendButton = new QPushButton(page_3);
+        SendButton->setObjectName("SendButton");
+        SendButton->setGeometry(QRect(90, 520, 261, 61));
+        SendButton->setStyleSheet(QString::fromUtf8("/* Base style for QPushButton */\n"
+"QPushButton {\n"
+"  border: 2px solid #d0e8ff;\n"
+"  border-radius: 8px;\n"
+"  background-color: #f0f8ff;\n"
+"  color: #333;\n"
+"  padding: 8px 16px;\n"
+"  font-size: 16px;\n"
+"  font-weight: bold;\n"
+"  text-align: center;\n"
+"  transition: background-color 0.3s, border-color 0.3s, color 0.3s;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"  border-color: #9ec8ff;\n"
+"  background-color: #e6f4ff;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"  border-color: #0078d7;\n"
+"  background-color: #0078d7;\n"
+"  color: #ffffff; /* Text turns white when pressed */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"  border-color: #c5c5c5;\n"
+"  background-color: #f5f5f5;\n"
+"  color: #a0a0a0;\n"
+"}"));
+        horizontalWidget_2 = new QWidget(page_3);
+        horizontalWidget_2->setObjectName("horizontalWidget_2");
+        horizontalWidget_2->setGeometry(QRect(90, 360, 771, 71));
+        horizontalWidget_2->setStyleSheet(QString::fromUtf8("#horizontalWidget_2{\n"
+"	background: none;\n"
+"\n"
+"}"));
+        horizontalLayout_3 = new QHBoxLayout(horizontalWidget_2);
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        amount = new QLineEdit(horizontalWidget_2);
+        amount->setObjectName("amount");
+        sizePolicy.setHeightForWidth(amount->sizePolicy().hasHeightForWidth());
+        amount->setSizePolicy(sizePolicy);
+        amount->setStyleSheet(QString::fromUtf8("/* Base style for QLineEdit */\n"
+"QLineEdit {\n"
+"  border: 1px solid #d0e8ff;\n"
+"  border-radius: 8px;\n"
+"  background-color: #f0f8ff;\n"
+"  padding: 5px 10px;\n"
+"  font-size: 16px;\n"
+"  color: #333;\n"
+"}\n"
+"\n"
+"QLineEdit:hover {\n"
+"  border-color: #9ec8ff;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"  border-color: #0078d7;\n"
+"  box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);\n"
+"  outline: none;\n"
+"}"));
+
+        horizontalLayout_3->addWidget(amount);
+
+        horizontalSpacer_2 = new QSpacerItem(70, 2, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_2);
+
+        message = new QLineEdit(horizontalWidget_2);
+        message->setObjectName("message");
+        sizePolicy.setHeightForWidth(message->sizePolicy().hasHeightForWidth());
+        message->setSizePolicy(sizePolicy);
+        message->setStyleSheet(QString::fromUtf8("/* Base style for QLineEdit */\n"
+"QLineEdit {\n"
+"  border: 1px solid #d0e8ff;\n"
+"  border-radius: 8px;\n"
+"  background-color: #f0f8ff;\n"
+"  padding: 5px 10px;\n"
+"  font-size: 16px;\n"
+"  color: #333;\n"
+"}\n"
+"\n"
+"QLineEdit:hover {\n"
+"  border-color: #9ec8ff;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"  border-color: #0078d7;\n"
+"  box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);\n"
+"  outline: none;\n"
+"}"));
+
+        horizontalLayout_3->addWidget(message);
+
         stackedWidget->addWidget(page_3);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
@@ -509,56 +829,57 @@ public:
         tabWidget->setObjectName("tabWidget");
         tabWidget->setGeometry(QRect(10, 70, 881, 781));
         tabWidget->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        tabWidget->setStyleSheet(QString::fromUtf8("QTabWidget {\n"
-"    background-color: none;\n"
-"    border: none;\n"
-"    font-family: Segoe UI, sans-serif;\n"
-"    font-size: 14px;\n"
-"    color: none;\n"
+        tabWidget->setStyleSheet(QString::fromUtf8("/* General styling for QTabWidget */\n"
+"#tabWidget {\n"
+"    background-color: transparent; /* Transparent background */\n"
+"    border: none; /* Removes outer border */\n"
+"    font-family: \"Segoe UI\", sans-serif; /* Modern font */\n"
+"    font-size: 14px; /* Standard font size */\n"
+"    color: #333; /* Default text color */\n"
 "}\n"
 "\n"
-"QTabWidget::pane {\n"
+"/* Styling for the pane (content area) */\n"
+"#tabWidget ::pane {\n"
 "    border: 1px solid #87CEEB; /* Light blue border */\n"
-"    border-radius: 8px;\n"
-"    padding: 10px;\n"
-"    background: #f0f8ff; /* AliceBlue background */\n"
+"    border-radius: 8px; /* Rounded corners */\n"
+"    padding: 10px; /* Inner padding for the content area */\n"
+"    background: #f0f8ff; /* Light AliceBlue background */\n"
 "}\n"
 "\n"
+"/* Styling for the tabs in the tab bar */\n"
 "QTabBar::tab {\n"
 "    background: #add8e6; /* LightBlue background for tabs */\n"
 "    border: 1px solid #87CEEB; /* Light blue border */\n"
-"    padding: 8px 16px;\n"
-"    border-top-left-radius: 6px;\n"
-"    border-top-right-radius: 6px;\n"
-"    margin-right: 2px;\n"
-"    color: #333; /* Darker text for contrast */\n"
+"    padding: 8px 16px; /* Padding for the tabs */\n"
+"    border-top-left-radius: 6px; /* Rounded top-left corners */\n"
+"    border-top-right-radius: 6px; /* Rounded top-ri"
+                        "ght corners */\n"
+"    margin-right: 2px; /* Space between tabs */\n"
+"    color: #333; /* Darker text for better contrast */\n"
 "}\n"
 "\n"
-"QTabWidget::pane {\n"
-"    background: transparent; /* Makes the tab content area transparent */\n"
-"    border: none; /* Removes the border around the content area */\n"
-"}\n"
-"\n"
+"/* Styling for the selected tab */\n"
 "QTabBar::tab:selected {\n"
-"    background: #ffffff; /* White background for selected tab */\n"
-"    border-color: #4682B4; /* SteelBlue"
-                        " border for selected tab */\n"
-"    color: #000; /* Black text for selected tab */\n"
+"    background: #ffffff; /* White background for the selected tab */\n"
+"    border-color: #4682B4; /* SteelBlue border for the selected tab */\n"
+"    color: #000; /* Black text for the selected tab */\n"
 "}\n"
 "\n"
+"/* Styling for the hovered tab */\n"
 "QTabBar::tab:hover {\n"
-"    background: #87CEFA; /* LightSkyBlue background when hovered */\n"
+"    background: #87CEFA; /* LightSkyBlue background for hovered tab */\n"
 "    color: #111; /* Slightly darker text color when hovered */\n"
 "}\n"
 "\n"
+"/* Styling for unselected tabs */\n"
 "QTabBar::tab:!selected {\n"
-"    margin-top: 2px;\n"
+"    margin-top: 2px; /* Creates a small gap for unselected tabs */\n"
 "}"));
         tab = new QWidget();
         tab->setObjectName("tab");
         widget = new QWidget(tab);
         widget->setObjectName("widget");
-        widget->setGeometry(QRect(0, 10, 451, 261));
+        widget->setGeometry(QRect(0, 240, 451, 261));
         widget->setStyleSheet(QString::fromUtf8("#widget{\n"
 "    background: qlineargradient(\n"
 "        x1: 0, y1: 0, x2: 1, y2: 1,  /* Gradient direction from top-left to bottom-right */\n"
@@ -585,7 +906,7 @@ public:
 "}"));
         Icon_2 = new QLabel(widget);
         Icon_2->setObjectName("Icon_2");
-        Icon_2->setGeometry(QRect(250, 10, 391, 221));
+        Icon_2->setGeometry(QRect(260, 20, 391, 221));
         Icon_2->setStyleSheet(QString::fromUtf8("#Icon_2{\n"
 "	background: none;\n"
 "}"));
@@ -623,14 +944,14 @@ public:
 "	background: none;\n"
 "}\n"
 ""));
-        BalanceCard1 = new QLabel(tab);
+        BalanceCard1 = new QLabel(widget);
         BalanceCard1->setObjectName("BalanceCard1");
-        BalanceCard1->setGeometry(QRect(490, 90, 411, 101));
+        BalanceCard1->setGeometry(QRect(-10, 90, 411, 101));
         BalanceCard1->setStyleSheet(QString::fromUtf8("QLabel {\n"
-"    color: black;\n"
+"    color: white;\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
 "    font-size: 50px;\n"
-"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: cursiv; /* Makes the font bold */\n"
 "    font-weight: 600;\n"
 "    padding: 10px 22px;\n"
 "    border: none;\n"
@@ -641,13 +962,9 @@ public:
 "background: none;\n"
 "}\n"
 ""));
-        progressBar = new QProgressBar(tab);
-        progressBar->setObjectName("progressBar");
-        progressBar->setGeometry(QRect(0, 290, 861, 20));
-        progressBar->setValue(100);
         label_7 = new QLabel(tab);
         label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(0, 300, 251, 60));
+        label_7->setGeometry(QRect(540, 210, 251, 60));
         label_7->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "    color: black;\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
@@ -664,12 +981,12 @@ public:
 ""));
         listWidget = new QListWidget(tab);
         listWidget->setObjectName("listWidget");
-        listWidget->setGeometry(QRect(10, 360, 841, 351));
+        listWidget->setGeometry(QRect(490, 260, 331, 241));
         listWidget->setStyleSheet(QString::fromUtf8("/* Styling for the listWidget */\n"
 "#listWidget {\n"
-"    background-color: #e9f3fe; /* Light blue background for a softer tone matching the button */\n"
-"    border: 1px solid #0586f7; /* Same blue as the button border */\n"
-"    border-radius: 14px; /* Rounded corners to match the button */\n"
+"    background-color: #f5f5f7; /* Light blue background for a softer tone matching the button */\n"
+"    border: none; /* Same blue as the button border */\n"
+"    border-radius: 0px; /* Rounded corners to match the button */\n"
 "    padding: 10px; /* Inner padding */\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif; /* Matching font */\n"
 "    font-size: 16px; /* Slightly smaller font size */\n"
@@ -686,8 +1003,8 @@ public:
 "#listWidget::item {\n"
 "    padding: 10px 14px; /* Padding for individual items */\n"
 "    margin: 6px 0; /* Spacing between items */\n"
-""
-                        "    border-radius: 10px; /* Rounded corners for items */\n"
+"    border-ra"
+                        "dius: 5px; /* Rounded corners for items */\n"
 "    background-color: #ffffff; /* White background for items */\n"
 "    color: #000; /* Black font color */\n"
 "    font-size: 16px; /* Slightly smaller than the list widget font */\n"
@@ -710,9 +1027,9 @@ public:
 "QScrollBar:horizontal {\n"
 "    border: none;\n"
 "    background: #f5f5f5; /* Light gray background for the track */\n"
-"    height: 10px; /* Height of the scroll bar *"
-                        "/\n"
-"    margin: 0px 20px 0px 20px; /* Add spacing at the ends */\n"
+"    height: 10px; /* Height of the scroll bar */\n"
+"    marg"
+                        "in: 0px 20px 0px 20px; /* Add spacing at the ends */\n"
 "    border-radius: 5px; /* Rounded corners */\n"
 "}\n"
 "\n"
@@ -741,8 +1058,8 @@ public:
 "    border-radius: 5px; /* Rounded corners */\n"
 "}\n"
 "\n"
-"QScrollBar::h"
-                        "andle:vertical {\n"
+"QScrollBar::handle:vertical"
+                        " {\n"
 "    background: #0586f7; /* Blue handle matching the button theme */\n"
 "    min-height: 20px; /* Minimum height of the handle */\n"
 "    border-radius: 5px; /* Rounded corners for the handle */\n"
@@ -757,6 +1074,14 @@ public:
 "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
 "    background: none; /* Remove the track fill */\n"
 "}"));
+        progressBar = new QProgressBar(tab);
+        progressBar->setObjectName("progressBar");
+        progressBar->setGeometry(QRect(-3, 520, 881, 23));
+        progressBar->setValue(100);
+        progressBar_2 = new QProgressBar(tab);
+        progressBar_2->setObjectName("progressBar_2");
+        progressBar_2->setGeometry(QRect(0, 200, 881, 23));
+        progressBar_2->setValue(100);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName("tab_2");
@@ -769,7 +1094,7 @@ public:
 
         retranslateUi(DashboardWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(0);
 
 
@@ -784,7 +1109,7 @@ public:
         LabelName->setText(QCoreApplication::translate("DashboardWindow", "Account : Admin", nullptr));
         InfoButton->setText(QCoreApplication::translate("DashboardWindow", "Information", nullptr));
         HomeButton->setText(QCoreApplication::translate("DashboardWindow", "Home", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("DashboardWindow", "Transactions", nullptr));
+        TransferButton->setText(QCoreApplication::translate("DashboardWindow", "Transfer", nullptr));
         pushButton_2->setText(QCoreApplication::translate("DashboardWindow", "Investments", nullptr));
         SignoutButton->setText(QCoreApplication::translate("DashboardWindow", "Sign Out", nullptr));
         pushButton->setText(QCoreApplication::translate("DashboardWindow", "PushButton", nullptr));
@@ -808,7 +1133,27 @@ public:
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#020202;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; color:#020202;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#020202;\"><br /></p></body></html>", nullptr));
-        label_8->setText(QCoreApplication::translate("DashboardWindow", "Investments", nullptr));
+        label_8->setText(QCoreApplication::translate("DashboardWindow", "Transfer", nullptr));
+        label_9->setText(QCoreApplication::translate("DashboardWindow", "From", nullptr));
+        combobox->setItemText(0, QCoreApplication::translate("DashboardWindow", "Pingplus Bank", nullptr));
+        combobox->setItemText(1, QCoreApplication::translate("DashboardWindow", "Credit card", nullptr));
+        combobox->setItemText(2, QCoreApplication::translate("DashboardWindow", "American Expresso", nullptr));
+
+#if QT_CONFIG(statustip)
+        WhoLineEdit->setStatusTip(QString());
+#endif // QT_CONFIG(statustip)
+        label_10->setText(QCoreApplication::translate("DashboardWindow", "To", nullptr));
+        label_11->setText(QCoreApplication::translate("DashboardWindow", "Amount", nullptr));
+        checkBox->setText(QCoreApplication::translate("DashboardWindow", "Send anonymously", nullptr));
+        label_12->setText(QCoreApplication::translate("DashboardWindow", "Enter a message (optional)", nullptr));
+        SendButton->setText(QCoreApplication::translate("DashboardWindow", "Send", nullptr));
+#if QT_CONFIG(statustip)
+        amount->setStatusTip(QString());
+#endif // QT_CONFIG(statustip)
+        amount->setText(QCoreApplication::translate("DashboardWindow", "1$", nullptr));
+#if QT_CONFIG(statustip)
+        message->setStatusTip(QString());
+#endif // QT_CONFIG(statustip)
         label_3->setText(QCoreApplication::translate("DashboardWindow", "Home", nullptr));
         label_4->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
         Icon_2->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));

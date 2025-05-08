@@ -42,7 +42,9 @@ template <> constexpr inline auto DashboardWindow::qt_create_metaobjectdata<qt_m
         "InformationButtonPressed",
         "",
         "HomeButtonPressed",
-        "SignoutButtonPressed"
+        "TransferButtonPressed",
+        "SignoutButtonPressed",
+        "TransferMethod"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -50,8 +52,12 @@ template <> constexpr inline auto DashboardWindow::qt_create_metaobjectdata<qt_m
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'HomeButtonPressed'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'SignoutButtonPressed'
+        // Slot 'TransferButtonPressed'
         QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'SignoutButtonPressed'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'TransferMethod'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -77,7 +83,9 @@ void DashboardWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         switch (_id) {
         case 0: _t->InformationButtonPressed(); break;
         case 1: _t->HomeButtonPressed(); break;
-        case 2: _t->SignoutButtonPressed(); break;
+        case 2: _t->TransferButtonPressed(); break;
+        case 3: _t->SignoutButtonPressed(); break;
+        case 4: _t->TransferMethod(); break;
         default: ;
         }
     }
@@ -103,14 +111,14 @@ int DashboardWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
 }

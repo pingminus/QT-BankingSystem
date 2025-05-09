@@ -29,11 +29,12 @@ DashboardWindow::DashboardWindow(const std::string username,
             ui->listWidget->addItem(QString::fromStdString(transaction));
         }
     }
-    ui->progressBar->setTextVisible(false);
-    ui->progressBar_2->setTextVisible(false);
+
     ui->progressBar_3->setTextVisible(false);
     ui->progressBar_4->setTextVisible(false);
-
+    ui->progressBar_10->setTextVisible(false);
+    ui->progressBar_11->setTextVisible(false);
+    ui->progressBar_9->setTextVisible(false);
 
     // Set window properties
     this->setWindowFlags(Qt::Window | Qt::MSWindowsFixedSizeDialogHint);
@@ -42,21 +43,22 @@ DashboardWindow::DashboardWindow(const std::string username,
     ui->LabelName->setText(QString::fromStdString(username));
 
     // Load and scale images
-    QPixmap pixmap(":/profile/Profilepic.png");
-    pixmap = pixmap.scaled(ui->label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    ui->label->setPixmap(pixmap);
-    ui->label->setAlignment(Qt::AlignCenter);
+
 
     this->setWindowIcon(QIcon(":/images/Bank.png"));
     QPixmap map(":/images/Bank.png");
     map = map.scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->Icon->setPixmap(map);
-    map = map.scaled(179, 179, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    ui->Icon_2->setPixmap(map);
+    QPixmap Map(":/images/BankSolo.png");
+    Map = Map.scaled(179, 179, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->Icon_2->setPixmap(Map);
+    ui->Icon_4->setPixmap(QPixmap(":/images/Bank2.png").scaled(ui->Icon_4->size(), Qt::KeepAspectRatio));
 
+    ui->label_15->setPixmap(QPixmap(":/images/evm.png").scaled(ui->label_15->size(), Qt::KeepAspectRatio));
     ui->label_4->setPixmap(QPixmap(":/images/evm.png").scaled(ui->label_4->size(), Qt::KeepAspectRatio));
-    ui->usernameCard->setText(QString::fromStdString(username));
 
+    ui->usernameCard->setText(QString::fromStdString(username));
+    ui->usernameCard_3->setText(QString::fromStdString(username));
     // Connect button signals to slots
     connect(ui->HomeButton, SIGNAL(released()), this, SLOT(HomeButtonPressed()));
     connect(ui->InfoButton, SIGNAL(released()), this, SLOT(InformationButtonPressed()));
@@ -128,8 +130,8 @@ void DashboardWindow::TransferMethod()
     MapBalance[receiverStr][0] = std::to_string(std::stoi(MapBalance[receiverStr][0]) + amount);
 
     // Update transaction history for both sender and receiver
-    QString senderTransaction = QString::fromStdString("-" + amountStr + " $ to " + receiverStr) + " | Msg: " + message;
-    QString receiverTransaction = QString::fromStdString("+" + amountStr + " $ from " + sender) + " | Msg: " + message;
+    QString senderTransaction = QString::fromStdString("-" + amountStr + " $ to " + receiverStr) + "from Card-1 | Msg: " + message;
+    QString receiverTransaction = QString::fromStdString("+" + amountStr + " $ from " + sender) + "from Card-1 | Msg: " + message;
 
     Transactions[sender].push_back(senderTransaction.toStdString());
     Transactions[receiverStr].push_back(receiverTransaction.toStdString());
@@ -138,7 +140,7 @@ void DashboardWindow::TransferMethod()
     ui->listWidget->addItem(senderTransaction);
 
     // Update sender's balance
-    ui->BalanceCard1->setText(QString::fromStdString(MapBalance[sender][0] + " $"));
+    ui->BalanceCard1->setText(QString::fromStdString(MapBalance[sender][1] + " $"));
 
     // Clear input fields
     ui->WhoLineEdit->clear();
@@ -146,6 +148,57 @@ void DashboardWindow::TransferMethod()
     ui->message->clear();
 
     qDebug() << "Transaction successful!";
+    }
+    if(index==1){
+        if (receiver.isEmpty()) {
+            qDebug() << "Receiver field is empty!";
+            return;
+        }
+
+        if (amountStr.empty() || std::stoi(amountStr) <= 0) {
+            qDebug() << "Invalid amount!";
+            return;
+        }
+
+        // Retrieve the receiver's username as entered (case-sensitive)
+        std::string receiverStr = receiver.toStdString();
+
+        if (MapBalance.find(receiverStr) == MapBalance.end()) {
+            qDebug() << "Receiver not found!";
+            return;
+        }
+
+        // Check sender's balance
+        std::string sender = ui->usernameCard_3->text().toStdString();
+        if (std::stoi(MapBalance[sender][1]) < std::stoi(amountStr)) {
+            qDebug() << "Insufficient balance!";
+            return;
+        }
+
+        // Perform the transfer
+        int amount = std::stoi(amountStr);
+        MapBalance[sender][1] = std::to_string(std::stoi(MapBalance[sender][1]) - amount);
+        MapBalance[receiverStr][1] = std::to_string(std::stoi(MapBalance[receiverStr][1]) + amount);
+
+        // Update transaction history for both sender and receiver
+        QString senderTransaction = QString::fromStdString("-" + amountStr + " $ to " + receiverStr) + " from Card-2 | Msg: " + message;
+        QString receiverTransaction = QString::fromStdString("+" + amountStr + " $ from " + sender) + " from Card-2| Msg: " + message;
+
+        Transactions[sender].push_back(senderTransaction.toStdString());
+        Transactions[receiverStr].push_back(receiverTransaction.toStdString());
+
+        // Update sender's transaction list widget
+        ui->listWidget->addItem(senderTransaction);
+
+        // Update sender's balance
+        ui->BalanceCard2_2->setText(QString::fromStdString(MapBalance[sender][1] + " $"));
+
+        // Clear input fields
+        ui->WhoLineEdit->clear();
+        ui->amount->clear();
+        ui->message->clear();
+
+        qDebug() << "Transaction successful!";
     }
 }
 

@@ -65,13 +65,6 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QLabel" name="LabelName">
             <property name="styleSheet">
              <string notr="true">QLabel {
@@ -305,7 +298,7 @@ QPushButton:pressed {
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="pushButton">
@@ -577,11 +570,6 @@ QComboBox QAbstractItemView::item:hover {
          <item>
           <property name="text">
            <string>Pingplus Bank</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Credit card</string>
           </property>
          </item>
          <item>
@@ -1066,34 +1054,40 @@ QTabBar::tab:!selected {
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>Credit Card</string>
+        <string>Cards</string>
        </attribute>
        <widget class="QWidget" name="widget" native="true">
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>240</y>
+          <y>80</y>
           <width>451</width>
           <height>261</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">#widget{
+         <string notr="true">#widget {
     background: qlineargradient(
         x1: 0, y1: 0, x2: 1, y2: 1,  /* Gradient direction from top-left to bottom-right */
         stop: 0 #4a90e2,             /* Light blue at the start (top-left) */
         stop: 0.5 #1c75bc,           /* Slightly darker blue in the middle */
-        stop: 1 #003f7f             /* Lighter blue at the end (bottom-right) */
-    ); /*96ceff 96ceff
+        stop: 1 #003f7f              /* Lighter blue at the end (bottom-right) */
+    ); 
     color: #ffffff;                   /* White text for better contrast */
     font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, sans-serif;
     font-size: 16px;
     border: none;                     /* Ensure no default borders */
-    border-top-left-radius: 16px;      /* No rounding for top-left corner */
+    border-top-left-radius: 16px;     /* No rounding for top-left corner */
     border-top-right-radius: 16px;    /* Rounded top-right corner */
     border-bottom-right-radius: 16px; /* Rounded bottom-right corner */
     border-bottom-left-radius: 16px;  /* No rounding for bottom-left corner */
     padding: 12px;                    /* Optional inner spacing */
+    transition: border 0.3s ease;     /* Smooth transition for border changes */
+}
+
+/* Add hover effect */
+#widget:hover {
+    border: 2px solid #89c4f4;        /* A lighter blue border on hover */
 }</string>
         </property>
         <widget class="QLabel" name="label_4">
@@ -1117,10 +1111,10 @@ QTabBar::tab:!selected {
         <widget class="QLabel" name="Icon_2">
          <property name="geometry">
           <rect>
-           <x>260</x>
-           <y>20</y>
-           <width>391</width>
-           <height>221</height>
+           <x>280</x>
+           <y>10</y>
+           <width>371</width>
+           <height>251</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -1224,9 +1218,9 @@ background: none;
        <widget class="QLabel" name="label_7">
         <property name="geometry">
          <rect>
-          <x>540</x>
-          <y>210</y>
-          <width>251</width>
+          <x>520</x>
+          <y>20</y>
+          <width>281</width>
           <height>60</height>
          </rect>
         </property>
@@ -1247,16 +1241,16 @@ background: none;
 </string>
         </property>
         <property name="text">
-         <string>Card history</string>
+         <string>Transaction history</string>
         </property>
        </widget>
        <widget class="QListWidget" name="listWidget">
         <property name="geometry">
          <rect>
-          <x>490</x>
-          <y>260</y>
-          <width>331</width>
-          <height>241</height>
+          <x>480</x>
+          <y>80</y>
+          <width>381</width>
+          <height>621</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1351,26 +1345,253 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 }</string>
         </property>
        </widget>
-       <widget class="QProgressBar" name="progressBar">
+       <widget class="QWidget" name="widget_3" native="true">
         <property name="geometry">
          <rect>
-          <x>-3</x>
-          <y>520</y>
-          <width>881</width>
-          <height>23</height>
+          <x>0</x>
+          <y>420</y>
+          <width>451</width>
+          <height>261</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#widget_3{
+    background: qlineargradient(
+        x1: 0, y1: 0, x2: 1, y2: 1,  /* Gradient direction from top-left to bottom-right */
+        stop: 0 #FFD700,             /* Light blue at the start (top-left) */
+        stop: 0.5 #bf8200,           /* Slightly darker blue in the middle */
+        stop: 1 #996800             /* Lighter blue at the end (bottom-right) */
+    ); /*96ceff 96ceff
+    color: #ffffff;                   /* White text for better contrast */
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, sans-serif;
+    font-size: 16px;
+    border: none;                     /* Ensure no default borders */
+    border-top-left-radius: 16px;      /* No rounding for top-left corner */
+    border-top-right-radius: 16px;    /* Rounded top-right corner */
+    border-bottom-right-radius: 16px; /* Rounded bottom-right corner */
+    border-bottom-left-radius: 16px;  /* No rounding for bottom-left corner */
+    padding: 12px;                    /* Optional inner spacing */
+}
+#widget_3:hover {
+    border: 2px solid #89c4f4;        /* A lighter blue border on hover */
+}</string>
+        </property>
+        <widget class="QLabel" name="label_15">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>101</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#label_15{
+	background: none;
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="Icon_4">
+         <property name="geometry">
+          <rect>
+           <x>260</x>
+           <y>20</y>
+           <width>191</width>
+           <height>221</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#Icon_4{
+	background: none;
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_16">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>190</y>
+           <width>291</width>
+           <height>60</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+	background: none;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>DE76740201004939876676</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="usernameCard_3">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>170</y>
+           <width>164</width>
+           <height>60</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+	background: none;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="BalanceCard2_2">
+         <property name="geometry">
+          <rect>
+           <x>-10</x>
+           <y>90</y>
+           <width>411</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: white;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 50px;
+    font-weight: cursiv; /* Makes the font bold */
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+background: none;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>68918$</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_17">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>20</y>
+          <width>351</width>
+          <height>60</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    color: black;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 25px;
+    font-weight: bold; /* Makes the font bold */
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Pingplus Banking Card</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_18">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>360</y>
+          <width>351</width>
+          <height>60</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    color: black;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 25px;
+    font-weight: bold; /* Makes the font bold */
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>American Expresso Card</string>
+        </property>
+       </widget>
+       <widget class="QProgressBar" name="progressBar_9">
+        <property name="geometry">
+         <rect>
+          <x>482</x>
+          <y>60</y>
+          <width>401</width>
+          <height>16</height>
          </rect>
         </property>
         <property name="value">
          <number>100</number>
         </property>
        </widget>
-       <widget class="QProgressBar" name="progressBar_2">
+       <widget class="QProgressBar" name="progressBar_10">
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>200</y>
-          <width>881</width>
-          <height>23</height>
+          <y>60</y>
+          <width>451</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="value">
+         <number>100</number>
+        </property>
+       </widget>
+       <widget class="QProgressBar" name="progressBar_11">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>400</y>
+          <width>451</width>
+          <height>16</height>
          </rect>
         </property>
         <property name="value">
@@ -1380,7 +1601,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Giro Card</string>
+        <string>Statistics</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_3">

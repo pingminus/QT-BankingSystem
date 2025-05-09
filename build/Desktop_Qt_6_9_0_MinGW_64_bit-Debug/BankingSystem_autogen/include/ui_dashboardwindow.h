@@ -39,7 +39,6 @@ public:
     QWidget *WidgetVert_2;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
-    QLabel *label;
     QLabel *LabelName;
     QWidget *WidgetVert;
     QVBoxLayout *verticalLayout;
@@ -88,8 +87,17 @@ public:
     QLabel *BalanceCard1;
     QLabel *label_7;
     QListWidget *listWidget;
-    QProgressBar *progressBar;
-    QProgressBar *progressBar_2;
+    QWidget *widget_3;
+    QLabel *label_15;
+    QLabel *Icon_4;
+    QLabel *label_16;
+    QLabel *usernameCard_3;
+    QLabel *BalanceCard2_2;
+    QLabel *label_17;
+    QLabel *label_18;
+    QProgressBar *progressBar_9;
+    QProgressBar *progressBar_10;
+    QProgressBar *progressBar_11;
     QWidget *tab_2;
     QWidget *tab_3;
     QProgressBar *progressBar_6;
@@ -141,11 +149,6 @@ public:
         verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        label = new QLabel(WidgetVert_2);
-        label->setObjectName("label");
-
-        horizontalLayout->addWidget(label);
-
         LabelName = new QLabel(WidgetVert_2);
         LabelName->setObjectName("LabelName");
         LabelName->setStyleSheet(QString::fromUtf8("QLabel {\n"
@@ -467,7 +470,6 @@ public:
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         combobox = new QComboBox(horizontalLayoutWidget);
-        combobox->addItem(QString());
         combobox->addItem(QString());
         combobox->addItem(QString());
         combobox->setObjectName("combobox");
@@ -828,24 +830,30 @@ public:
         tab->setObjectName("tab");
         widget = new QWidget(tab);
         widget->setObjectName("widget");
-        widget->setGeometry(QRect(0, 240, 451, 261));
-        widget->setStyleSheet(QString::fromUtf8("#widget{\n"
+        widget->setGeometry(QRect(0, 80, 451, 261));
+        widget->setStyleSheet(QString::fromUtf8("#widget {\n"
 "    background: qlineargradient(\n"
 "        x1: 0, y1: 0, x2: 1, y2: 1,  /* Gradient direction from top-left to bottom-right */\n"
 "        stop: 0 #4a90e2,             /* Light blue at the start (top-left) */\n"
 "        stop: 0.5 #1c75bc,           /* Slightly darker blue in the middle */\n"
-"        stop: 1 #003f7f             /* Lighter blue at the end (bottom-right) */\n"
-"    ); /*96ceff 96ceff\n"
+"        stop: 1 #003f7f              /* Lighter blue at the end (bottom-right) */\n"
+"    ); \n"
 "    color: #ffffff;                   /* White text for better contrast */\n"
 "    font-family: \"Segoe UI\", \"Helvetica Neue\", sans-serif;\n"
 "    font-size: 16px;\n"
 "    border: none;                     /* Ensure no default borders */\n"
-"    border-top-left-radius: 16px;      /* No rounding for top-left corner */\n"
+"    border-top-left-radius: 16px;     /* No rounding for top-left corner */\n"
 "    border-top-right-radius: 16px;    /* Rounded top-right corner */\n"
 "    border-bottom-right-radius: 16px; /* Rounded bottom-right corner */\n"
 "    border-bottom-left-radius: 16px;  /* No rounding for bottom-left corner */\n"
-"    padding: 12px;                    /* Opti"
-                        "onal inner spacing */\n"
+"    padding: 12px;                    /* Optional inner spa"
+                        "cing */\n"
+"    transition: border 0.3s ease;     /* Smooth transition for border changes */\n"
+"}\n"
+"\n"
+"/* Add hover effect */\n"
+"#widget:hover {\n"
+"    border: 2px solid #89c4f4;        /* A lighter blue border on hover */\n"
 "}"));
         label_4 = new QLabel(widget);
         label_4->setObjectName("label_4");
@@ -855,7 +863,7 @@ public:
 "}"));
         Icon_2 = new QLabel(widget);
         Icon_2->setObjectName("Icon_2");
-        Icon_2->setGeometry(QRect(260, 20, 391, 221));
+        Icon_2->setGeometry(QRect(280, 10, 371, 251));
         Icon_2->setStyleSheet(QString::fromUtf8("#Icon_2{\n"
 "	background: none;\n"
 "}"));
@@ -913,7 +921,7 @@ public:
 ""));
         label_7 = new QLabel(tab);
         label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(540, 210, 251, 60));
+        label_7->setGeometry(QRect(520, 20, 281, 60));
         label_7->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "    color: black;\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
@@ -930,7 +938,7 @@ public:
 ""));
         listWidget = new QListWidget(tab);
         listWidget->setObjectName("listWidget");
-        listWidget->setGeometry(QRect(490, 260, 331, 241));
+        listWidget->setGeometry(QRect(480, 80, 381, 621));
         listWidget->setStyleSheet(QString::fromUtf8("/* Styling for the listWidget */\n"
 "#listWidget {\n"
 "    background-color: #f5f5f7; /* Light blue background for a softer tone matching the button */\n"
@@ -1023,14 +1031,140 @@ public:
 "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
 "    background: none; /* Remove the track fill */\n"
 "}"));
-        progressBar = new QProgressBar(tab);
-        progressBar->setObjectName("progressBar");
-        progressBar->setGeometry(QRect(-3, 520, 881, 23));
-        progressBar->setValue(100);
-        progressBar_2 = new QProgressBar(tab);
-        progressBar_2->setObjectName("progressBar_2");
-        progressBar_2->setGeometry(QRect(0, 200, 881, 23));
-        progressBar_2->setValue(100);
+        widget_3 = new QWidget(tab);
+        widget_3->setObjectName("widget_3");
+        widget_3->setGeometry(QRect(0, 420, 451, 261));
+        widget_3->setStyleSheet(QString::fromUtf8("#widget_3{\n"
+"    background: qlineargradient(\n"
+"        x1: 0, y1: 0, x2: 1, y2: 1,  /* Gradient direction from top-left to bottom-right */\n"
+"        stop: 0 #FFD700,             /* Light blue at the start (top-left) */\n"
+"        stop: 0.5 #bf8200,           /* Slightly darker blue in the middle */\n"
+"        stop: 1 #996800             /* Lighter blue at the end (bottom-right) */\n"
+"    ); /*96ceff 96ceff\n"
+"    color: #ffffff;                   /* White text for better contrast */\n"
+"    font-family: \"Segoe UI\", \"Helvetica Neue\", sans-serif;\n"
+"    font-size: 16px;\n"
+"    border: none;                     /* Ensure no default borders */\n"
+"    border-top-left-radius: 16px;      /* No rounding for top-left corner */\n"
+"    border-top-right-radius: 16px;    /* Rounded top-right corner */\n"
+"    border-bottom-right-radius: 16px; /* Rounded bottom-right corner */\n"
+"    border-bottom-left-radius: 16px;  /* No rounding for bottom-left corner */\n"
+"    padding: 12px;                    /* Op"
+                        "tional inner spacing */\n"
+"}\n"
+"#widget_3:hover {\n"
+"    border: 2px solid #89c4f4;        /* A lighter blue border on hover */\n"
+"}"));
+        label_15 = new QLabel(widget_3);
+        label_15->setObjectName("label_15");
+        label_15->setGeometry(QRect(10, 10, 101, 91));
+        label_15->setStyleSheet(QString::fromUtf8("#label_15{\n"
+"	background: none;\n"
+"}"));
+        Icon_4 = new QLabel(widget_3);
+        Icon_4->setObjectName("Icon_4");
+        Icon_4->setGeometry(QRect(260, 20, 191, 221));
+        Icon_4->setStyleSheet(QString::fromUtf8("#Icon_4{\n"
+"	background: none;\n"
+"}"));
+        label_16 = new QLabel(widget_3);
+        label_16->setObjectName("label_16");
+        label_16->setGeometry(QRect(0, 190, 291, 60));
+        label_16->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: white;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 18px;\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"	background: none;\n"
+"}\n"
+""));
+        usernameCard_3 = new QLabel(widget_3);
+        usernameCard_3->setObjectName("usernameCard_3");
+        usernameCard_3->setGeometry(QRect(0, 170, 164, 60));
+        usernameCard_3->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: white;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 14px;\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"	background: none;\n"
+"}\n"
+""));
+        BalanceCard2_2 = new QLabel(widget_3);
+        BalanceCard2_2->setObjectName("BalanceCard2_2");
+        BalanceCard2_2->setGeometry(QRect(-10, 90, 411, 101));
+        BalanceCard2_2->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: white;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 50px;\n"
+"    font-weight: cursiv; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"background: none;\n"
+"}\n"
+""));
+        label_17 = new QLabel(tab);
+        label_17->setObjectName("label_17");
+        label_17->setGeometry(QRect(0, 20, 351, 60));
+        label_17->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: black;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 25px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"}\n"
+""));
+        label_18 = new QLabel(tab);
+        label_18->setObjectName("label_18");
+        label_18->setGeometry(QRect(0, 360, 351, 60));
+        label_18->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: black;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 25px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"}\n"
+""));
+        progressBar_9 = new QProgressBar(tab);
+        progressBar_9->setObjectName("progressBar_9");
+        progressBar_9->setGeometry(QRect(482, 60, 401, 16));
+        progressBar_9->setValue(100);
+        progressBar_10 = new QProgressBar(tab);
+        progressBar_10->setObjectName("progressBar_10");
+        progressBar_10->setGeometry(QRect(0, 60, 451, 16));
+        progressBar_10->setValue(100);
+        progressBar_11 = new QProgressBar(tab);
+        progressBar_11->setObjectName("progressBar_11");
+        progressBar_11->setGeometry(QRect(0, 400, 451, 16));
+        progressBar_11->setValue(100);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName("tab_2");
@@ -1047,7 +1181,7 @@ public:
 
         retranslateUi(DashboardWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
         tabWidget->setCurrentIndex(0);
 
 
@@ -1058,7 +1192,6 @@ public:
     {
         DashboardWindow->setWindowTitle(QCoreApplication::translate("DashboardWindow", "MainWindow", nullptr));
         Icon->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
-        label->setText(QString());
         LabelName->setText(QCoreApplication::translate("DashboardWindow", "Account : Admin", nullptr));
         InfoButton->setText(QCoreApplication::translate("DashboardWindow", "Information", nullptr));
         HomeButton->setText(QCoreApplication::translate("DashboardWindow", "Home", nullptr));
@@ -1088,8 +1221,7 @@ public:
         label_8->setText(QCoreApplication::translate("DashboardWindow", "Transfer", nullptr));
         label_9->setText(QCoreApplication::translate("DashboardWindow", "From", nullptr));
         combobox->setItemText(0, QCoreApplication::translate("DashboardWindow", "Pingplus Bank", nullptr));
-        combobox->setItemText(1, QCoreApplication::translate("DashboardWindow", "Credit card", nullptr));
-        combobox->setItemText(2, QCoreApplication::translate("DashboardWindow", "American Expresso", nullptr));
+        combobox->setItemText(1, QCoreApplication::translate("DashboardWindow", "American Expresso", nullptr));
 
 #if QT_CONFIG(statustip)
         WhoLineEdit->setStatusTip(QString());
@@ -1112,9 +1244,16 @@ public:
         label_5->setText(QCoreApplication::translate("DashboardWindow", "DE76740201004939876676", nullptr));
         usernameCard->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
         BalanceCard1->setText(QCoreApplication::translate("DashboardWindow", "125613631$", nullptr));
-        label_7->setText(QCoreApplication::translate("DashboardWindow", "Card history", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("DashboardWindow", "Credit Card", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("DashboardWindow", "Giro Card", nullptr));
+        label_7->setText(QCoreApplication::translate("DashboardWindow", "Transaction history", nullptr));
+        label_15->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
+        Icon_4->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
+        label_16->setText(QCoreApplication::translate("DashboardWindow", "DE76740201004939876676", nullptr));
+        usernameCard_3->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
+        BalanceCard2_2->setText(QCoreApplication::translate("DashboardWindow", "68918$", nullptr));
+        label_17->setText(QCoreApplication::translate("DashboardWindow", "Pingplus Banking Card", nullptr));
+        label_18->setText(QCoreApplication::translate("DashboardWindow", "American Expresso Card", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("DashboardWindow", "Cards", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("DashboardWindow", "Statistics", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("DashboardWindow", "My Depo", nullptr));
     } // retranslateUi
 

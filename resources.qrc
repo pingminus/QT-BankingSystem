@@ -3,6 +3,8 @@
     <qresource prefix="/images">
         <file>Bank.png</file>
         <file>evm.png</file> <!-- Added evm.png -->
+	<file>Bank2.png</file>
+	<file>BankSolo.png</file>
     </qresource>
 
     <!-- Resources under /profile -->

@@ -9,7 +9,6 @@
 
     <!-- Resources under /profile -->
     <qresource prefix="/profile">
-        <file>Profilepic.png</file>
     </qresource>
 
     <!-- Resources under /new -->

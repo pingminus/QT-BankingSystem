@@ -23,7 +23,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -52,7 +52,9 @@ public:
     QWidget *page;
     QPushButton *pushButton;
     QLabel *label_2;
-    QTextBrowser *textBrowser;
+    QProgressBar *progressBar_7;
+    QProgressBar *progressBar_8;
+    QTextEdit *textEdit;
     QWidget *page_3;
     QLabel *label_8;
     QLabel *label_9;
@@ -71,6 +73,9 @@ public:
     QLineEdit *amount;
     QSpacerItem *horizontalSpacer_2;
     QLineEdit *message;
+    QProgressBar *progressBar_3;
+    QProgressBar *progressBar_4;
+    QProgressBar *progressBar_5;
     QWidget *page_2;
     QLabel *label_3;
     QTabWidget *tabWidget;
@@ -87,6 +92,7 @@ public:
     QProgressBar *progressBar_2;
     QWidget *tab_2;
     QWidget *tab_3;
+    QProgressBar *progressBar_6;
 
     void setupUi(QMainWindow *DashboardWindow)
     {
@@ -389,102 +395,33 @@ public:
 "    letter-spacing: 0.4px;\n"
 "}\n"
 ""));
-        textBrowser = new QTextBrowser(page);
-        textBrowser->setObjectName("textBrowser");
-        textBrowser->setGeometry(QRect(0, 60, 901, 501));
-        textBrowser->setStyleSheet(QString::fromUtf8("/* General styling for the body */\n"
-"body {\n"
-"    margin: 0;\n"
-"    padding: 0;\n"
-"    font-family: Arial, sans-serif;\n"
-"    background-color: #f5f5f5;\n"
-"    color: #333;\n"
+        progressBar_7 = new QProgressBar(page);
+        progressBar_7->setObjectName("progressBar_7");
+        progressBar_7->setGeometry(QRect(-30, 50, 1221, 23));
+        progressBar_7->setValue(100);
+        progressBar_8 = new QProgressBar(page);
+        progressBar_8->setObjectName("progressBar_8");
+        progressBar_8->setGeometry(QRect(-70, 580, 1221, 23));
+        progressBar_8->setValue(100);
+        textEdit = new QTextEdit(page);
+        textEdit->setObjectName("textEdit");
+        textEdit->setGeometry(QRect(0, 70, 911, 511));
+        textEdit->setStyleSheet(QString::fromUtf8("QTextEdit {\n"
+"    background-color: #E6F7FF; /* Light blue background */\n"
+"    border: 2px solid #0099CC; /* Blue border */\n"
+"    border-radius: 5px; /* Rounded corners */\n"
+"    color: #003366; /* Dark blue text color */\n"
+"    padding: 5px; /* Padding inside the text edit */\n"
+"    font: 14px \"Arial\"; /* Font style and size */\n"
 "}\n"
 "\n"
-"/* Styling for headers */\n"
-"h1, h2, h3 {\n"
-"    color: #444;\n"
-"    margin-bottom: 10px;\n"
+"QTextEdit:hover {\n"
+"    border: 2px solid #007ACC; /* Slightly darker blue on hover */\n"
 "}\n"
 "\n"
-"/* Buttons */\n"
-"button {\n"
-"    padding: 10px 20px;\n"
-"    font-size: 16px;\n"
-"    background-color: #007BFF;\n"
-"    color: white;\n"
-"    border: none;\n"
-"    border-radius: 5px;\n"
-"    cursor: pointer;\n"
-"}\n"
-"\n"
-"button:hover {\n"
-"    background-color: #0056b3;\n"
-"}\n"
-"\n"
-"/* Links */\n"
-"a {\n"
-"    color: #007BFF;\n"
-"    text-decoration: none;\n"
-"}\n"
-"\n"
-"a:hover {\n"
-"    text-decoration: underline;\n"
-"}\n"
-"\n"
-"/* Tables */\n"
-"table {\n"
-"    border-collapse: collapse;\n"
-"    width: 100%;\n"
-"}\n"
-"\n"
-"table, th, td {\n"
-"    border: 1px solid #ddd;\n"
-"}\n"
-"\n"
-"th, td {\n"
-"    padding: 8px;\n"
-"    text-align: left;\n"
-"}\n"
-"\n"
-"th {\n"
-"    background-color: #f2f2f2;\n"
-"}\n"
-""
-                        "\n"
-"/* Form elements */\n"
-"input, textarea, select {\n"
-"    width: 100%;\n"
-"    padding: 10px;\n"
-"    margin: 5px 0;\n"
-"    display: inline-block;\n"
-"    border: 1px solid #ccc;\n"
-"    border-radius: 4px;\n"
-"    box-sizing: border-box;\n"
-"}\n"
-"\n"
-"/* Text alignment */\n"
-".text-center {\n"
-"    text-align: center;\n"
-"}\n"
-"\n"
-".text-right {\n"
-"    text-align: right;\n"
-"}\n"
-"\n"
-".text-left {\n"
-"    text-align: left;\n"
-"}\n"
-"\n"
-"/* Containers */\n"
-".container {\n"
-"    margin: 0 auto;\n"
-"    padding: 20px;\n"
-"    max-width: 1200px;\n"
-"    background-color: white;\n"
-"    border: 1px solid #ddd;\n"
-"    border-radius: 5px;\n"
-"    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n"
+"QTextEdit:focus {\n"
+"    border: 2px solid #005B99; /* Even darker blue when focused */\n"
+"    background-color: #D6EFFF; /* Slightly darker blue background */\n"
 "}"));
         stackedWidget->addWidget(page);
         page_3 = new QWidget();
@@ -508,7 +445,7 @@ public:
 ""));
         label_9 = new QLabel(page_3);
         label_9->setObjectName("label_9");
-        label_9->setGeometry(QRect(60, 160, 251, 60));
+        label_9->setGeometry(QRect(-10, 200, 251, 60));
         label_9->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "    color: black;\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
@@ -525,7 +462,7 @@ public:
 ""));
         horizontalLayoutWidget = new QWidget(page_3);
         horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
-        horizontalLayoutWidget->setGeometry(QRect(90, 210, 771, 71));
+        horizontalLayoutWidget->setGeometry(QRect(20, 250, 771, 71));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -620,7 +557,7 @@ public:
 
         label_10 = new QLabel(page_3);
         label_10->setObjectName("label_10");
-        label_10->setGeometry(QRect(490, 160, 251, 60));
+        label_10->setGeometry(QRect(420, 200, 251, 60));
         label_10->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "    color: black;\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
@@ -637,7 +574,7 @@ public:
 ""));
         label_11 = new QLabel(page_3);
         label_11->setObjectName("label_11");
-        label_11->setGeometry(QRect(70, 310, 251, 60));
+        label_11->setGeometry(QRect(0, 350, 251, 60));
         label_11->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "    color: black;\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
@@ -654,7 +591,7 @@ public:
 ""));
         checkBox = new QCheckBox(page_3);
         checkBox->setObjectName("checkBox");
-        checkBox->setGeometry(QRect(90, 420, 181, 31));
+        checkBox->setGeometry(QRect(40, 530, 181, 31));
         checkBox->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         checkBox->setStyleSheet(QString::fromUtf8("/* Base style for QCheckBox */\n"
 "QCheckBox {\n"
@@ -692,7 +629,7 @@ public:
 "}"));
         label_12 = new QLabel(page_3);
         label_12->setObjectName("label_12");
-        label_12->setGeometry(QRect(360, 310, 361, 60));
+        label_12->setGeometry(QRect(430, 350, 361, 60));
         label_12->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "    color: black;\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
@@ -710,7 +647,7 @@ public:
 ""));
         SendButton = new QPushButton(page_3);
         SendButton->setObjectName("SendButton");
-        SendButton->setGeometry(QRect(90, 520, 261, 61));
+        SendButton->setGeometry(QRect(20, 590, 771, 61));
         SendButton->setStyleSheet(QString::fromUtf8("/* Base style for QPushButton */\n"
 "QPushButton {\n"
 "  border: 2px solid #d0e8ff;\n"
@@ -742,7 +679,7 @@ public:
 "}"));
         horizontalWidget_2 = new QWidget(page_3);
         horizontalWidget_2->setObjectName("horizontalWidget_2");
-        horizontalWidget_2->setGeometry(QRect(90, 360, 771, 71));
+        horizontalWidget_2->setGeometry(QRect(20, 400, 771, 71));
         horizontalWidget_2->setStyleSheet(QString::fromUtf8("#horizontalWidget_2{\n"
 "	background: none;\n"
 "\n"
@@ -805,6 +742,18 @@ public:
 
         horizontalLayout_3->addWidget(message);
 
+        progressBar_3 = new QProgressBar(page_3);
+        progressBar_3->setObjectName("progressBar_3");
+        progressBar_3->setGeometry(QRect(0, 340, 811, 23));
+        progressBar_3->setValue(100);
+        progressBar_4 = new QProgressBar(page_3);
+        progressBar_4->setObjectName("progressBar_4");
+        progressBar_4->setGeometry(QRect(0, 500, 811, 23));
+        progressBar_4->setValue(100);
+        progressBar_5 = new QProgressBar(page_3);
+        progressBar_5->setObjectName("progressBar_5");
+        progressBar_5->setGeometry(QRect(-120, 50, 1011, 23));
+        progressBar_5->setValue(100);
         stackedWidget->addWidget(page_3);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
@@ -1089,12 +1038,16 @@ public:
         tab_3 = new QWidget();
         tab_3->setObjectName("tab_3");
         tabWidget->addTab(tab_3, QString());
+        progressBar_6 = new QProgressBar(page_2);
+        progressBar_6->setObjectName("progressBar_6");
+        progressBar_6->setGeometry(QRect(-80, 50, 1221, 23));
+        progressBar_6->setValue(100);
         stackedWidget->addWidget(page_2);
         DashboardWindow->setCentralWidget(centralwidget);
 
         retranslateUi(DashboardWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
         tabWidget->setCurrentIndex(0);
 
 
@@ -1114,25 +1067,24 @@ public:
         SignoutButton->setText(QCoreApplication::translate("DashboardWindow", "Sign Out", nullptr));
         pushButton->setText(QCoreApplication::translate("DashboardWindow", "PushButton", nullptr));
         label_2->setText(QCoreApplication::translate("DashboardWindow", "Information", nullptr));
-        textBrowser->setHtml(QCoreApplication::translate("DashboardWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        textEdit->setHtml(QCoreApplication::translate("DashboardWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt; font-weight:700; color:#020202;\">About:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; color:#020202;\">This project was entirely build and programmed by Niklas using QT Creator, CSS and C++. This is my first big project in QT hope you like it :). Here"
-                        " you will find all different stuff this application offers.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; color:#020202;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; color:#020202;\">If you want to mess around with unlimited Money try log in with the Admin account:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; color:#020202;\">username: Admin </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; color:#020202;\">password: Admin</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; m"
-                        "argin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; color:#020202;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#020202;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; color:#020202;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#020202;\"><br /></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Arial'; font-size:14px; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:16pt; font-weight:700; color:#020202;\">About:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:14pt; color:#020202;\">This project was entirely build and programmed by Niklas using QT Creator, CSS and C++. This is my fir"
+                        "st big project in QT hope you like it :). Here you will find all different stuff this application offers.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:14pt; color:#020202;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:14pt; color:#020202;\">If you want to mess around with unlimited Money try log in with the Admin account:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:14pt; color:#020202;\">username: Admin </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:14"
+                        "pt; color:#020202;\">password: Admin</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:14pt; color:#020202;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:9pt; color:#020202;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:14pt; color:#020202;\"><br /></p></body></html>", nullptr));
         label_8->setText(QCoreApplication::translate("DashboardWindow", "Transfer", nullptr));
         label_9->setText(QCoreApplication::translate("DashboardWindow", "From", nullptr));
         combobox->setItemText(0, QCoreApplication::translate("DashboardWindow", "Pingplus Bank", nullptr));

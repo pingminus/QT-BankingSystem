@@ -29,6 +29,11 @@ DashboardWindow::DashboardWindow(const std::string username,
             ui->listWidget->addItem(QString::fromStdString(transaction));
         }
     }
+    ui->progressBar->setTextVisible(false);
+    ui->progressBar_2->setTextVisible(false);
+    ui->progressBar_3->setTextVisible(false);
+    ui->progressBar_4->setTextVisible(false);
+
 
     // Set window properties
     this->setWindowFlags(Qt::Window | Qt::MSWindowsFixedSizeDialogHint);
@@ -123,8 +128,8 @@ void DashboardWindow::TransferMethod()
     MapBalance[receiverStr][0] = std::to_string(std::stoi(MapBalance[receiverStr][0]) + amount);
 
     // Update transaction history for both sender and receiver
-    QString senderTransaction = QString::fromStdString("-" + amountStr + " $ to " + receiverStr) + " | Message: " + message;
-    QString receiverTransaction = QString::fromStdString("+" + amountStr + " $ from " + sender) + " | Message: " + message;
+    QString senderTransaction = QString::fromStdString("-" + amountStr + " $ to " + receiverStr) + " | Msg: " + message;
+    QString receiverTransaction = QString::fromStdString("+" + amountStr + " $ from " + sender) + " | Msg: " + message;
 
     Transactions[sender].push_back(senderTransaction.toStdString());
     Transactions[receiverStr].push_back(receiverTransaction.toStdString());

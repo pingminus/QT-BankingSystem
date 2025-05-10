@@ -211,7 +211,7 @@ QPushButton:pressed {
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="InvestButton">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     background-color: #0586f7;  /* Royal blue with a hint of purple */
@@ -298,7 +298,7 @@ QPushButton:pressed {
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="pushButton">
@@ -369,32 +369,6 @@ QPushButton:pressed {
       </property>
       <property name="text">
        <string>Information</string>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="progressBar_7">
-      <property name="geometry">
-       <rect>
-        <x>-30</x>
-        <y>50</y>
-        <width>1221</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="value">
-       <number>100</number>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="progressBar_8">
-      <property name="geometry">
-       <rect>
-        <x>-70</x>
-        <y>580</y>
-        <width>1221</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="value">
-       <number>100</number>
       </property>
      </widget>
      <widget class="QTextEdit" name="textEdit">
@@ -920,45 +894,6 @@ QLineEdit:focus {
        </item>
       </layout>
      </widget>
-     <widget class="QProgressBar" name="progressBar_3">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>340</y>
-        <width>811</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="value">
-       <number>100</number>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="progressBar_4">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>500</y>
-        <width>811</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="value">
-       <number>100</number>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="progressBar_5">
-      <property name="geometry">
-       <rect>
-        <x>-120</x>
-        <y>50</y>
-        <width>1011</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="value">
-       <number>100</number>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="page_2">
      <widget class="QLabel" name="label_3">
@@ -1211,7 +1146,7 @@ background: none;
 </string>
          </property>
          <property name="text">
-          <string>125613631$</string>
+          <string>12525$</string>
          </property>
         </widget>
        </widget>
@@ -1497,7 +1432,7 @@ background: none;
 </string>
          </property>
          <property name="text">
-          <string>68918$</string>
+          <string>1918$</string>
          </property>
         </widget>
        </widget>
@@ -1559,45 +1494,6 @@ background: none;
          <string>American Expresso Card</string>
         </property>
        </widget>
-       <widget class="QProgressBar" name="progressBar_9">
-        <property name="geometry">
-         <rect>
-          <x>482</x>
-          <y>60</y>
-          <width>401</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="value">
-         <number>100</number>
-        </property>
-       </widget>
-       <widget class="QProgressBar" name="progressBar_10">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>60</y>
-          <width>451</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="value">
-         <number>100</number>
-        </property>
-       </widget>
-       <widget class="QProgressBar" name="progressBar_11">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>400</y>
-          <width>451</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="value">
-         <number>100</number>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
@@ -1610,20 +1506,8 @@ background: none;
        </attribute>
       </widget>
      </widget>
-     <widget class="QProgressBar" name="progressBar_6">
-      <property name="geometry">
-       <rect>
-        <x>-80</x>
-        <y>50</y>
-        <width>1221</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="value">
-       <number>100</number>
-      </property>
-     </widget>
     </widget>
+    <widget class="QWidget" name="page_4"/>
    </widget>
   </widget>
  </widget>

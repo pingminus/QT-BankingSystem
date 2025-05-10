@@ -18,7 +18,6 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
@@ -45,14 +44,12 @@ public:
     QPushButton *InfoButton;
     QPushButton *HomeButton;
     QPushButton *TransferButton;
-    QPushButton *pushButton_2;
+    QPushButton *InvestButton;
     QPushButton *SignoutButton;
     QStackedWidget *stackedWidget;
     QWidget *page;
     QPushButton *pushButton;
     QLabel *label_2;
-    QProgressBar *progressBar_7;
-    QProgressBar *progressBar_8;
     QTextEdit *textEdit;
     QWidget *page_3;
     QLabel *label_8;
@@ -72,9 +69,6 @@ public:
     QLineEdit *amount;
     QSpacerItem *horizontalSpacer_2;
     QLineEdit *message;
-    QProgressBar *progressBar_3;
-    QProgressBar *progressBar_4;
-    QProgressBar *progressBar_5;
     QWidget *page_2;
     QLabel *label_3;
     QTabWidget *tabWidget;
@@ -95,12 +89,9 @@ public:
     QLabel *BalanceCard2_2;
     QLabel *label_17;
     QLabel *label_18;
-    QProgressBar *progressBar_9;
-    QProgressBar *progressBar_10;
-    QProgressBar *progressBar_11;
     QWidget *tab_2;
     QWidget *tab_3;
-    QProgressBar *progressBar_6;
+    QWidget *page_4;
 
     void setupUi(QMainWindow *DashboardWindow)
     {
@@ -279,9 +270,9 @@ public:
 
         verticalLayout->addWidget(TransferButton);
 
-        pushButton_2 = new QPushButton(WidgetVert);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        InvestButton = new QPushButton(WidgetVert);
+        InvestButton->setObjectName("InvestButton");
+        InvestButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    background-color: #0586f7;  /* Royal blue with a hint of purple */\n"
 "    color: white;\n"
 "    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
@@ -308,7 +299,7 @@ public:
 "}\n"
 ""));
 
-        verticalLayout->addWidget(pushButton_2);
+        verticalLayout->addWidget(InvestButton);
 
         SignoutButton = new QPushButton(WidgetVert);
         SignoutButton->setObjectName("SignoutButton");
@@ -398,14 +389,6 @@ public:
 "    letter-spacing: 0.4px;\n"
 "}\n"
 ""));
-        progressBar_7 = new QProgressBar(page);
-        progressBar_7->setObjectName("progressBar_7");
-        progressBar_7->setGeometry(QRect(-30, 50, 1221, 23));
-        progressBar_7->setValue(100);
-        progressBar_8 = new QProgressBar(page);
-        progressBar_8->setObjectName("progressBar_8");
-        progressBar_8->setGeometry(QRect(-70, 580, 1221, 23));
-        progressBar_8->setValue(100);
         textEdit = new QTextEdit(page);
         textEdit->setObjectName("textEdit");
         textEdit->setGeometry(QRect(0, 70, 911, 511));
@@ -744,18 +727,6 @@ public:
 
         horizontalLayout_3->addWidget(message);
 
-        progressBar_3 = new QProgressBar(page_3);
-        progressBar_3->setObjectName("progressBar_3");
-        progressBar_3->setGeometry(QRect(0, 340, 811, 23));
-        progressBar_3->setValue(100);
-        progressBar_4 = new QProgressBar(page_3);
-        progressBar_4->setObjectName("progressBar_4");
-        progressBar_4->setGeometry(QRect(0, 500, 811, 23));
-        progressBar_4->setValue(100);
-        progressBar_5 = new QProgressBar(page_3);
-        progressBar_5->setObjectName("progressBar_5");
-        progressBar_5->setGeometry(QRect(-120, 50, 1011, 23));
-        progressBar_5->setValue(100);
         stackedWidget->addWidget(page_3);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
@@ -1153,18 +1124,6 @@ public:
 "    letter-spacing: 0.4px;\n"
 "}\n"
 ""));
-        progressBar_9 = new QProgressBar(tab);
-        progressBar_9->setObjectName("progressBar_9");
-        progressBar_9->setGeometry(QRect(482, 60, 401, 16));
-        progressBar_9->setValue(100);
-        progressBar_10 = new QProgressBar(tab);
-        progressBar_10->setObjectName("progressBar_10");
-        progressBar_10->setGeometry(QRect(0, 60, 451, 16));
-        progressBar_10->setValue(100);
-        progressBar_11 = new QProgressBar(tab);
-        progressBar_11->setObjectName("progressBar_11");
-        progressBar_11->setGeometry(QRect(0, 400, 451, 16));
-        progressBar_11->setValue(100);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName("tab_2");
@@ -1172,16 +1131,15 @@ public:
         tab_3 = new QWidget();
         tab_3->setObjectName("tab_3");
         tabWidget->addTab(tab_3, QString());
-        progressBar_6 = new QProgressBar(page_2);
-        progressBar_6->setObjectName("progressBar_6");
-        progressBar_6->setGeometry(QRect(-80, 50, 1221, 23));
-        progressBar_6->setValue(100);
         stackedWidget->addWidget(page_2);
+        page_4 = new QWidget();
+        page_4->setObjectName("page_4");
+        stackedWidget->addWidget(page_4);
         DashboardWindow->setCentralWidget(centralwidget);
 
         retranslateUi(DashboardWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
         tabWidget->setCurrentIndex(0);
 
 
@@ -1196,7 +1154,7 @@ public:
         InfoButton->setText(QCoreApplication::translate("DashboardWindow", "Information", nullptr));
         HomeButton->setText(QCoreApplication::translate("DashboardWindow", "Home", nullptr));
         TransferButton->setText(QCoreApplication::translate("DashboardWindow", "Transfer", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("DashboardWindow", "Investments", nullptr));
+        InvestButton->setText(QCoreApplication::translate("DashboardWindow", "Investments", nullptr));
         SignoutButton->setText(QCoreApplication::translate("DashboardWindow", "Sign Out", nullptr));
         pushButton->setText(QCoreApplication::translate("DashboardWindow", "PushButton", nullptr));
         label_2->setText(QCoreApplication::translate("DashboardWindow", "Information", nullptr));
@@ -1243,13 +1201,13 @@ public:
         Icon_2->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
         label_5->setText(QCoreApplication::translate("DashboardWindow", "DE76740201004939876676", nullptr));
         usernameCard->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
-        BalanceCard1->setText(QCoreApplication::translate("DashboardWindow", "125613631$", nullptr));
+        BalanceCard1->setText(QCoreApplication::translate("DashboardWindow", "12525$", nullptr));
         label_7->setText(QCoreApplication::translate("DashboardWindow", "Transaction history", nullptr));
         label_15->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
         Icon_4->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
         label_16->setText(QCoreApplication::translate("DashboardWindow", "DE76740201004939876676", nullptr));
         usernameCard_3->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
-        BalanceCard2_2->setText(QCoreApplication::translate("DashboardWindow", "68918$", nullptr));
+        BalanceCard2_2->setText(QCoreApplication::translate("DashboardWindow", "1918$", nullptr));
         label_17->setText(QCoreApplication::translate("DashboardWindow", "Pingplus Banking Card", nullptr));
         label_18->setText(QCoreApplication::translate("DashboardWindow", "American Expresso Card", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("DashboardWindow", "Cards", nullptr));

@@ -27,6 +27,7 @@ private slots:
     void TransferButtonPressed();
     void SignoutButtonPressed();
     void TransferMethod();
+    void InvestButtonPressed();
 
 private:
     Ui::DashboardWindow *ui;

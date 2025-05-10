@@ -20,9 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->passwordText->setPlaceholderText("Enter password");
 
     // Bank Logo
-    QPixmap pixmap(":/images/Bank.png");
+    QPixmap pixmap(":/images/BankingIcon.png");
     ui->label->setPixmap(pixmap);
-    this->setWindowIcon(QIcon(":/images/Bank.png"));
+    this->setWindowIcon(QIcon(":/images/BankingIcon.png"));
 
     // Dynamic informal Label
     errorLabel = new QLabel(this);

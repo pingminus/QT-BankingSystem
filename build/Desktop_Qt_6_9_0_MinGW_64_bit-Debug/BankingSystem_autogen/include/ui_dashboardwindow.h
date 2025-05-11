@@ -1139,7 +1139,7 @@ public:
 
         retranslateUi(DashboardWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
         tabWidget->setCurrentIndex(0);
 
 

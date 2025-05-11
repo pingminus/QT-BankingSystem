@@ -43,6 +43,9 @@ DashboardWindow::DashboardWindow(const std::string username,
             ui->listWidget->addItem(QString::fromStdString(transaction));
         }
     }
+    ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0] + "$"));
+    ui->BalanceCard2_2->setText(QString::fromStdString(MapBalance[username][1] + "$"));
+
 
     // Set window properties
     this->setWindowFlags(Qt::Window | Qt::MSWindowsFixedSizeDialogHint);
@@ -144,6 +147,12 @@ void DashboardWindow::TransferMethod()
 
     std::string receiverStr = receiver.toStdString();
 
+    // Check if sender and receiver are the same
+    if (sender == receiverStr) {
+        qDebug() << "Sender and receiver cannot be the same!";
+        return;
+    }
+
     // Check if receiver exists
     if (MapBalance.find(receiverStr) == MapBalance.end()) {
         qDebug() << "Receiver not found!";
@@ -164,16 +173,24 @@ void DashboardWindow::TransferMethod()
     // Perform the transfer
     qDebug() << "Performing transfer...";
     MapBalance[sender][cardIndex] = std::to_string(std::stoi(MapBalance[sender][cardIndex]) - amount);
+
+    // Ensure the correct card index is used for the receiver
     MapBalance[receiverStr][cardIndex] = std::to_string(std::stoi(MapBalance[receiverStr][cardIndex]) + amount);
 
     // Debug: After transfer
     qDebug() << "After Transfer: Sender Card-" << (cardIndex + 1) << " Balance:"
              << QString::fromStdString(MapBalance[sender][cardIndex]);
 
+    // Check if the checkbox is checked
+    bool isAnonymous = ui->checkBox->isChecked();
+
+    QString senderName = isAnonymous ? "Anonymous" : QString::fromStdString(sender);
+    QString receiverName = isAnonymous ? "Anonymous" : receiver;
+
     QString senderTransaction = QString("-%1 $ to %2 from Card-%3 | Msg: %4")
-                                    .arg(amountStr.c_str(), receiver, QString::number(cardIndex + 1), message);
+                                    .arg(amountStr.c_str(), receiverName, QString::number(cardIndex + 1), message);
     QString receiverTransaction = QString("+%1 $ from %2 from Card-%3 | Msg: %4")
-                                      .arg(amountStr.c_str(), QString::fromStdString(sender), QString::number(cardIndex + 1), message);
+                                      .arg(amountStr.c_str(), senderName, QString::number(cardIndex + 1), message);
 
     Transactions[sender].push_back(senderTransaction.toStdString());
     Transactions[receiverStr].push_back(receiverTransaction.toStdString());

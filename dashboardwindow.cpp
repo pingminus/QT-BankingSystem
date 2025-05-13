@@ -14,8 +14,10 @@ DashboardWindow::DashboardWindow(const std::string username,
     , MapBalance(sharedMapBalance) // Assign reference to shared balance map
     , Transactions(sharedTransactions) // Assign reference to shared transaction history
 {
-
     ui->setupUi(this);
+
+
+
     QTimer *timer = new QTimer(this);
     runPythonScript();
     connect(timer, &QTimer::timeout, this, &DashboardWindow::runPythonScript);
@@ -25,7 +27,7 @@ DashboardWindow::DashboardWindow(const std::string username,
 
     // Initialize user balance if not present
     if (MapBalance.find(username) == MapBalance.end()) {
-        MapBalance[username] = {"12525", "1918", "913"}; // Default balances
+        MapBalance[username] = {"12525", "1918", "100", "100"}; // Third index for cash if btc sold rn Fourth Index for cash that was invested
         qDebug() << "No existing balance found. Setting default balances for user:" << QString::fromStdString(username);
     } else {
         qDebug() << "Existing balance found for user:" << QString::fromStdString(username)
@@ -33,6 +35,8 @@ DashboardWindow::DashboardWindow(const std::string username,
         << QString::fromStdString(MapBalance[username][1]) << ","
         << QString::fromStdString(MapBalance[username][2]);
     }
+    ui->InvestedBTC->setText(QString::fromStdString(MapBalance[username][2]));
+
 
     // Initialize transaction history if not present
     if (Transactions.find(username) == Transactions.end()) {

@@ -92,6 +92,8 @@ public:
     QWidget *tab_2;
     QWidget *tab_3;
     QWidget *page_4;
+    QLabel *BitcoinPrice;
+    QLabel *label_6;
 
     void setupUi(QMainWindow *DashboardWindow)
     {
@@ -1134,12 +1136,46 @@ public:
         stackedWidget->addWidget(page_2);
         page_4 = new QWidget();
         page_4->setObjectName("page_4");
+        BitcoinPrice = new QLabel(page_4);
+        BitcoinPrice->setObjectName("BitcoinPrice");
+        BitcoinPrice->setGeometry(QRect(0, 130, 641, 211));
+        BitcoinPrice->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: black;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 45px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"}\n"
+""));
+        label_6 = new QLabel(page_4);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(-20, 0, 251, 61));
+        label_6->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: black;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 35px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"}\n"
+""));
         stackedWidget->addWidget(page_4);
         DashboardWindow->setCentralWidget(centralwidget);
 
         retranslateUi(DashboardWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(3);
         tabWidget->setCurrentIndex(0);
 
 
@@ -1166,13 +1202,10 @@ public:
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Arial'; font-size:14px; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:16pt; font-weight:700; color:#020202;\">About:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:14pt; color:#020202;\">This project was entirely build and programmed by Niklas using QT Creator, CSS and C++. This is my fir"
-                        "st big project in QT hope you like it :). Here you will find all different stuff this application offers.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:14pt; color:#020202;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:14pt; color:#020202;\">If you want to mess around with unlimited Money try log in with the Admin account:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:14pt; color:#020202;\">username: Admin </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:14"
-                        "pt; color:#020202;\">password: Admin</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:14pt; color:#020202;\">This project was entirely build and programmed by me using QT and C++. </span></p>\n"
+"<p style=\"-qt-"
+                        "paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:14pt; color:#020202;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:14pt; color:#020202;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:9pt; color:#020202;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:14pt; color:#020202;\"><br /></p></body></html>", nullptr));
@@ -1213,6 +1246,8 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("DashboardWindow", "Cards", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("DashboardWindow", "Statistics", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("DashboardWindow", "My Depo", nullptr));
+        BitcoinPrice->setText(QCoreApplication::translate("DashboardWindow", "Bitcoin:", nullptr));
+        label_6->setText(QCoreApplication::translate("DashboardWindow", "Information", nullptr));
     } // retranslateUi
 
 };

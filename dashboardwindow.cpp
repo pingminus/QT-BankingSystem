@@ -1,6 +1,9 @@
 #include "dashboardwindow.h"
 #include "ui_dashboardwindow.h"
 #include <QDebug>
+#include <QTimer>
+#include <QProcess>
+#include <QDir>
 
 DashboardWindow::DashboardWindow(const std::string username,
                                  std::map<std::string, std::vector<std::string>> &sharedMapBalance,
@@ -11,8 +14,12 @@ DashboardWindow::DashboardWindow(const std::string username,
     , MapBalance(sharedMapBalance) // Assign reference to shared balance map
     , Transactions(sharedTransactions) // Assign reference to shared transaction history
 {
-    ui->setupUi(this);
 
+    ui->setupUi(this);
+    QTimer *timer = new QTimer(this);
+    runPythonScript();
+    connect(timer, &QTimer::timeout, this, &DashboardWindow::runPythonScript);
+    timer->start(20000); // Run every 1000 milliseconds (1 second)
     // Debug: Initialization
     qDebug() << "Initializing DashboardWindow for user:" << QString::fromStdString(username);
 
@@ -46,7 +53,7 @@ DashboardWindow::DashboardWindow(const std::string username,
     ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0] + "$"));
     ui->BalanceCard2_2->setText(QString::fromStdString(MapBalance[username][1] + "$"));
 
-
+    ui->textEdit->setReadOnly(true);
     // Set window properties
     this->setWindowFlags(Qt::Window | Qt::MSWindowsFixedSizeDialogHint);
     this->setStyleSheet("background-color: #f5f5f7;");
@@ -79,6 +86,7 @@ DashboardWindow::DashboardWindow(const std::string username,
 }
 void DashboardWindow::InvestButtonPressed(){
     qDebug() << "InvestBUttonPressed";
+    ui->stackedWidget->setCurrentIndex(3);
 }
 void DashboardWindow::InformationButtonPressed()
 {
@@ -214,7 +222,39 @@ void DashboardWindow::TransferMethod()
 
     qDebug() << "Transaction successful!";
 }
+void DashboardWindow::runPythonScript()
+{
+    // Get the directory of the executable
+    QString executableDir = QCoreApplication::applicationDirPath();
 
+    // Move up directories to access the root project directory where the Python script is located
+    QDir projectRootDir(executableDir);
+    projectRootDir.cdUp(); // Move out of the 'build' directory
+    projectRootDir.cdUp(); // Adjust further if needed
+
+    QString scriptPath = projectRootDir.absoluteFilePath("getBTCPrice.py");
+
+    // Command to run the Python script
+    QString command = QString("python \"%1\"").arg(scriptPath);
+
+    qDebug() << "Executing command:" << command;
+
+    // Create a QProcess to execute the Python script
+    QProcess process;
+    process.start(command);
+    process.waitForFinished();
+
+    // Read the output of the Python script
+    QString output = process.readAllStandardOutput();
+    QString error = process.readAllStandardError();
+
+    if (!error.isEmpty()) {
+        qDebug() << "Error from Python script:" << error;
+    } else {
+        qDebug() << "Output from Python script:" << output;
+        ui->BitcoinPrice->setText("1 BTC: " + output.trimmed() + "$"); // Overwrite the label
+    }
+}
 DashboardWindow::~DashboardWindow()
 {
     delete ui;

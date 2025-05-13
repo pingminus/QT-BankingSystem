@@ -25,6 +25,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         resources.qrc
         dashboardwindow.h dashboardwindow.cpp dashboardwindow.ui
+        getBTCPrice.py
+        getBTCPrice.py
 
 
     )

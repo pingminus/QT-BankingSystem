@@ -30,6 +30,7 @@ private slots:
     void InvestButtonPressed();
 
 private:
+    void runPythonScript();
     Ui::DashboardWindow *ui;
     std::map<std::string, std::vector<std::string>> &MapBalance; // Reference to shared balance map
     std::map<std::string, std::vector<std::string>> &Transactions; // Reference to shared transaction history

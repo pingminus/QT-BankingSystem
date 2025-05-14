@@ -450,25 +450,34 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>-10</x>
+        <x>0</x>
         <y>200</y>
         <width>251</width>
-        <height>60</height>
+        <height>69</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QLabel {
-    color: black;
+    color: black; /* White text for better contrast */
     font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 25px;
-    font-weight: bold; /* Makes the font bold */
-    font-weight: 600;
-    padding: 10px 22px;
+    font-size: 26px; /* Slightly larger font size for emphasis */
+    font-weight: bold; /* Bold font for stronger presence */
+    font-style: italic; /* Adds a touch of elegance with italic */
+    padding: 12px 24px; /* Slightly more padding for better spacing */
     border: none;
-    border-radius: 14px;
-    min-height: 40px;
-    min-width: 120px;
-    letter-spacing: 0.4px;
+    border-radius: 15px; /* More rounded edges for a modern look */
+    background: linear-gradient(45deg, #1E90FF, #00BFFF); /* Gradient background for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for a lifted effect */
+    min-height: 45px; /* Increased height for a more prominent button */
+    min-width: 140px; /* Slightly wider for better balance */
+    letter-spacing: 0.6px; /* More spacing for a sleeker appearance */
+    text-transform: uppercase; /* All caps for a bolder impression */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+}
+
+QLabel:hover {
+    background: linear-gradient(45deg, #00BFFF, #1E90FF); /* Inverted gradient on hover for interactive effect */
+    transform: translateY(-2px); /* Slight lift on hover for more interactivity */
 }
 </string>
       </property>
@@ -476,7 +485,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <string>From</string>
       </property>
      </widget>
-     <widget class="QWidget" name="horizontalLayoutWidget">
+     <widget class="QWidget" name="horizontalWidget" native="true">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -485,6 +494,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <height>71</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget{
+	background: none;
+}</string>
+      </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QComboBox" name="combobox">
@@ -492,51 +506,52 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="styleSheet">
-          <string notr="true">/* Base style for the QComboBox */
+          <string notr="true">/* Base style for QComboBox */
 QComboBox {
   border: 1px solid #d0e8ff;
   border-radius: 8px;
   background-color: #f0f8ff;
   padding: 5px 10px;
   font-size: 16px;
-  color: #333;
+  color: black; /* Set the font color to black */
 }
 
+/* Hover state for QComboBox */
 QComboBox:hover {
   border-color: #9ec8ff;
 }
 
+/* Focus state for QComboBox */
 QComboBox:focus {
   border-color: #0078d7;
+  box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
   outline: none;
 }
 
+/* Dropdown button style for QComboBox */
 QComboBox::drop-down {
+  border: none;
+  background: transparent;
   subcontrol-origin: padding;
   subcontrol-position: top right;
-  width: 30px;
-  border-left: 1px solid #d0e8ff;
+  width: 20px;
 }
 
+/* Arrow style for QComboBox */
 QComboBox::down-arrow {
-  image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLjAwMiAxOC44MzNMMy4xNjUgMTBsMS40MTQtMS40MTQgNy40MTMgNy40MTMgNy40MTMtNy40MTMgMS40MTQgMS40MTQtOC44MzQgOC44MzQtLjcwOC0uNzA5eiIgZmlsbD0iIzAwNzhkNyIvPjwvc3ZnPg==); /* Down arrow in blue */
+  image: url(&quot;:/icons/down-arrow.png&quot;); /* Replace with your custom arrow icon if available */
   width: 12px;
   height: 12px;
 }
 
+/* Pop-up style for QComboBox */
 QComboBox QAbstractItemView {
   border: 1px solid #d0e8ff;
   border-radius: 8px;
-  background-color: #ffffff;
-  selection-background-color: #e6f4ff;
-  selection-color: #333;
-  padding: 5px;
-  color: #333;
-}
-
-QComboBox QAbstractItemView::item:hover {
   background-color: #f0f8ff;
-  color: #0078d7;
+  selection-background-color: #0078d7;
+  selection-color: white;
+  color: black; /* Set the font color inside the dropdown to black */
 }</string>
          </property>
          <item>
@@ -609,22 +624,31 @@ QLineEdit:focus {
         <x>420</x>
         <y>200</y>
         <width>251</width>
-        <height>60</height>
+        <height>69</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QLabel {
-    color: black;
+    color: black; /* White text for better contrast */
     font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 25px;
-    font-weight: bold; /* Makes the font bold */
-    font-weight: 600;
-    padding: 10px 22px;
+    font-size: 26px; /* Slightly larger font size for emphasis */
+    font-weight: bold; /* Bold font for stronger presence */
+    font-style: italic; /* Adds a touch of elegance with italic */
+    padding: 12px 24px; /* Slightly more padding for better spacing */
     border: none;
-    border-radius: 14px;
-    min-height: 40px;
-    min-width: 120px;
-    letter-spacing: 0.4px;
+    border-radius: 15px; /* More rounded edges for a modern look */
+    background: linear-gradient(45deg, #1E90FF, #00BFFF); /* Gradient background for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for a lifted effect */
+    min-height: 45px; /* Increased height for a more prominent button */
+    min-width: 140px; /* Slightly wider for better balance */
+    letter-spacing: 0.6px; /* More spacing for a sleeker appearance */
+    text-transform: uppercase; /* All caps for a bolder impression */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+}
+
+QLabel:hover {
+    background: linear-gradient(45deg, #00BFFF, #1E90FF); /* Inverted gradient on hover for interactive effect */
+    transform: translateY(-2px); /* Slight lift on hover for more interactivity */
 }
 </string>
       </property>
@@ -638,22 +662,31 @@ QLineEdit:focus {
         <x>0</x>
         <y>350</y>
         <width>251</width>
-        <height>60</height>
+        <height>69</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QLabel {
-    color: black;
+    color: black; /* White text for better contrast */
     font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 25px;
-    font-weight: bold; /* Makes the font bold */
-    font-weight: 600;
-    padding: 10px 22px;
+    font-size: 26px; /* Slightly larger font size for emphasis */
+    font-weight: bold; /* Bold font for stronger presence */
+    font-style: italic; /* Adds a touch of elegance with italic */
+    padding: 12px 24px; /* Slightly more padding for better spacing */
     border: none;
-    border-radius: 14px;
-    min-height: 40px;
-    min-width: 120px;
-    letter-spacing: 0.4px;
+    border-radius: 15px; /* More rounded edges for a modern look */
+    background: linear-gradient(45deg, #1E90FF, #00BFFF); /* Gradient background for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for a lifted effect */
+    min-height: 45px; /* Increased height for a more prominent button */
+    min-width: 140px; /* Slightly wider for better balance */
+    letter-spacing: 0.6px; /* More spacing for a sleeker appearance */
+    text-transform: uppercase; /* All caps for a bolder impression */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+}
+
+QLabel:hover {
+    background: linear-gradient(45deg, #00BFFF, #1E90FF); /* Inverted gradient on hover for interactive effect */
+    transform: translateY(-2px); /* Slight lift on hover for more interactivity */
 }
 </string>
       </property>
@@ -716,31 +749,39 @@ QCheckBox::indicator:disabled {
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>430</x>
+        <x>420</x>
         <y>350</y>
-        <width>361</width>
-        <height>60</height>
+        <width>461</width>
+        <height>82</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QLabel {
-    color: black;
+    color: black; /* White text for better contrast */
     font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 25px;
-    font-weight: bold; /* Makes the font bold */
-    font-weight: 600;
-    padding: 10px 22px;
+    font-size: 26px; /* Slightly larger font size for emphasis */
+    font-weight: bold; /* Bold font for stronger presence */
+    font-style: italic; /* Adds a touch of elegance with italic */
+    padding: 12px 24px; /* Slightly more padding for better spacing */
     border: none;
-    border-radius: 14px;
-    min-height: 40px;
-    min-width: 120px;
-    letter-spacing: 0.4px;
-background: none;
+    border-radius: 15px; /* More rounded edges for a modern look */
+    background: linear-gradient(45deg, #1E90FF, #00BFFF); /* Gradient background for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for a lifted effect */
+    min-height: 45px; /* Increased height for a more prominent button */
+    min-width: 140px; /* Slightly wider for better balance */
+    letter-spacing: 0.6px; /* More spacing for a sleeker appearance */
+    text-transform: uppercase; /* All caps for a bolder impression */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+}
+
+QLabel:hover {
+    background: linear-gradient(45deg, #00BFFF, #1E90FF); /* Inverted gradient on hover for interactive effect */
+    transform: translateY(-2px); /* Slight lift on hover for more interactivity */
 }
 </string>
       </property>
       <property name="text">
-       <string>Enter a message (optional)</string>
+       <string>Enter a msg (optional)</string>
       </property>
      </widget>
      <widget class="QPushButton" name="SendButton">
@@ -791,7 +832,7 @@ QPushButton:disabled {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>400</y>
+        <y>410</y>
         <width>771</width>
         <height>71</height>
        </rect>
@@ -1539,14 +1580,14 @@ background: none;
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>240</y>
+        <y>120</y>
         <width>691</width>
-        <height>351</height>
+        <height>651</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QWidget {
-    background-color: #4caafc;        /* Deep blue background */
+       <string notr="true">#widget_2 {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4caafc, stop: 1 #2a8cc8);
     color: #ffffff;                   /* Change text to white for better contrast */
     font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, sans-serif;
     font-size: 16px;
@@ -1556,15 +1597,17 @@ background: none;
     border-bottom-right-radius: 16px; /* Rounded bottom-right corner */
     border-bottom-left-radius: 0px;  /* Rounded bottom-left corner */
     padding: 12px;                    /* Optional inner spacing */
-}</string>
+}
+
+</string>
       </property>
       <widget class="QLabel" name="BitcoinPrice">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>-30</y>
+         <x>210</x>
+         <y>60</y>
          <width>641</width>
-         <height>211</height>
+         <height>141</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1580,6 +1623,7 @@ background: none;
     min-height: 40px;
     min-width: 120px;
     letter-spacing: 0.4px;
+background: none;
 }
 </string>
        </property>
@@ -1590,10 +1634,10 @@ background: none;
       <widget class="QWidget" name="verticalWidget" native="true">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>100</y>
-         <width>371</width>
-         <height>211</height>
+         <x>100</x>
+         <y>290</y>
+         <width>481</width>
+         <height>281</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1627,7 +1671,7 @@ QLineEdit {
   border-radius: 8px;
   background-color: #f0f8ff;
   padding: 5px 10px;
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
 }
 
@@ -1644,12 +1688,81 @@ QLineEdit:focus {
          </widget>
         </item>
         <item>
+         <widget class="QComboBox" name="combobox_2">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/* Base style for QComboBox */
+QComboBox {
+  border: 1px solid #d0e8ff;
+  border-radius: 8px;
+  background-color: #f0f8ff;
+  padding: 5px 10px;
+  font-size: 16px;
+  color: black; /* Set the font color to black */
+}
+
+/* Hover state for QComboBox */
+QComboBox:hover {
+  border-color: #9ec8ff;
+}
+
+/* Focus state for QComboBox */
+QComboBox:focus {
+  border-color: #0078d7;
+  box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
+  outline: none;
+}
+
+/* Dropdown button style for QComboBox */
+QComboBox::drop-down {
+  border: none;
+  background: transparent;
+  subcontrol-origin: padding;
+  subcontrol-position: top right;
+  width: 20px;
+}
+
+/* Arrow style for QComboBox */
+QComboBox::down-arrow {
+  image: url(&quot;:/icons/down-arrow.png&quot;); /* Replace with your custom arrow icon if available */
+  width: 12px;
+  height: 12px;
+}
+
+/* Pop-up style for QComboBox */
+QComboBox QAbstractItemView {
+  border: 1px solid #d0e8ff;
+  border-radius: 8px;
+  background-color: #f0f8ff;
+  selection-background-color: #0078d7;
+  selection-color: white;
+  color: black; /* Set the font color inside the dropdown to black */
+}</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Pingplus Bank</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>American Expresso</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <property name="sizeConstraint">
            <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QPushButton" name="Invest">
+            <property name="cursor">
+             <cursorShape>UpArrowCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">/* Base style for QPushButton */
 QPushButton {
@@ -1658,7 +1771,7 @@ QPushButton {
   background-color: #f0f8ff;
   color: #333;
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
@@ -1688,6 +1801,9 @@ QPushButton:disabled {
           </item>
           <item>
            <widget class="QPushButton" name="Sell">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">/* Base style for QPushButton */
 QPushButton {
@@ -1696,7 +1812,7 @@ QPushButton {
   background-color: #f0f8ff;
   color: #333;
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
@@ -1731,15 +1847,15 @@ QPushButton:disabled {
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>120</y>
+         <x>70</x>
+         <y>220</y>
          <width>771</width>
-         <height>60</height>
+         <height>71</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QLabel {
-    color: green;
+    color: #00d119;
     font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
     font-size: 45px;
     font-weight: bold; /* Makes the font bold */
@@ -1750,6 +1866,8 @@ QPushButton:disabled {
     min-height: 40px;
     min-width: 120px;
     letter-spacing: 0.4px;
+background: none;
+
 }
 </string>
        </property>
@@ -1760,10 +1878,10 @@ QPushButton:disabled {
       <widget class="QLabel" name="BitcoinIcon">
        <property name="geometry">
         <rect>
-         <x>480</x>
-         <y>180</y>
-         <width>151</width>
-         <height>151</height>
+         <x>110</x>
+         <y>70</y>
+         <width>141</width>
+         <height>131</height>
         </rect>
        </property>
        <property name="styleSheet">

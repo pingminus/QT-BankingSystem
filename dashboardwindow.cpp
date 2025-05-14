@@ -16,17 +16,18 @@
     , Transactions(sharedTransactions) // Assign reference to shared transaction history
 {
     ui->setupUi(this);
+    ui->lineEdit->setPlaceholderText("Enter How much Money you want to invest");
 
     invested = false;
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &DashboardWindow::runPythonScript);
-    timer->start(20000); // Run every 1000 milliseconds (1 second)
+    timer->start(2000); // Run every 1000 milliseconds (1 second)
     // Debug: Initialization
     qDebug() << "Initializing DashboardWindow for user:" << QString::fromStdString(username);
 
     // Initialize user balance if not present
     if (MapBalance.find(username) == MapBalance.end()) {
-        MapBalance[username] = {"12525", "1918", "0", "0", "0"}; // Third index for cash if btc sold rn Fourth Index for cash that was invested
+        MapBalance[username] = {"100000", "20000", "0", "0", "0"}; // Third index for cash if btc sold rn Fourth Index for cash that was invested
         qDebug() << "No existing balance found. Setting default balances for user:" << QString::fromStdString(username);
     } else {
         qDebug() << "Existing balance found for user:" << QString::fromStdString(username)
@@ -75,7 +76,7 @@
     ui->label_15->setPixmap(QPixmap(":/images/evm.png").scaled(ui->label_15->size(), Qt::KeepAspectRatio));
     ui->label_4->setPixmap(QPixmap(":/images/evm.png").scaled(ui->label_4->size(), Qt::KeepAspectRatio));
     QPixmap MAP(":/images/Bitcoin.png");
-    MAP = MAP.scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    MAP = MAP.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->BitcoinIcon->setPixmap(MAP);
 
 
@@ -125,6 +126,7 @@ void DashboardWindow::SignoutButtonPressed()
     qDebug() << "SignoutButtonPressed: User signed out.";
 }
 void DashboardWindow::BuyButtonPressed(){
+    if(invested ==true) return;
     int InvestedCash = std::stoi(ui->lineEdit->text().toStdString());
     std::string username = ui->usernameCard->text().toStdString();
 
@@ -147,6 +149,11 @@ void DashboardWindow::BuyButtonPressed(){
 
         // Update balance UI
         ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0]) + " $");
+
+        // Add transaction record
+        QString transaction = QString("Bought Bitcoin: %1 $ at %2 $/BTC").arg(InvestedCash).arg(priceText);
+        Transactions[username].push_back(transaction.toStdString());
+        ui->listWidget->addItem(transaction);
 
         qDebug() << "BuyButtonPressed: Investment made at BTC price:" << QString::fromStdString(MapBalance[username][4]);
         qDebug() << "BuyButtonPressed: New balance is:" << QString::fromStdString(MapBalance[username][0]);
@@ -178,6 +185,11 @@ void DashboardWindow::SellButtonPressed(){
         // Update the UI for the balance
         ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0]) + " $");
 
+        // Add transaction record
+        QString transaction = QString("Sold Bitcoin: %1 $ returned to balance").arg(investedAmount);
+        Transactions[username].push_back(transaction.toStdString());
+        ui->listWidget->addItem(transaction);
+
         // Reset the invested flag
         invested = false;
 
@@ -192,7 +204,6 @@ void DashboardWindow::SellButtonPressed(){
         QMessageBox::warning(this, "No Investment", "You do not have any active investment to sell.");
     }
 }
-
 void DashboardWindow::TransferMethod()
 {
     int index = ui->combobox->currentIndex();
@@ -355,7 +366,7 @@ void DashboardWindow::runPythonScript()
             MapBalance[username][2] = std::to_string(static_cast<int>(newValue));
 
             // Set investment label text
-            QString valueStr = QString::fromStdString(MapBalance[username][2]) + " $";
+            QString valueStr = QString::fromStdString(MapBalance[username][2]) + " $ (" + QString::number(percentageChange * 100, 'f', 2) + " %)";
             ui->label->setText(valueStr);
 
             // Custom styles
@@ -371,11 +382,13 @@ void DashboardWindow::runPythonScript()
                     min-height: 40px;
                     min-width: 120px;
                     letter-spacing: 0.4px;
+                    background: none;
+
                 })";
 
             QString greenStyle = R"(
                 QLabel {
-                    color: green;
+                    color: #00d119;
                     font-family: "San Francisco", "Helvetica Neue", "Segoe UI", "Arial", sans-serif;
                     font-size: 45px;
                     font-weight: 600;
@@ -385,6 +398,7 @@ void DashboardWindow::runPythonScript()
                     min-height: 40px;
                     min-width: 120px;
                     letter-spacing: 0.4px;
+                    background: none;
                 })";
 
             // Apply style based on performance

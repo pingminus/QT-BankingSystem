@@ -1,6 +1,6 @@
 import random
 
-def generate_random_number(min_val=90000, max_val=100000):
+def generate_random_number(min_val=1, max_val=100000):
     """
     Generate a single random number.
 

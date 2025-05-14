@@ -136,50 +136,31 @@ QLineEdit::placeholder {
         <widget class="QPushButton" name="RegisterButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background: qlineargradient(
-                spread:pad, x1:0, y1:0, x2:1, y2:1, 
-                stop:0 #0078D4,   /* Fluent Blue (top-left) */
-                stop:0.5 #005A9E, /* Slightly darker blue (center) */
-                stop:1 #003A6D);  /* Even darker blue (bottom-right) */
+    background-color: #0586f7;  /* Royal blue with a hint of purple */
     color: white;
-    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, &quot;Arial&quot;, sans-serif;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
     font-size: 18px;
     font-weight: 600;
     padding: 10px 22px;
     border: none;
-    border-radius: 8px;
+    border-radius: 14px;
     min-height: 40px;
     min-width: 120px;
-    box-shadow: 0px 4px 6px rgba(0, 120, 212, 0.2);
-    transition: all 0.3s ease;
+    letter-spacing: 0.4px;
 }
 
 QPushButton:hover {
-    background: qlineargradient(
-                spread:pad, x1:0, y1:0, x2:1, y2:1, 
-                stop:0 #005A9E,   /* Hover Blue (top-left) */
-                stop:0.5 #003A6D, /* Slightly darker blue (center) */
-                stop:1 #002A4D);  /* Deep blue (bottom-right) */
-    box-shadow: 0px 6px 8px rgba(0, 90, 158, 0.3);
+    background-color: #0267bf;  /* Slightly darker blue on hover */
+    border: none;
 }
-
 QPushButton:pressed {
-    background: qlineargradient(
-                spread:pad, x1:0, y1:0, x2:1, y2:1, 
-                stop:0 #003A6D,   /* Pressed Blue (top-left) */
-                stop:1 #002A4D);  /* Deep blue (bottom-right) */
-    box-shadow: 0px 2px 4px rgba(0, 58, 109, 0.2);
+    background-color: #262f87;  /* Even deeper blue when pressed */
+    border: none;
+    padding-top: 11px;
+    padding-bottom: 9px;
 }
 
-QPushButton:disabled {
-    background: qlineargradient(
-                spread:pad, x1:0, y1:0, x2:1, y2:1, 
-                stop:0 #A6A6A6,   /* Gray (top-left) */
-                stop:1 #8C8C8C);  /* Darker Gray (bottom-right) */
-    color: #FFFFFF;
-    box-shadow: none;
-    cursor: not-allowed;
-}</string>
+</string>
          </property>
          <property name="text">
           <string>Sign up</string>
@@ -190,50 +171,31 @@ QPushButton:disabled {
         <widget class="QPushButton" name="LoginButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background: qlineargradient(
-                spread:pad, x1:0, y1:0, x2:1, y2:1, 
-                stop:0 #0078D4,   /* Fluent Blue (top-left) */
-                stop:0.5 #005A9E, /* Slightly darker blue (center) */
-                stop:1 #003A6D);  /* Even darker blue (bottom-right) */
+    background-color: #0586f7;  /* Royal blue with a hint of purple */
     color: white;
-    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, &quot;Arial&quot;, sans-serif;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
     font-size: 18px;
     font-weight: 600;
     padding: 10px 22px;
     border: none;
-    border-radius: 8px;
+    border-radius: 14px;
     min-height: 40px;
     min-width: 120px;
-    box-shadow: 0px 4px 6px rgba(0, 120, 212, 0.2);
-    transition: all 0.3s ease;
+    letter-spacing: 0.4px;
 }
 
 QPushButton:hover {
-    background: qlineargradient(
-                spread:pad, x1:0, y1:0, x2:1, y2:1, 
-                stop:0 #005A9E,   /* Hover Blue (top-left) */
-                stop:0.5 #003A6D, /* Slightly darker blue (center) */
-                stop:1 #002A4D);  /* Deep blue (bottom-right) */
-    box-shadow: 0px 6px 8px rgba(0, 90, 158, 0.3);
+    background-color: #0267bf;  /* Slightly darker blue on hover */
+    border: none;
 }
-
 QPushButton:pressed {
-    background: qlineargradient(
-                spread:pad, x1:0, y1:0, x2:1, y2:1, 
-                stop:0 #003A6D,   /* Pressed Blue (top-left) */
-                stop:1 #002A4D);  /* Deep blue (bottom-right) */
-    box-shadow: 0px 2px 4px rgba(0, 58, 109, 0.2);
+    background-color: #262f87;  /* Even deeper blue when pressed */
+    border: none;
+    padding-top: 11px;
+    padding-bottom: 9px;
 }
 
-QPushButton:disabled {
-    background: qlineargradient(
-                spread:pad, x1:0, y1:0, x2:1, y2:1, 
-                stop:0 #A6A6A6,   /* Gray (top-left) */
-                stop:1 #8C8C8C);  /* Darker Gray (bottom-right) */
-    color: #FFFFFF;
-    box-shadow: none;
-    cursor: not-allowed;
-}</string>
+</string>
          </property>
          <property name="text">
           <string>Login</string>

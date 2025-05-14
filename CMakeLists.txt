@@ -27,6 +27,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dashboardwindow.h dashboardwindow.cpp dashboardwindow.ui
         getBTCPrice.py
         getBTCPrice.py
+        Test.py
+        btc_backend.py
 
 
     )

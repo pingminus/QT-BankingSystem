@@ -4,11 +4,12 @@
 #include <QTimer>
 #include <QProcess>
 #include <QDir>
+#include <qmessagebox.h>
 
-DashboardWindow::DashboardWindow(const std::string username,
-                                 std::map<std::string, std::vector<std::string>> &sharedMapBalance,
-                                 std::map<std::string, std::vector<std::string>> &sharedTransactions,
-                                 QWidget *parent)
+    DashboardWindow::DashboardWindow(const std::string username,
+                                     std::map<std::string, std::vector<std::string>> &sharedMapBalance,
+                                     std::map<std::string, std::vector<std::string>> &sharedTransactions,
+                                     QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::DashboardWindow)
     , MapBalance(sharedMapBalance) // Assign reference to shared balance map
@@ -16,10 +17,8 @@ DashboardWindow::DashboardWindow(const std::string username,
 {
     ui->setupUi(this);
 
-
-
+    invested = false;
     QTimer *timer = new QTimer(this);
-    runPythonScript();
     connect(timer, &QTimer::timeout, this, &DashboardWindow::runPythonScript);
     timer->start(20000); // Run every 1000 milliseconds (1 second)
     // Debug: Initialization
@@ -27,7 +26,7 @@ DashboardWindow::DashboardWindow(const std::string username,
 
     // Initialize user balance if not present
     if (MapBalance.find(username) == MapBalance.end()) {
-        MapBalance[username] = {"12525", "1918", "100", "100"}; // Third index for cash if btc sold rn Fourth Index for cash that was invested
+        MapBalance[username] = {"12525", "1918", "0", "0", "0"}; // Third index for cash if btc sold rn Fourth Index for cash that was invested
         qDebug() << "No existing balance found. Setting default balances for user:" << QString::fromStdString(username);
     } else {
         qDebug() << "Existing balance found for user:" << QString::fromStdString(username)
@@ -35,7 +34,6 @@ DashboardWindow::DashboardWindow(const std::string username,
         << QString::fromStdString(MapBalance[username][1]) << ","
         << QString::fromStdString(MapBalance[username][2]);
     }
-    ui->InvestedBTC->setText(QString::fromStdString(MapBalance[username][2]));
 
 
     // Initialize transaction history if not present
@@ -76,6 +74,10 @@ DashboardWindow::DashboardWindow(const std::string username,
 
     ui->label_15->setPixmap(QPixmap(":/images/evm.png").scaled(ui->label_15->size(), Qt::KeepAspectRatio));
     ui->label_4->setPixmap(QPixmap(":/images/evm.png").scaled(ui->label_4->size(), Qt::KeepAspectRatio));
+    QPixmap MAP(":/images/Bitcoin.png");
+    MAP = MAP.scaled(80, 80, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->BitcoinIcon->setPixmap(MAP);
+
 
     ui->usernameCard->setText(QString::fromStdString(username));
     ui->usernameCard_3->setText(QString::fromStdString(username));
@@ -87,6 +89,10 @@ DashboardWindow::DashboardWindow(const std::string username,
     connect(ui->TransferButton, SIGNAL(released()), this, SLOT(TransferButtonPressed()));
     connect(ui->SendButton, SIGNAL(released()), this, SLOT(TransferMethod()));
     connect(ui->InvestButton, SIGNAL(released()),this,SLOT(InvestButtonPressed()));
+    connect(ui->Invest, SIGNAL(released()),this,SLOT(BuyButtonPressed()));
+    connect(ui->Sell, SIGNAL(released()),this,SLOT(SellButtonPressed()));
+    runPythonScript();
+
 }
 void DashboardWindow::InvestButtonPressed(){
     qDebug() << "InvestBUttonPressed";
@@ -117,6 +123,74 @@ void DashboardWindow::SignoutButtonPressed()
         parentWidget()->show(); // Show the parent MainWindow
     }
     qDebug() << "SignoutButtonPressed: User signed out.";
+}
+void DashboardWindow::BuyButtonPressed(){
+    int InvestedCash = std::stoi(ui->lineEdit->text().toStdString());
+    std::string username = ui->usernameCard->text().toStdString();
+
+    int currentBalance = std::stoi(MapBalance[username][0]);
+
+    if (InvestedCash <= currentBalance && !invested) {
+        // Deduct the invested amount from user's balance
+        int newBalance = currentBalance - InvestedCash;
+        MapBalance[username][0] = std::to_string(newBalance);
+
+        // Set value of investment
+        MapBalance[username][2] = std::to_string(InvestedCash); // Current value of investment
+        MapBalance[username][3] = std::to_string(InvestedCash); // Original invested amount
+
+        // Record BTC price at time of investment
+        QString priceText = ui->BitcoinPrice->text().split(":").last().remove("$").trimmed();
+        MapBalance[username][4] = priceText.toStdString();
+
+        invested = true;
+
+        // Update balance UI
+        ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0]) + " $");
+
+        qDebug() << "BuyButtonPressed: Investment made at BTC price:" << QString::fromStdString(MapBalance[username][4]);
+        qDebug() << "BuyButtonPressed: New balance is:" << QString::fromStdString(MapBalance[username][0]);
+        ui->label->setText(QString::fromStdString(std::to_string(InvestedCash) + "$"));
+        ui->lineEdit->setText("");
+    } else if (invested) {
+        qDebug() << "BuyButtonPressed: Already invested. Ignoring.";
+    } else {
+        QMessageBox::warning(this, "Insufficient Funds", "You don't have enough balance to invest.");
+    }
+}
+void DashboardWindow::SellButtonPressed(){
+    std::string username = ui->usernameCard->text().toStdString();
+
+    if (invested) {
+        // Retrieve the invested amount and BTC price at the time of investment
+        int investedAmount = std::stoi(MapBalance[username][2]);  // invested amount
+        int currentBalance = std::stoi(MapBalance[username][0]); // Current balance in the account
+
+        // Add the invested amount back to the balance
+        int newBalance = currentBalance + investedAmount;
+        MapBalance[username][0] = std::to_string(newBalance); // Update user's balance
+
+        // Revert the investment-related data
+        MapBalance[username][2] = "0";  // Reset the current value of investment
+        MapBalance[username][3] = "0";  // Reset the original investment amount
+        MapBalance[username][4] = "0";  // Reset the BTC price at the time of investment
+
+        // Update the UI for the balance
+        ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0]) + " $");
+
+        // Reset the invested flag
+        invested = false;
+
+        // Debugging logs
+        qDebug() << "SellButtonPressed: Investment sold. Money returned to balance.";
+        qDebug() << "New balance is: " << QString::fromStdString(MapBalance[username][0]);
+
+        ui->label->setText("");
+
+    } else {
+        qDebug() << "SellButtonPressed: No active investment to sell.";
+        QMessageBox::warning(this, "No Investment", "You do not have any active investment to sell.");
+    }
 }
 
 void DashboardWindow::TransferMethod()
@@ -226,39 +300,112 @@ void DashboardWindow::TransferMethod()
 
     qDebug() << "Transaction successful!";
 }
+
 void DashboardWindow::runPythonScript()
 {
     // Get the directory of the executable
     QString executableDir = QCoreApplication::applicationDirPath();
 
-    // Move up directories to access the root project directory where the Python script is located
+    // Move up directories to access the root project directory
     QDir projectRootDir(executableDir);
-    projectRootDir.cdUp(); // Move out of the 'build' directory
-    projectRootDir.cdUp(); // Adjust further if needed
+    projectRootDir.cdUp();
+    projectRootDir.cdUp();
 
-    QString scriptPath = projectRootDir.absoluteFilePath("getBTCPrice.py");
-
-    // Command to run the Python script
+    QString scriptPath = projectRootDir.absoluteFilePath("Test.py");
     QString command = QString("python \"%1\"").arg(scriptPath);
 
     qDebug() << "Executing command:" << command;
 
-    // Create a QProcess to execute the Python script
     QProcess process;
     process.start(command);
     process.waitForFinished();
 
-    // Read the output of the Python script
     QString output = process.readAllStandardOutput();
     QString error = process.readAllStandardError();
 
     if (!error.isEmpty()) {
         qDebug() << "Error from Python script:" << error;
-    } else {
-        qDebug() << "Output from Python script:" << output;
-        ui->BitcoinPrice->setText("1 BTC: " + output.trimmed() + "$"); // Overwrite the label
+        return;
+    }
+
+    QString trimmedOutput = output.trimmed();
+    qDebug() << "Output from Python script:" << trimmedOutput;
+
+    // Update BTC price display
+    ui->BitcoinPrice->setText("1 BTC: " + trimmedOutput + "$");
+
+    std::string username = ui->usernameCard->text().toStdString();
+    std::string currentPriceStr = trimmedOutput.toStdString();
+
+    // Store current BTC price in slot 5
+    if (MapBalance[username].size() < 6) {
+        MapBalance[username].resize(6, "0");
+    }
+    MapBalance[username][5] = currentPriceStr;
+
+    if (invested) {
+        try {
+            int BitcoinPriceNow = std::stoi(currentPriceStr);
+            int BitcoinPriceWhenInvested = std::stoi(MapBalance[username][4]);
+            int MoneyWhenInvested = std::stoi(MapBalance[username][3]);
+
+            float percentageChange = static_cast<float>(BitcoinPriceNow - BitcoinPriceWhenInvested) / BitcoinPriceWhenInvested;
+            float newValue = MoneyWhenInvested * (1.0f + percentageChange);
+
+            MapBalance[username][2] = std::to_string(static_cast<int>(newValue));
+
+            // Set investment label text
+            QString valueStr = QString::fromStdString(MapBalance[username][2]) + " $";
+            ui->label->setText(valueStr);
+
+            // Custom styles
+            QString redStyle = R"(
+                QLabel {
+                    color: red;
+                    font-family: "San Francisco", "Helvetica Neue", "Segoe UI", "Arial", sans-serif;
+                    font-size: 45px;
+                    font-weight: 600;
+                    padding: 10px 22px;
+                    border: none;
+                    border-radius: 14px;
+                    min-height: 40px;
+                    min-width: 120px;
+                    letter-spacing: 0.4px;
+                })";
+
+            QString greenStyle = R"(
+                QLabel {
+                    color: green;
+                    font-family: "San Francisco", "Helvetica Neue", "Segoe UI", "Arial", sans-serif;
+                    font-size: 45px;
+                    font-weight: 600;
+                    padding: 10px 22px;
+                    border: none;
+                    border-radius: 14px;
+                    min-height: 40px;
+                    min-width: 120px;
+                    letter-spacing: 0.4px;
+                })";
+
+            // Apply style based on performance
+            if (BitcoinPriceNow < BitcoinPriceWhenInvested) {
+                ui->label->setStyleSheet(redStyle);
+            } else {
+                ui->label->setStyleSheet(greenStyle);
+            }
+
+            qDebug() << "Investment updated successfully.";
+            qDebug() << "BTC Now:" << BitcoinPriceNow
+                     << "BTC When Invested:" << BitcoinPriceWhenInvested
+                     << "Invested Money:" << MoneyWhenInvested
+                     << "New Value:" << newValue;
+        } catch (const std::exception &e) {
+            qDebug() << "Error in investment calculation:" << e.what();
+        }
     }
 }
+
+
 DashboardWindow::~DashboardWindow()
 {
     delete ui;

@@ -5,6 +5,8 @@
         <file>evm.png</file> <!-- Added evm.png -->
 	<file>Bank2.png</file>
 	<file>BankSolo.png</file>
+	<file>Bitcoin.png</file>
+
     </qresource>
 
     <!-- Resources under /profile -->

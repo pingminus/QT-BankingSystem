@@ -92,8 +92,18 @@ public:
     QWidget *tab_2;
     QWidget *tab_3;
     QWidget *page_4;
-    QLabel *BitcoinPrice;
     QLabel *label_6;
+    QWidget *widget_2;
+    QLabel *BitcoinPrice;
+    QWidget *verticalWidget;
+    QVBoxLayout *verticalLayout_4;
+    QSpacerItem *verticalSpacer;
+    QLineEdit *lineEdit;
+    QHBoxLayout *horizontalLayout_4;
+    QPushButton *Invest;
+    QPushButton *Sell;
+    QLabel *label;
+    QLabel *BitcoinIcon;
 
     void setupUi(QMainWindow *DashboardWindow)
     {
@@ -1136,23 +1146,6 @@ public:
         stackedWidget->addWidget(page_2);
         page_4 = new QWidget();
         page_4->setObjectName("page_4");
-        BitcoinPrice = new QLabel(page_4);
-        BitcoinPrice->setObjectName("BitcoinPrice");
-        BitcoinPrice->setGeometry(QRect(0, 130, 641, 211));
-        BitcoinPrice->setStyleSheet(QString::fromUtf8("QLabel {\n"
-"    color: black;\n"
-"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
-"    font-size: 45px;\n"
-"    font-weight: bold; /* Makes the font bold */\n"
-"    font-weight: 600;\n"
-"    padding: 10px 22px;\n"
-"    border: none;\n"
-"    border-radius: 14px;\n"
-"    min-height: 40px;\n"
-"    min-width: 120px;\n"
-"    letter-spacing: 0.4px;\n"
-"}\n"
-""));
         label_6 = new QLabel(page_4);
         label_6->setObjectName("label_6");
         label_6->setGeometry(QRect(-20, 0, 251, 61));
@@ -1170,6 +1163,171 @@ public:
 "    letter-spacing: 0.4px;\n"
 "}\n"
 ""));
+        widget_2 = new QWidget(page_4);
+        widget_2->setObjectName("widget_2");
+        widget_2->setGeometry(QRect(110, 240, 691, 351));
+        widget_2->setStyleSheet(QString::fromUtf8("QWidget {\n"
+"    background-color: #4caafc;        /* Deep blue background */\n"
+"    color: #ffffff;                   /* Change text to white for better contrast */\n"
+"    font-family: \"Segoe UI\", \"Helvetica Neue\", sans-serif;\n"
+"    font-size: 16px;\n"
+"    border: none;                     /* Ensure no default borders */\n"
+"    border-top-left-radius: 16px;      /* No rounding for top-left corner */\n"
+"    border-top-right-radius: 16px;    /* Rounded top-right corner */\n"
+"    border-bottom-right-radius: 16px; /* Rounded bottom-right corner */\n"
+"    border-bottom-left-radius: 0px;  /* Rounded bottom-left corner */\n"
+"    padding: 12px;                    /* Optional inner spacing */\n"
+"}"));
+        BitcoinPrice = new QLabel(widget_2);
+        BitcoinPrice->setObjectName("BitcoinPrice");
+        BitcoinPrice->setGeometry(QRect(20, -30, 641, 211));
+        BitcoinPrice->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: black;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 45px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"}\n"
+""));
+        verticalWidget = new QWidget(widget_2);
+        verticalWidget->setObjectName("verticalWidget");
+        verticalWidget->setGeometry(QRect(80, 100, 371, 211));
+        verticalWidget->setStyleSheet(QString::fromUtf8("#verticalWidget{\n"
+"	background: none;\n"
+"}"));
+        verticalLayout_4 = new QVBoxLayout(verticalWidget);
+        verticalLayout_4->setObjectName("verticalLayout_4");
+        verticalSpacer = new QSpacerItem(20, 100, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Maximum);
+
+        verticalLayout_4->addItem(verticalSpacer);
+
+        lineEdit = new QLineEdit(verticalWidget);
+        lineEdit->setObjectName("lineEdit");
+        lineEdit->setStyleSheet(QString::fromUtf8("/* Base style for QLineEdit */\n"
+"QLineEdit {\n"
+"  border: 1px solid #d0e8ff;\n"
+"  border-radius: 8px;\n"
+"  background-color: #f0f8ff;\n"
+"  padding: 5px 10px;\n"
+"  font-size: 16px;\n"
+"  color: #333;\n"
+"}\n"
+"\n"
+"QLineEdit:hover {\n"
+"  border-color: #9ec8ff;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"  border-color: #0078d7;\n"
+"  box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);\n"
+"  outline: none;\n"
+"}"));
+
+        verticalLayout_4->addWidget(lineEdit);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        horizontalLayout_4->setSizeConstraint(QLayout::SizeConstraint::SetDefaultConstraint);
+        Invest = new QPushButton(verticalWidget);
+        Invest->setObjectName("Invest");
+        Invest->setStyleSheet(QString::fromUtf8("/* Base style for QPushButton */\n"
+"QPushButton {\n"
+"  border: 2px solid #d0e8ff;\n"
+"  border-radius: 8px;\n"
+"  background-color: #f0f8ff;\n"
+"  color: #333;\n"
+"  padding: 8px 16px;\n"
+"  font-size: 16px;\n"
+"  font-weight: bold;\n"
+"  text-align: center;\n"
+"  transition: background-color 0.3s, border-color 0.3s, color 0.3s;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"  border-color: #9ec8ff;\n"
+"  background-color: #e6f4ff;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"  border-color: #0078d7;\n"
+"  background-color: #0078d7;\n"
+"  color: #ffffff; /* Text turns white when pressed */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"  border-color: #c5c5c5;\n"
+"  background-color: #f5f5f5;\n"
+"  color: #a0a0a0;\n"
+"}"));
+
+        horizontalLayout_4->addWidget(Invest);
+
+        Sell = new QPushButton(verticalWidget);
+        Sell->setObjectName("Sell");
+        Sell->setStyleSheet(QString::fromUtf8("/* Base style for QPushButton */\n"
+"QPushButton {\n"
+"  border: 2px solid #d0e8ff;\n"
+"  border-radius: 8px;\n"
+"  background-color: #f0f8ff;\n"
+"  color: #333;\n"
+"  padding: 8px 16px;\n"
+"  font-size: 16px;\n"
+"  font-weight: bold;\n"
+"  text-align: center;\n"
+"  transition: background-color 0.3s, border-color 0.3s, color 0.3s;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"  border-color: #9ec8ff;\n"
+"  background-color: #e6f4ff;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"  border-color: #0078d7;\n"
+"  background-color: #0078d7;\n"
+"  color: #ffffff; /* Text turns white when pressed */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"  border-color: #c5c5c5;\n"
+"  background-color: #f5f5f5;\n"
+"  color: #a0a0a0;\n"
+"}"));
+
+        horizontalLayout_4->addWidget(Sell);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_4);
+
+        label = new QLabel(widget_2);
+        label->setObjectName("label");
+        label->setGeometry(QRect(50, 120, 771, 60));
+        label->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    color: green;\n"
+"    font-family: \"San Francisco\", \"Helvetica Neue\", \"Segoe UI\", \"Arial\", sans-serif;\n"
+"    font-size: 45px;\n"
+"    font-weight: bold; /* Makes the font bold */\n"
+"    font-weight: 600;\n"
+"    padding: 10px 22px;\n"
+"    border: none;\n"
+"    border-radius: 14px;\n"
+"    min-height: 40px;\n"
+"    min-width: 120px;\n"
+"    letter-spacing: 0.4px;\n"
+"}\n"
+""));
+        BitcoinIcon = new QLabel(widget_2);
+        BitcoinIcon->setObjectName("BitcoinIcon");
+        BitcoinIcon->setGeometry(QRect(480, 180, 151, 151));
+        BitcoinIcon->setStyleSheet(QString::fromUtf8("#BitcoinIcon{\n"
+"	background: none;\n"
+"}"));
         stackedWidget->addWidget(page_4);
         DashboardWindow->setCentralWidget(centralwidget);
 
@@ -1246,8 +1404,12 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("DashboardWindow", "Cards", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("DashboardWindow", "Statistics", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("DashboardWindow", "My Depo", nullptr));
+        label_6->setText(QCoreApplication::translate("DashboardWindow", "Invest", nullptr));
         BitcoinPrice->setText(QCoreApplication::translate("DashboardWindow", "Bitcoin:", nullptr));
-        label_6->setText(QCoreApplication::translate("DashboardWindow", "Information", nullptr));
+        Invest->setText(QCoreApplication::translate("DashboardWindow", "Buy", nullptr));
+        Sell->setText(QCoreApplication::translate("DashboardWindow", "Sell", nullptr));
+        label->setText(QCoreApplication::translate("DashboardWindow", "Invest in some Bitcoin!", nullptr));
+        BitcoinIcon->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

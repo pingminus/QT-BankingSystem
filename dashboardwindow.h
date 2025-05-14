@@ -28,8 +28,12 @@ private slots:
     void SignoutButtonPressed();
     void TransferMethod();
     void InvestButtonPressed();
+    void BuyButtonPressed();
+    void SellButtonPressed();
 
 private:
+    bool invested;
+    std::vector<std::string> BTCBalances;
     void runPythonScript();
     Ui::DashboardWindow *ui;
     std::map<std::string, std::vector<std::string>> &MapBalance; // Reference to shared balance map

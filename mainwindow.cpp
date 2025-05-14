@@ -87,7 +87,7 @@ void MainWindow::RegisterButtonpressed()
             std::string password = ui->passwordText->text().toStdString();
             if (password.size() >= 3) {
                 HashMap[username] = password;
-                SharedMapBalance[username] = {"12525", "2514", "913"}; // Initialize balance for new user
+                SharedMapBalance[username] = {"12525", "2514", "913" , "0", "0", "0"}; // Initialize balance for new user
                 qDebug() << "Successfully registered as ";
                 ui->usernameText->setText("");
                 ui->passwordText->setText("");

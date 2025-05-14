@@ -1506,35 +1506,6 @@ background: none;
      </widget>
     </widget>
     <widget class="QWidget" name="page_4">
-     <widget class="QLabel" name="BitcoinPrice">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>130</y>
-        <width>641</width>
-        <height>211</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLabel {
-    color: black;
-    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
-    font-size: 45px;
-    font-weight: bold; /* Makes the font bold */
-    font-weight: 600;
-    padding: 10px 22px;
-    border: none;
-    border-radius: 14px;
-    min-height: 40px;
-    min-width: 120px;
-    letter-spacing: 0.4px;
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Bitcoin:</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
@@ -1561,20 +1532,213 @@ background: none;
 </string>
       </property>
       <property name="text">
-       <string>Information</string>
+       <string>Invest</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QWidget" name="widget_2" native="true">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>270</y>
-        <width>164</width>
-        <height>60</height>
+        <x>110</x>
+        <y>240</y>
+        <width>691</width>
+        <height>351</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QLabel {
+       <string notr="true">QWidget {
+    background-color: #4caafc;        /* Deep blue background */
+    color: #ffffff;                   /* Change text to white for better contrast */
+    font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, sans-serif;
+    font-size: 16px;
+    border: none;                     /* Ensure no default borders */
+    border-top-left-radius: 16px;      /* No rounding for top-left corner */
+    border-top-right-radius: 16px;    /* Rounded top-right corner */
+    border-bottom-right-radius: 16px; /* Rounded bottom-right corner */
+    border-bottom-left-radius: 0px;  /* Rounded bottom-left corner */
+    padding: 12px;                    /* Optional inner spacing */
+}</string>
+      </property>
+      <widget class="QLabel" name="BitcoinPrice">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>-30</y>
+         <width>641</width>
+         <height>211</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    color: black;
+    font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
+    font-size: 45px;
+    font-weight: bold; /* Makes the font bold */
+    font-weight: 600;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 14px;
+    min-height: 40px;
+    min-width: 120px;
+    letter-spacing: 0.4px;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Bitcoin:</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="verticalWidget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>100</y>
+         <width>371</width>
+         <height>211</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#verticalWidget{
+	background: none;
+}</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Policy::Maximum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>100</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="styleSheet">
+           <string notr="true">/* Base style for QLineEdit */
+QLineEdit {
+  border: 1px solid #d0e8ff;
+  border-radius: 8px;
+  background-color: #f0f8ff;
+  padding: 5px 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+QLineEdit:hover {
+  border-color: #9ec8ff;
+}
+
+QLineEdit:focus {
+  border-color: #0078d7;
+  box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
+  outline: none;
+}</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <property name="sizeConstraint">
+           <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+          </property>
+          <item>
+           <widget class="QPushButton" name="Invest">
+            <property name="styleSheet">
+             <string notr="true">/* Base style for QPushButton */
+QPushButton {
+  border: 2px solid #d0e8ff;
+  border-radius: 8px;
+  background-color: #f0f8ff;
+  color: #333;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+QPushButton:hover {
+  border-color: #9ec8ff;
+  background-color: #e6f4ff;
+}
+
+QPushButton:pressed {
+  border-color: #0078d7;
+  background-color: #0078d7;
+  color: #ffffff; /* Text turns white when pressed */
+}
+
+QPushButton:disabled {
+  border-color: #c5c5c5;
+  background-color: #f5f5f5;
+  color: #a0a0a0;
+}</string>
+            </property>
+            <property name="text">
+             <string>Buy</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="Sell">
+            <property name="styleSheet">
+             <string notr="true">/* Base style for QPushButton */
+QPushButton {
+  border: 2px solid #d0e8ff;
+  border-radius: 8px;
+  background-color: #f0f8ff;
+  color: #333;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+QPushButton:hover {
+  border-color: #9ec8ff;
+  background-color: #e6f4ff;
+}
+
+QPushButton:pressed {
+  border-color: #0078d7;
+  background-color: #0078d7;
+  color: #ffffff; /* Text turns white when pressed */
+}
+
+QPushButton:disabled {
+  border-color: #c5c5c5;
+  background-color: #f5f5f5;
+  color: #a0a0a0;
+}</string>
+            </property>
+            <property name="text">
+             <string>Sell</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>120</y>
+         <width>771</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
     color: green;
     font-family: &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;
     font-size: 45px;
@@ -1588,10 +1752,29 @@ background: none;
     letter-spacing: 0.4px;
 }
 </string>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
+       </property>
+       <property name="text">
+        <string>Invest in some Bitcoin!</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="BitcoinIcon">
+       <property name="geometry">
+        <rect>
+         <x>480</x>
+         <y>180</y>
+         <width>151</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#BitcoinIcon{
+	background: none;
+}</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>

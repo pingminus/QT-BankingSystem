@@ -298,7 +298,7 @@ QPushButton:pressed {
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="pushButton">
@@ -561,7 +561,7 @@ QComboBox QAbstractItemView {
          </item>
          <item>
           <property name="text">
-           <string>American Expresso</string>
+           <string>American Express</string>
           </property>
          </item>
         </widget>
@@ -1530,7 +1530,7 @@ background: none;
 </string>
         </property>
         <property name="text">
-         <string>American Expresso Card</string>
+         <string>American Express Card</string>
         </property>
        </widget>
       </widget>
@@ -1748,7 +1748,7 @@ QComboBox QAbstractItemView {
           </item>
           <item>
            <property name="text">
-            <string>American Expresso</string>
+            <string>American Express</string>
            </property>
           </item>
          </widget>

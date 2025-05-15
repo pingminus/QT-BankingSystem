@@ -28,7 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         getBTCPrice.py
         getBTCPrice.py
         Test.py
-        btc_backend.py
+
 
 
     )

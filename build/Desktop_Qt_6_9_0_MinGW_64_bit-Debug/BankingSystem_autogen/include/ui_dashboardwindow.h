@@ -1439,7 +1439,7 @@ public:
 
         retranslateUi(DashboardWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(2);
         tabWidget->setCurrentIndex(0);
 
 
@@ -1476,7 +1476,7 @@ public:
         label_8->setText(QCoreApplication::translate("DashboardWindow", "Transfer", nullptr));
         label_9->setText(QCoreApplication::translate("DashboardWindow", "From", nullptr));
         combobox->setItemText(0, QCoreApplication::translate("DashboardWindow", "Pingplus Bank", nullptr));
-        combobox->setItemText(1, QCoreApplication::translate("DashboardWindow", "American Expresso", nullptr));
+        combobox->setItemText(1, QCoreApplication::translate("DashboardWindow", "American Express", nullptr));
 
 #if QT_CONFIG(statustip)
         WhoLineEdit->setStatusTip(QString());
@@ -1506,14 +1506,14 @@ public:
         usernameCard_3->setText(QCoreApplication::translate("DashboardWindow", "TextLabel", nullptr));
         BalanceCard2_2->setText(QCoreApplication::translate("DashboardWindow", "1918$", nullptr));
         label_17->setText(QCoreApplication::translate("DashboardWindow", "Pingplus Banking Card", nullptr));
-        label_18->setText(QCoreApplication::translate("DashboardWindow", "American Expresso Card", nullptr));
+        label_18->setText(QCoreApplication::translate("DashboardWindow", "American Express Card", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("DashboardWindow", "Cards", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("DashboardWindow", "Statistics", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("DashboardWindow", "My Depo", nullptr));
         label_6->setText(QCoreApplication::translate("DashboardWindow", "Invest", nullptr));
         BitcoinPrice->setText(QCoreApplication::translate("DashboardWindow", "Bitcoin:", nullptr));
         combobox_2->setItemText(0, QCoreApplication::translate("DashboardWindow", "Pingplus Bank", nullptr));
-        combobox_2->setItemText(1, QCoreApplication::translate("DashboardWindow", "American Expresso", nullptr));
+        combobox_2->setItemText(1, QCoreApplication::translate("DashboardWindow", "American Express", nullptr));
 
         Invest->setText(QCoreApplication::translate("DashboardWindow", "Buy", nullptr));
         Sell->setText(QCoreApplication::translate("DashboardWindow", "Sell", nullptr));

@@ -8,6 +8,7 @@
 #include <QApplication>
 
 /**
+ * @author pingplus
  * @brief DashboardWindow constructor
  *
  * Initializes the dashboard interface for the banking/investment application.

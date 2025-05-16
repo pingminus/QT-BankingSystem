@@ -4,422 +4,506 @@
 #include <QTimer>
 #include <QProcess>
 #include <QDir>
-#include <qmessagebox.h>
+#include <QCloseEvent>
+#include <QApplication>
 
-    DashboardWindow::DashboardWindow(const std::string username,
-                                     std::map<std::string, std::vector<std::string>> &sharedMapBalance,
-                                     std::map<std::string, std::vector<std::string>> &sharedTransactions,
-                                     QWidget *parent)
+/**
+ * @brief DashboardWindow constructor
+ *
+ * Initializes the dashboard interface for the banking/investment application.
+ *
+ * @param username The logged-in user's username
+ * @param sharedMapBalance Reference to the shared balance data across application
+ * @param sharedTransactions Reference to the shared transaction history
+ * @param parent Parent widget (typically the login window)
+ */
+DashboardWindow::DashboardWindow(const std::string& username,
+                                 std::map<std::string, std::vector<std::string>>& sharedMapBalance,
+                                 std::map<std::string, std::vector<std::string>>& sharedTransactions,
+                                 QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::DashboardWindow)
-    , MapBalance(sharedMapBalance) // Assign reference to shared balance map
-    , Transactions(sharedTransactions) // Assign reference to shared transaction history
+    , m_balanceMap(sharedMapBalance)
+    , m_transactions(sharedTransactions)
+    , m_username(username)
+    , m_isInvested(false)
 {
     ui->setupUi(this);
-    ui->lineEdit->setPlaceholderText("Enter How much Money you want to invest");
+    ui->lineEdit->setPlaceholderText("Enter amount to invest");
 
-    invested = false;
+    // Initialize timer for Bitcoin price updates
     QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &DashboardWindow::runPythonScript);
-    timer->start(2000); // Run every 1000 milliseconds (1 second)
-    // Debug: Initialization
-    qDebug() << "Initializing DashboardWindow for user:" << QString::fromStdString(username);
+    connect(timer, &QTimer::timeout, this, &DashboardWindow::updateBitcoinPrice);
+    timer->start(2000); // Run every 2 seconds
+
+    initializeUserData();
+    setupUserInterface();
+    connectSignalsAndSlots();
+
+    // Initial update of Bitcoin price
+    updateBitcoinPrice();
+}
+
+/**
+ * @brief Initialize user balance and transaction data
+ */
+void DashboardWindow::initializeUserData()
+{
+    qDebug() << "Initializing user data for:" << QString::fromStdString(m_username);
 
     // Initialize user balance if not present
-    if (MapBalance.find(username) == MapBalance.end()) {
-        MapBalance[username] = {"100000", "20000", "0", "0", "0"}; // Third index for cash if btc sold rn Fourth Index for cash that was invested
-        qDebug() << "No existing balance found. Setting default balances for user:" << QString::fromStdString(username);
-    } else {
-        qDebug() << "Existing balance found for user:" << QString::fromStdString(username)
-        << ". Balances:" << QString::fromStdString(MapBalance[username][0]) << ","
-        << QString::fromStdString(MapBalance[username][1]) << ","
-        << QString::fromStdString(MapBalance[username][2]);
+    // Balance vector structure: [main balance, savings balance, current investment value,
+    //                           original invested amount, BTC price at investment]
+    if (m_balanceMap.find(m_username) == m_balanceMap.end()) {
+        m_balanceMap[m_username] = {"100000", "20000", "0", "0", "0"};
+        qDebug() << "No existing balance found. Setting default balances.";
     }
-
 
     // Initialize transaction history if not present
-    if (Transactions.find(username) == Transactions.end()) {
-        Transactions[username] = {}; // Initialize empty transaction history
-        qDebug() << "No existing transactions found. Initializing empty history for user:"
-                 << QString::fromStdString(username);
-    } else {
-        qDebug() << "Existing transaction history found for user:" << QString::fromStdString(username);
+    if (m_transactions.find(m_username) == m_transactions.end()) {
+        m_transactions[m_username] = {};
+        qDebug() << "No existing transactions found. Initializing empty history.";
     }
 
-    // Set initial balance and transaction history
-    ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0] + "$"));
-    if (Transactions.find(username) != Transactions.end()) {
-        for (const std::string &transaction : Transactions[username]) {
-            ui->listWidget->addItem(QString::fromStdString(transaction));
-        }
-    }
-    ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0] + "$"));
-    ui->BalanceCard2_2->setText(QString::fromStdString(MapBalance[username][1] + "$"));
+    // Update UI with initial values
+    updateBalanceDisplay();
+    updateTransactionHistory();
+}
 
-    ui->textEdit->setReadOnly(true);
-    // Set window properties
+/**
+ * @brief Set up the user interface elements and styling
+ */
+void DashboardWindow::setupUserInterface()
+{
+    // Window properties
     this->setWindowFlags(Qt::Window | Qt::MSWindowsFixedSizeDialogHint);
     this->setStyleSheet("background-color: #f5f5f7;");
+    this->setWindowIcon(QIcon(":/images/BankingIcon.png"));
+
+    // Set username in UI elements
     ui->LabelName->setAlignment(Qt::AlignCenter);
-    ui->LabelName->setText(QString::fromStdString(username));
+    ui->LabelName->setText(QString::fromStdString(m_username));
+    ui->usernameCard->setText(QString::fromStdString(m_username));
+    ui->usernameCard_3->setText(QString::fromStdString(m_username));
+
+    // Set read-only for Bitcoin info display
+    ui->textEdit->setReadOnly(true);
 
     // Load and scale images
-    this->setWindowIcon(QIcon(":/images/BankingIcon.png"));
-    QPixmap map(":/images/BankingIcon.png");
-    map = map.scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    ui->Icon->setPixmap(map);
-    QPixmap Map(":/images/BankSolo.png");
-    Map = Map.scaled(179, 179, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    ui->Icon_2->setPixmap(Map);
-    ui->Icon_4->setPixmap(QPixmap(":/images/Bank2.png").scaled(ui->Icon_4->size(), Qt::KeepAspectRatio));
+    loadImages();
+}
 
+/**
+ * @brief Connect UI signals to their corresponding slots
+ */
+void DashboardWindow::connectSignalsAndSlots()
+{
+    connect(ui->HomeButton, &QPushButton::released, this, &DashboardWindow::showHomeView);
+    connect(ui->InfoButton, &QPushButton::released, this, &DashboardWindow::showInfoView);
+    connect(ui->SignoutButton, &QPushButton::released, this, &DashboardWindow::signOut);
+    connect(ui->TransferButton, &QPushButton::released, this, &DashboardWindow::showTransferView);
+    connect(ui->SendButton, &QPushButton::released, this, &DashboardWindow::processTransfer);
+    connect(ui->InvestButton, &QPushButton::released, this, &DashboardWindow::showInvestView);
+    connect(ui->Invest, &QPushButton::released, this, &DashboardWindow::buyBitcoin);
+    connect(ui->Sell, &QPushButton::released, this, &DashboardWindow::sellBitcoin);
+}
+
+/**
+ * @brief Load and set images for UI elements
+ */
+void DashboardWindow::loadImages()
+{
+    // App icons
+    QPixmap bankIcon(":/images/BankingIcon.png");
+    bankIcon = bankIcon.scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->Icon->setPixmap(bankIcon);
+
+    QPixmap bankSolo(":/images/BankSolo.png");
+    bankSolo = bankSolo.scaled(179, 179, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->Icon_2->setPixmap(bankSolo);
+
+    ui->Icon_4->setPixmap(QPixmap(":/images/Bank2.png").scaled(ui->Icon_4->size(), Qt::KeepAspectRatio));
     ui->label_15->setPixmap(QPixmap(":/images/evm.png").scaled(ui->label_15->size(), Qt::KeepAspectRatio));
     ui->label_4->setPixmap(QPixmap(":/images/evm.png").scaled(ui->label_4->size(), Qt::KeepAspectRatio));
-    QPixmap MAP(":/images/Bitcoin.png");
-    MAP = MAP.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    ui->BitcoinIcon->setPixmap(MAP);
 
-
-    ui->usernameCard->setText(QString::fromStdString(username));
-    ui->usernameCard_3->setText(QString::fromStdString(username));
-
-    // Connect button signals to slots
-    connect(ui->HomeButton, SIGNAL(released()), this, SLOT(HomeButtonPressed()));
-    connect(ui->InfoButton, SIGNAL(released()), this, SLOT(InformationButtonPressed()));
-    connect(ui->SignoutButton, SIGNAL(released()), this, SLOT(SignoutButtonPressed()));
-    connect(ui->TransferButton, SIGNAL(released()), this, SLOT(TransferButtonPressed()));
-    connect(ui->SendButton, SIGNAL(released()), this, SLOT(TransferMethod()));
-    connect(ui->InvestButton, SIGNAL(released()),this,SLOT(InvestButtonPressed()));
-    connect(ui->Invest, SIGNAL(released()),this,SLOT(BuyButtonPressed()));
-    connect(ui->Sell, SIGNAL(released()),this,SLOT(SellButtonPressed()));
-    runPythonScript();
-
+    // Bitcoin icon
+    QPixmap bitcoinIcon(":/images/Bitcoin.png");
+    bitcoinIcon = bitcoinIcon.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->BitcoinIcon->setPixmap(bitcoinIcon);
 }
-void DashboardWindow::InvestButtonPressed(){
-    qDebug() << "InvestBUttonPressed";
+
+/**
+ * @brief Update the balance display in the UI
+ */
+void DashboardWindow::updateBalanceDisplay()
+{
+    const auto& balances = m_balanceMap[m_username];
+    ui->BalanceCard1->setText(QString::fromStdString(balances[0] + "$"));
+    ui->BalanceCard2_2->setText(QString::fromStdString(balances[1] + "$"));
+}
+
+/**
+ * @brief Update the transaction history display
+ */
+void DashboardWindow::updateTransactionHistory()
+{
+    ui->listWidget->clear();
+    for (const std::string &transaction : m_transactions[m_username]) {
+        ui->listWidget->addItem(QString::fromStdString(transaction));
+    }
+}
+
+/**
+ * @brief Show the investment view
+ */
+void DashboardWindow::showInvestView()
+{
+    qDebug() << "Switching to Investment view";
     ui->stackedWidget->setCurrentIndex(3);
 }
-void DashboardWindow::InformationButtonPressed()
+
+/**
+ * @brief Show the information view
+ */
+void DashboardWindow::showInfoView()
 {
     ui->stackedWidget->setCurrentIndex(0);
-    qDebug() << "InformationButtonPressed: Switched to Information view.";
+    qDebug() << "Switched to Information view.";
 }
 
-void DashboardWindow::HomeButtonPressed()
+/**
+ * @brief Show the home view
+ */
+void DashboardWindow::showHomeView()
 {
     ui->stackedWidget->setCurrentIndex(2);
-    qDebug() << "HomeButtonPressed: Switched to Home view.";
+    qDebug() << "Switched to Home view.";
 }
 
-void DashboardWindow::TransferButtonPressed()
+/**
+ * @brief Show the transfer/payment view
+ */
+void DashboardWindow::showTransferView()
 {
     ui->stackedWidget->setCurrentIndex(1);
-    qDebug() << "TransferButtonPressed: Switched to Transfer view.";
+    qDebug() << "Switched to Transfer view.";
 }
 
-void DashboardWindow::SignoutButtonPressed()
+/**
+ * @brief Handle user sign out
+ */
+void DashboardWindow::signOut()
 {
-    this->hide(); // Hide the DashboardWindow instead of closing it
+    this->hide();
     if (parentWidget()) {
-        parentWidget()->show(); // Show the parent MainWindow
+        parentWidget()->show();
     }
-    qDebug() << "SignoutButtonPressed: User signed out.";
+    qDebug() << "User signed out.";
 }
-void DashboardWindow::BuyButtonPressed(){
-    if(invested ==true) return;
-    int InvestedCash = std::stoi(ui->lineEdit->text().toStdString());
-    std::string username = ui->usernameCard->text().toStdString();
 
-    int currentBalance = std::stoi(MapBalance[username][0]);
-
-    if (InvestedCash <= currentBalance && !invested) {
-        // Deduct the invested amount from user's balance
-        int newBalance = currentBalance - InvestedCash;
-        MapBalance[username][0] = std::to_string(newBalance);
-
-        // Set value of investment
-        MapBalance[username][2] = std::to_string(InvestedCash); // Current value of investment
-        MapBalance[username][3] = std::to_string(InvestedCash); // Original invested amount
-
-        // Record BTC price at time of investment
-        QString priceText = ui->BitcoinPrice->text().split(":").last().remove("$").trimmed();
-        MapBalance[username][4] = priceText.toStdString();
-
-        invested = true;
-
-        // Update balance UI
-        ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0]) + " $");
-
-        // Add transaction record
-        QString transaction = QString("Bought Bitcoin: %1 $ at %2 $/BTC").arg(InvestedCash).arg(priceText);
-        Transactions[username].push_back(transaction.toStdString());
-        ui->listWidget->addItem(transaction);
-
-        qDebug() << "BuyButtonPressed: Investment made at BTC price:" << QString::fromStdString(MapBalance[username][4]);
-        qDebug() << "BuyButtonPressed: New balance is:" << QString::fromStdString(MapBalance[username][0]);
-        ui->label->setText(QString::fromStdString(std::to_string(InvestedCash) + "$"));
-        ui->lineEdit->setText("");
-    } else if (invested) {
-        qDebug() << "BuyButtonPressed: Already invested. Ignoring.";
-    } else {
-        QMessageBox::warning(this, "Insufficient Funds", "You don't have enough balance to invest.");
-    }
-}
-void DashboardWindow::SellButtonPressed(){
-    std::string username = ui->usernameCard->text().toStdString();
-
-    if (invested) {
-        // Retrieve the invested amount and BTC price at the time of investment
-        int investedAmount = std::stoi(MapBalance[username][2]);  // invested amount
-        int currentBalance = std::stoi(MapBalance[username][0]); // Current balance in the account
-
-        // Add the invested amount back to the balance
-        int newBalance = currentBalance + investedAmount;
-        MapBalance[username][0] = std::to_string(newBalance); // Update user's balance
-
-        // Revert the investment-related data
-        MapBalance[username][2] = "0";  // Reset the current value of investment
-        MapBalance[username][3] = "0";  // Reset the original investment amount
-        MapBalance[username][4] = "0";  // Reset the BTC price at the time of investment
-
-        // Update the UI for the balance
-        ui->BalanceCard1->setText(QString::fromStdString(MapBalance[username][0]) + " $");
-
-        // Add transaction record
-        QString transaction = QString("Sold Bitcoin: %1 $ returned to balance").arg(investedAmount);
-        Transactions[username].push_back(transaction.toStdString());
-        ui->listWidget->addItem(transaction);
-
-        // Reset the invested flag
-        invested = false;
-
-        // Debugging logs
-        qDebug() << "SellButtonPressed: Investment sold. Money returned to balance.";
-        qDebug() << "New balance is: " << QString::fromStdString(MapBalance[username][0]);
-
-        ui->label->setText("");
-
-    } else {
-        qDebug() << "SellButtonPressed: No active investment to sell.";
-        QMessageBox::warning(this, "No Investment", "You do not have any active investment to sell.");
-    }
-}
-void DashboardWindow::TransferMethod()
+/**
+ * @brief Process Bitcoin purchase
+ */
+void DashboardWindow::buyBitcoin()
 {
-    int index = ui->combobox->currentIndex();
-    QString receiver = ui->WhoLineEdit->text();
-    QString message = ui->message->text(); // Get the message from the input field
-    std::string sender;
-    int cardIndex = index;
-
-    // Debug: Transfer initiation
-    qDebug() << "TransferMethod initiated. ComboBox Index:" << index;
-
-    if (receiver.isEmpty()) {
-        qDebug() << "Receiver field is empty!";
+    // Don't allow multiple investments at once
+    if (m_isInvested) {
+        qDebug() << "Already invested. Ignoring buy request.";
         return;
     }
 
-    std::string amountStr = ui->amount->text().toStdString();
-    int amount = 0;
-    try {
-        amount = std::stoi(amountStr);
-        if (amount <= 0) {
-            throw std::invalid_argument("Amount must be positive");
-        }
-    } catch (const std::exception &e) {
-        qDebug() << "Invalid amount! Error:" << e.what();
+    bool conversionOk = false;
+    int investedCash = ui->lineEdit->text().toInt(&conversionOk);
+
+    if (!conversionOk || investedCash <= 0) {
+        qDebug() << "Invalid Amount: Please enter a valid positive amount.";
         return;
     }
 
-    // Retrieve the sender and balance card based on the index
-    if (index == 0) {
-        sender = ui->usernameCard->text().toStdString();
-    } else if (index == 1) {
-        sender = ui->usernameCard_3->text().toStdString();
-    } else {
-        qDebug() << "Invalid combobox index!";
+    auto& userBalance = m_balanceMap[m_username];
+    int currentBalance = std::stoi(userBalance[0]);
+
+    if (investedCash > currentBalance) {
+        qDebug() << "Insufficient Funds: You don't have enough balance to invest.";
+        return;
+    }
+    // Process the investment
+    int newBalance = currentBalance - investedCash;
+    userBalance[0] = std::to_string(newBalance);
+
+    // Store investment information
+    userBalance[2] = std::to_string(investedCash); // Current value of investment
+    userBalance[3] = std::to_string(investedCash); // Original invested amount
+
+    // Record BTC price at time of investment
+    QString priceText = ui->BitcoinPrice->text().split(":").last().remove("$").trimmed();
+    userBalance[4] = priceText.toStdString();
+
+    m_isInvested = true;
+
+    // Update UI
+    updateBalanceDisplay();
+
+    // Add transaction record
+    QString transaction = QString("Bought Bitcoin: %1 $ at %2 $/BTC").arg(investedCash).arg(priceText);
+    m_transactions[m_username].push_back(transaction.toStdString());
+    ui->listWidget->addItem(transaction);
+
+    qDebug() << "Investment made at BTC price:" << QString::fromStdString(userBalance[4]);
+    qDebug() << "New balance is:" << QString::fromStdString(userBalance[0]);
+
+    ui->label->setText(QString("%1$").arg(investedCash));
+    ui->lineEdit->clear();
+}
+
+/**
+ * @brief Process Bitcoin sale
+ */
+void DashboardWindow::sellBitcoin()
+{
+    if (!m_isInvested) {
+        qDebug() << "No Investment: You do not have any active investment to sell.";
+        return;
+    }
+    auto& userBalance = m_balanceMap[m_username];
+
+    // Calculate return amount
+    int investmentValue = std::stoi(userBalance[2]);  // Current investment value
+    int currentBalance = std::stoi(userBalance[0]);   // Current balance
+
+    // Add the current investment value back to balance
+    int newBalance = currentBalance + investmentValue;
+    userBalance[0] = std::to_string(newBalance);
+
+    // Reset investment data
+    userBalance[2] = "0";  // Current value of investment
+    userBalance[3] = "0";  // Original investment amount
+    userBalance[4] = "0";  // BTC price at investment time
+
+    // Update UI
+    updateBalanceDisplay();
+
+    // Add transaction record
+    QString transaction = QString("Sold Bitcoin: %1 $ returned to balance").arg(investmentValue);
+    m_transactions[m_username].push_back(transaction.toStdString());
+    ui->listWidget->addItem(transaction);
+
+    // Reset investment flag and UI
+    m_isInvested = false;
+    ui->label->setText("");
+
+    qDebug() << "Investment sold. New balance: " << QString::fromStdString(userBalance[0]);
+}
+
+/**
+ * @brief Process money transfer between accounts
+ */
+void DashboardWindow::processTransfer()
+{
+    int sourceCardIndex = ui->combobox->currentIndex();
+    QString receiverUsername = ui->WhoLineEdit->text();
+    QString message = ui->message->text();
+
+    // Basic validation
+    if (receiverUsername.isEmpty()) {
+        qDebug() << "Missing Recipient: Please enter a recipient username.";
         return;
     }
 
-    std::string receiverStr = receiver.toStdString();
+    bool conversionOk = false;
+    int amount = ui->amount->text().toInt(&conversionOk);
+
+    if (!conversionOk || amount <= 0) {
+        qDebug() << "Invalid Amount: Please enter a valid positive amount.";
+        return;
+    }
+    std::string receiverStr = receiverUsername.toStdString();
 
     // Check if sender and receiver are the same
-    if (sender == receiverStr) {
-        qDebug() << "Sender and receiver cannot be the same!";
+    if (m_username == receiverStr) {
+        qDebug() << "Invalid Transfer: You cannot transfer money to yourself.";
         return;
     }
 
     // Check if receiver exists
-    if (MapBalance.find(receiverStr) == MapBalance.end()) {
-        qDebug() << "Receiver not found!";
+    if (m_balanceMap.find(receiverStr) == m_balanceMap.end()) {
+        qDebug() << "Unknown Recipient: The recipient does not have an account.";
         return;
     }
 
-    // Debug: Check sender's balance
-    qDebug() << "Sender Card-" << (cardIndex + 1) << " Balance:"
-             << QString::fromStdString(MapBalance[sender][cardIndex])
-             << "Amount to transfer:" << amount;
-
     // Check sender's balance
-    if (std::stoi(MapBalance[sender][cardIndex]) < amount) {
-        qDebug() << "Insufficient balance!";
+    if (std::stoi(m_balanceMap[m_username][sourceCardIndex]) < amount) {
+        qDebug() << "Insufficient Funds: You don't have enough balance in the selected account.";
         return;
     }
 
     // Perform the transfer
-    qDebug() << "Performing transfer...";
-    MapBalance[sender][cardIndex] = std::to_string(std::stoi(MapBalance[sender][cardIndex]) - amount);
+    m_balanceMap[m_username][sourceCardIndex] = std::to_string(
+        std::stoi(m_balanceMap[m_username][sourceCardIndex]) - amount
+        );
 
-    // Ensure the correct card index is used for the receiver
-    MapBalance[receiverStr][cardIndex] = std::to_string(std::stoi(MapBalance[receiverStr][cardIndex]) + amount);
+    m_balanceMap[receiverStr][sourceCardIndex] = std::to_string(
+        std::stoi(m_balanceMap[receiverStr][sourceCardIndex]) + amount
+        );
 
-    // Debug: After transfer
-    qDebug() << "After Transfer: Sender Card-" << (cardIndex + 1) << " Balance:"
-             << QString::fromStdString(MapBalance[sender][cardIndex]);
-
-    // Check if the checkbox is checked
+    // Handle anonymous transfer option
     bool isAnonymous = ui->checkBox->isChecked();
+    QString senderName = isAnonymous ? "Anonymous" : QString::fromStdString(m_username);
+    QString receiverName = isAnonymous ? "Anonymous" : receiverUsername;
 
-    QString senderName = isAnonymous ? "Anonymous" : QString::fromStdString(sender);
-    QString receiverName = isAnonymous ? "Anonymous" : receiver;
-
+    // Create transaction records
     QString senderTransaction = QString("-%1 $ to %2 from Card-%3 | Msg: %4")
-                                    .arg(amountStr.c_str(), receiverName, QString::number(cardIndex + 1), message);
+                                    .arg(amount)
+                                    .arg(receiverName)
+                                    .arg(sourceCardIndex + 1)
+                                    .arg(message);
+
     QString receiverTransaction = QString("+%1 $ from %2 from Card-%3 | Msg: %4")
-                                      .arg(amountStr.c_str(), senderName, QString::number(cardIndex + 1), message);
+                                      .arg(amount)
+                                      .arg(senderName)
+                                      .arg(sourceCardIndex + 1)
+                                      .arg(message);
 
-    Transactions[sender].push_back(senderTransaction.toStdString());
-    Transactions[receiverStr].push_back(receiverTransaction.toStdString());
+    // Store transaction records
+    m_transactions[m_username].push_back(senderTransaction.toStdString());
+    m_transactions[receiverStr].push_back(receiverTransaction.toStdString());
 
-    // Update sender's transaction list widget
+    // Update UI
     ui->listWidget->addItem(senderTransaction);
-
-    // Update sender's balance UI
-    if (cardIndex == 0) {
-        qDebug() << "Updating UI for Card 1 Balance:" << QString::fromStdString(MapBalance[sender][0]);
-        ui->BalanceCard1->setText(QString::fromStdString(MapBalance[sender][0] + " $"));
-    } else if (cardIndex == 1) {
-        qDebug() << "Updating UI for Card 2 Balance:" << QString::fromStdString(MapBalance[sender][1]);
-        ui->BalanceCard2_2->setText(QString::fromStdString(MapBalance[sender][1] + " $"));
-    }
+    updateBalanceDisplay();
 
     // Clear input fields
     ui->WhoLineEdit->clear();
     ui->amount->clear();
     ui->message->clear();
 
-    qDebug() << "Transaction successful!";
+    qDebug() << "Transfer Complete: Your transfer has been completed successfully.";
+    qDebug() << "Transfer successful!";
 }
 
-void DashboardWindow::runPythonScript()
+/**
+ * @brief Updates the Bitcoin price by running an external Python script
+ */
+void DashboardWindow::updateBitcoinPrice()
 {
     // Get the directory of the executable
     QString executableDir = QCoreApplication::applicationDirPath();
 
     // Move up directories to access the root project directory
     QDir projectRootDir(executableDir);
-    projectRootDir.cdUp();
-    projectRootDir.cdUp();
+    projectRootDir.cdUp(); // Go up to build directory
+    projectRootDir.cdUp(); // Go up to project root
 
     QString scriptPath = projectRootDir.absoluteFilePath("Test.py");
+
+    // Safety check - make sure the script exists
+    if (!QFile::exists(scriptPath)) {
+        qDebug() << "Bitcoin price script not found at:" << scriptPath;
+        return;
+    }
+
+    // Run the Python script
+    QProcess process;
     QString command = QString("python \"%1\"").arg(scriptPath);
 
-    qDebug() << "Executing command:" << command;
-
-    QProcess process;
     process.start(command);
-    process.waitForFinished();
+    if (!process.waitForFinished(5000)) { // 5 second timeout
+        qDebug() << "Bitcoin price script timed out";
+        return;
+    }
 
     QString output = process.readAllStandardOutput();
     QString error = process.readAllStandardError();
 
     if (!error.isEmpty()) {
-        qDebug() << "Error from Python script:" << error;
+        qDebug() << "Error from Bitcoin price script:" << error;
         return;
     }
 
-    QString trimmedOutput = output.trimmed();
-    qDebug() << "Output from Python script:" << trimmedOutput;
+    QString trimmedPrice = output.trimmed();
 
     // Update BTC price display
-    ui->BitcoinPrice->setText("1 BTC: " + trimmedOutput + "$");
+    ui->BitcoinPrice->setText("1 BTC: " + trimmedPrice + "$");
 
-    std::string username = ui->usernameCard->text().toStdString();
-    std::string currentPriceStr = trimmedOutput.toStdString();
-
-    // Store current BTC price in slot 5
-    if (MapBalance[username].size() < 6) {
-        MapBalance[username].resize(6, "0");
+    // Store current BTC price
+    auto& userBalance = m_balanceMap[m_username];
+    if (userBalance.size() < 6) {
+        userBalance.resize(6, "0");
     }
-    MapBalance[username][5] = currentPriceStr;
+    userBalance[5] = trimmedPrice.toStdString();
 
-    if (invested) {
-        try {
-            int BitcoinPriceNow = std::stoi(currentPriceStr);
-            int BitcoinPriceWhenInvested = std::stoi(MapBalance[username][4]);
-            int MoneyWhenInvested = std::stoi(MapBalance[username][3]);
+    // Update investment value if user is currently invested
+    updateInvestmentValue(trimmedPrice);
+}
 
-            float percentageChange = static_cast<float>(BitcoinPriceNow - BitcoinPriceWhenInvested) / BitcoinPriceWhenInvested;
-            float newValue = MoneyWhenInvested * (1.0f + percentageChange);
+/**
+ * @brief Updates the current investment value based on Bitcoin price changes
+ *
+ * @param currentPriceStr Current Bitcoin price as string
+ */
+void DashboardWindow::updateInvestmentValue(const QString& currentPriceStr)
+{
+    if (!m_isInvested) {
+        return;
+    }
 
-            MapBalance[username][2] = std::to_string(static_cast<int>(newValue));
+    auto& userBalance = m_balanceMap[m_username];
 
-            // Set investment label text
-            QString valueStr = QString::fromStdString(MapBalance[username][2]) + " $ (" + QString::number(percentageChange * 100, 'f', 2) + " %)";
-            ui->label->setText(valueStr);
+    try {
+        int bitcoinPriceNow = currentPriceStr.toInt();
+        int bitcoinPriceAtInvestment = std::stoi(userBalance[4]);
+        int originalInvestment = std::stoi(userBalance[3]);
 
-            // Custom styles
-            QString redStyle = R"(
-                QLabel {
-                    color: red;
-                    font-family: "San Francisco", "Helvetica Neue", "Segoe UI", "Arial", sans-serif;
-                    font-size: 45px;
-                    font-weight: 600;
-                    padding: 10px 22px;
-                    border: none;
-                    border-radius: 14px;
-                    min-height: 40px;
-                    min-width: 120px;
-                    letter-spacing: 0.4px;
-                    background: none;
+        // Calculate new value based on BTC price change
+        float percentageChange = static_cast<float>(bitcoinPriceNow - bitcoinPriceAtInvestment) / bitcoinPriceAtInvestment;
+        float newValue = originalInvestment * (1.0f + percentageChange);
 
-                })";
+        // Update stored investment value
+        userBalance[2] = std::to_string(static_cast<int>(newValue));
 
-            QString greenStyle = R"(
-                QLabel {
-                    color: #00d119;
-                    font-family: "San Francisco", "Helvetica Neue", "Segoe UI", "Arial", sans-serif;
-                    font-size: 45px;
-                    font-weight: 600;
-                    padding: 10px 22px;
-                    border: none;
-                    border-radius: 14px;
-                    min-height: 40px;
-                    min-width: 120px;
-                    letter-spacing: 0.4px;
-                    background: none;
-                })";
+        // Update UI with new value and percentage change
+        QString valueStr = QString::fromStdString(userBalance[2]) +
+                           " $ (" + QString::number(percentageChange * 100, 'f', 2) + " %)";
+        ui->label->setText(valueStr);
 
-            // Apply style based on performance
-            if (BitcoinPriceNow < BitcoinPriceWhenInvested) {
-                ui->label->setStyleSheet(redStyle);
-            } else {
-                ui->label->setStyleSheet(greenStyle);
-            }
-
-            qDebug() << "Investment updated successfully.";
-            qDebug() << "BTC Now:" << BitcoinPriceNow
-                     << "BTC When Invested:" << BitcoinPriceWhenInvested
-                     << "Invested Money:" << MoneyWhenInvested
-                     << "New Value:" << newValue;
-        } catch (const std::exception &e) {
-            qDebug() << "Error in investment calculation:" << e.what();
+        // Apply appropriate color styling based on performance
+        if (bitcoinPriceNow < bitcoinPriceAtInvestment) {
+            ui->label->setStyleSheet(m_redValueStyle);
+        } else {
+            ui->label->setStyleSheet(m_greenValueStyle);
         }
+
+        qDebug() << "Investment updated: Original:" << originalInvestment
+                 << "New Value:" << newValue
+                 << "Change:" << percentageChange * 100 << "%";
+
+    } catch (const std::exception &e) {
+        qDebug() << "Error in investment calculation:" << e.what();
     }
 }
 
+/**
+ * @brief Handle window closing event (X button or Alt+F4)
+ *
+ * This overrides the default closeEvent to terminate the entire application
+ * when the dashboard window is closed.
+ *
+ * @param event The close event
+ */
+void DashboardWindow::closeEvent(QCloseEvent *event)
+{
+    qDebug() << "DashboardWindow close event detected.";
 
+    event->accept();
+
+    // Only quit if this is the main application window (not a dialog, not a child)
+        QApplication::quit();
+
+    // Otherwise, do not quit the application!
+}
+/**
+ * @brief DashboardWindow destructor
+ */
 DashboardWindow::~DashboardWindow()
 {
     delete ui;

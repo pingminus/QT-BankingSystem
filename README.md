@@ -1,6 +1,6 @@
 # QT-BankingSystem
 
-A comprehensive Banking System application built with C++ and the Qt framework. This project simulates core banking functionalities such as account management, transactions, and user authentication with a modern GUI.
+A comprehensive Banking System application built with C++ and the Qt framework. This project simulates core banking functionalities such as transactions, and user authentication with a modern GUI.
 
 ## Features
 

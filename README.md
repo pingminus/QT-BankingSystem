@@ -46,16 +46,5 @@ https://github.com/pingminus/Qt-BankingSystem.exe
      ./QT-BankingSystem
      ```
 
-## Usage
-
-1. Launch the application.
-2. Register for a new bank account or log in as an admin.
-3. Manage your accounts, make transactions, and view account history.
-
-## Contributing
-
-Contributions are welcome! Please open issues or pull requests for enhancements and bug fixes.
-
-
 
 

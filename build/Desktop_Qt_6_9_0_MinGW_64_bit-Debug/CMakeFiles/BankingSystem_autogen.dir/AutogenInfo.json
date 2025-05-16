@@ -324,7 +324,7 @@
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
-		"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/resources.qrc"
+		"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/resources/resources.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem",
 	"CROSS_CONFIG" : false,
@@ -333,15 +333,15 @@
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/dashboardwindow.h",
+			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/include/dashboardwindow.h",
 			"MU",
-			"EWIEGA46WW/moc_dashboardwindow.cpp",
+			"6YEA5652QU/moc_dashboardwindow.cpp",
 			null
 		],
 		[
-			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/mainwindow.h",
+			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/include/mainwindow.h",
 			"MU",
-			"EWIEGA46WW/moc_mainwindow.cpp",
+			"6YEA5652QU/moc_mainwindow.cpp",
 			null
 		]
 	],
@@ -371,6 +371,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/include",
 		"C:/Qt/6.9.0/mingw_64/include/QtCore",
 		"C:/Qt/6.9.0/mingw_64/include",
 		"C:/Qt/6.9.0/mingw_64/mkspecs/win32-g++",
@@ -417,17 +418,17 @@
 	"SOURCES" : 
 	[
 		[
-			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/dashboardwindow.cpp",
-			"MU",
-			null
-		],
-		[
 			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/main.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/mainwindow.cpp",
+			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/src/dashboardwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/src/mainwindow.cpp",
 			"MU",
 			null
 		]

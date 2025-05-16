@@ -614,12 +614,12 @@ BankingSystem_autogen/timestamp: \
 	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
 	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \
 	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
-	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/dashboardwindow.cpp \
-	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/dashboardwindow.h \
+	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/include/dashboardwindow.h \
+	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/include/mainwindow.h \
 	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/main.cpp \
-	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/mainwindow.cpp \
-	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/mainwindow.h \
-	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/resources.qrc \
-	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/dashboardwindow.ui \
-	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/mainwindow.ui \
+	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/resources/resources.qrc \
+	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/src/dashboardwindow.cpp \
+	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/src/mainwindow.cpp \
+	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/src/dashboardwindow.ui \
+	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/src/mainwindow.ui \
 	C:/Qt/Tools/CMake_64/bin/cmake.exe

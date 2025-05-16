@@ -8,6 +8,8 @@ A comprehensive Banking System application built with C++ and the Qt framework. 
 - **Transactions**: transfer funds between accounts
 - **Transaction History**: View account transaction history
 - **Intuitive GUI**: Built using Qt for a responsive and modern interface
+- **Invest**: Invest in real time updated Bitcoin
+
 
 ## Screenshots
 

@@ -25,6 +25,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/mainwindow.cpp
         src/dashboardwindow.cpp
 
+        #Python scripts
+        scripts/simulatedBTCPrice.py
+        scripts/getBTCPrice.py
+
         # Headers
         include/mainwindow.h
         include/dashboardwindow.h

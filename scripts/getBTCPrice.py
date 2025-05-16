@@ -1,6 +1,7 @@
 import requests
 import sys
 
+#Fetch live Bitcoin data
 def get_bitcoin_price():
     # CoinGecko API URL
     url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"

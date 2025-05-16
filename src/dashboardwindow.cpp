@@ -395,7 +395,7 @@ void DashboardWindow::updateBitcoinPrice()
     projectRootDir.cdUp(); // Go up to build directory
     projectRootDir.cdUp(); // Go up to project root
 
-    QString scriptPath = projectRootDir.absoluteFilePath("scripts\\Test.py");
+    QString scriptPath = projectRootDir.absoluteFilePath("scripts\\getBTCPrice.py");
 
     // Safety check - make sure the script exists
     if (!QFile::exists(scriptPath)) {

@@ -1,0 +1,13 @@
+# ninja log v6
+22	1023	7691362308902938	BankingSystem_autogen/timestamp	1e038bdb5a61d23e
+22	1023	7691362308902938	BankingSystem_autogen/mocs_compilation.cpp	1e038bdb5a61d23e
+22	1023	7691362308902938	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/build/Desktop_Qt_6_9_0_MinGW_64_bit-Release/BankingSystem_autogen/timestamp	1e038bdb5a61d23e
+22	1023	7691362308902938	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/build/Desktop_Qt_6_9_0_MinGW_64_bit-Release/BankingSystem_autogen/mocs_compilation.cpp	1e038bdb5a61d23e
+1029	1249	7691362312150275	BankingSystem_autogen/3YJK5W5UP7/qrc_resources.cpp	38cb89fc01c844f9
+1029	1249	7691362312150275	C:/Users/nikla/OneDrive/Dokumente/QtStuff/BankingSystem/build/Desktop_Qt_6_9_0_MinGW_64_bit-Release/BankingSystem_autogen/3YJK5W5UP7/qrc_resources.cpp	38cb89fc01c844f9
+1254	3229	7691362312290321	CMakeFiles/BankingSystem.dir/main.cpp.obj	991eac3178741c0d
+1250	3417	7691362312250284	CMakeFiles/BankingSystem.dir/BankingSystem_autogen/mocs_compilation.cpp.obj	68fa09380f317c74
+1258	3883	7691362312330322	CMakeFiles/BankingSystem.dir/src/mainwindow.cpp.obj	8a79be2181129d44
+1262	5215	7691362312370281	CMakeFiles/BankingSystem.dir/src/dashboardwindow.cpp.obj	f97203e3710370e8
+1266	6613	7691362312420294	CMakeFiles/BankingSystem.dir/BankingSystem_autogen/3YJK5W5UP7/qrc_resources.cpp.obj	49ecb9b7060b3b88
+6613	6854	7691362365883993	BankingSystem.exe	a20feffd62710219

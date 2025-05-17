@@ -35,7 +35,7 @@ DashboardWindow::DashboardWindow(const std::string& username,
     // Initialize timer for Bitcoin price updates
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &DashboardWindow::updateBitcoinPrice);
-    timer->start(20000); // Run every 20 seconds because of API time out // if simulated BTCPrice.py is used change to 2 seconds
+    timer->start(30000); // Run every 30 seconds because of API time out // if simulated BTCPrice.py is used change to 2 seconds
 
     initializeUserData();
     setupUserInterface();
